@@ -6,7 +6,7 @@ class FirstApp
 	{
 
 		string myName;
-		myName = "Jane";
+		myName = "Дима";
 
 		Console.WriteLine(myName);
 
