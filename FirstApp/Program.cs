@@ -2,14 +2,13 @@
 
 class FirstApp
 {
-	public static void Main(string[] args)
+	static void Main(string[] args)
 	{
 
-		string myName;
-		myName = "Дима";
+		string myName = "Dima";
 
 		Console.WriteLine(myName);
 
-		Console.ReadKey();
+        Console.ReadKey();
 	}
 }
