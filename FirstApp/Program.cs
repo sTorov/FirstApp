@@ -5,16 +5,16 @@ class FirstApp
 	static void Main(string[] args)
 	{
 
-		const string myName = "Dima";
+		string myName = "Dima";
+		byte myAge = 26;
+		bool myPet = false;
+		double myLeg = 40.5;
 
-		Console.WriteLine(myName);
-
-		Console.WriteLine("\tПривет, мир");
-		Console.WriteLine("\tМне 26 лет");
-		Console.WriteLine("\tMy name is\n Dima");
-        Console.WriteLine('\u0040');
-        Console.WriteLine('\x23');
-
+		Console.WriteLine($"My name is {myName}");
+		Console.WriteLine($"My age is {myAge}");
+		Console.WriteLine($"Do I have a pet? {myPet}");
+        Console.WriteLine($"My shoe size is {myLeg}");
+        
 		Console.ReadKey();
 	}
 }
