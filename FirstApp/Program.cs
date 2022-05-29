@@ -9,6 +9,10 @@ class FirstApp
 
 		Console.WriteLine(myName);
 
-        Console.ReadKey();
+		Console.WriteLine("Привет, мир");
+		Console.WriteLine("Мне 26 лет");
+		Console.WriteLine("My name is Dima");
+
+		Console.ReadKey();
 	}
 }
