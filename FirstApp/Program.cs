@@ -12,6 +12,8 @@ class FirstApp
 		Console.WriteLine("\tПривет, мир");
 		Console.WriteLine("\tМне 26 лет");
 		Console.WriteLine("\tMy name is\n Dima");
+        Console.WriteLine('\u0040');
+        Console.WriteLine('\x23');
 
 		Console.ReadKey();
 	}
