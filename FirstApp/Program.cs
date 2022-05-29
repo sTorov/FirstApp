@@ -5,7 +5,7 @@ class FirstApp
 	static void Main(string[] args)
 	{
 
-		string myName = "Dima";
+		const string myName = "Dima";
 
 		Console.WriteLine(myName);
 
