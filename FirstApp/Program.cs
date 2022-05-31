@@ -4,17 +4,14 @@ class FirstApp
 {
 	static void Main(string[] args)
 	{
-
-		string myName = "Dima";
-		byte myAge = 26;
-		bool myPet = false;
-		double myLeg = 40.5;
-
-		Console.WriteLine($"My name is {myName}");
-		Console.WriteLine($"My age is {myAge}");
-		Console.WriteLine($"Do I have a pet? {myPet}");
-        Console.WriteLine($"My shoe size is {myLeg}");
-        
+		const byte Monday = 1;
+		const byte Tuesday = 2;
+		const byte Wednesday = 3;
+		const byte Thursday = 4;
+		const byte Friday = 5;
+		const byte Saturday = 6;
+		const byte Sunday = 7;
+		
 		Console.ReadKey();
 	}
 }
