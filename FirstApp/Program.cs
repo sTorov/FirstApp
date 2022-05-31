@@ -2,16 +2,14 @@
 
 class FirstApp
 {
-	static void Main(string[] args)
+	enum DaysOfWeek : byte
 	{
-		const byte Monday = 1;
-		const byte Tuesday = 2;
-		const byte Wednesday = 3;
-		const byte Thursday = 4;
-		const byte Friday = 5;
-		const byte Saturday = 6;
-		const byte Sunday = 7;
-		
-		Console.ReadKey();
+		Monday = 1,
+		Tuesday,
+		Wednesday,
+		Thursday,
+		Friday,
+		Saturday,
+		Sunday
 	}
 }
