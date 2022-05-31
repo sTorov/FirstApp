@@ -2,24 +2,20 @@
 
 class FirstApp
 {
-	enum DaysOfWeek : byte
+	enum Semaphore
 	{
-		Monday = 1,
-		Tuesday,
-		Wednesday,
-		Thursday,
-		Friday,
-		Saturday,
-		Sunday
+		Red =100,
+		Yellow =200,
+		Green = 300
 	}
 
 	static void Main(string[] args)
     {
-		DaysOfWeek MyFavoriteDay;
+		Semaphore Color;
 
-		MyFavoriteDay = DaysOfWeek.Sunday;
+		Color = Semaphore.Yellow;
 
-		Console.WriteLine(MyFavoriteDay);
+		Console.WriteLine(Color);
 
 		Console.ReadLine();
     }
