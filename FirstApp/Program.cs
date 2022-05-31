@@ -12,4 +12,15 @@ class FirstApp
 		Saturday,
 		Sunday
 	}
+
+	static void Main(string[] args)
+    {
+		DaysOfWeek MyFavoriteDay;
+
+		MyFavoriteDay = DaysOfWeek.Sunday;
+
+		Console.WriteLine(MyFavoriteDay);
+
+		Console.ReadLine();
+    }
 }
