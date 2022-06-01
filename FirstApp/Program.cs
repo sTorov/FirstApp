@@ -4,17 +4,9 @@ class FirstApp
 {
 	static void Main(string[] args)
 	{
+		double result = 5 / 2;
+		Console.WriteLine("5 / 2 = {0}", result);
 
-		string myName = "Dima";
-		byte myAge = 26;
-		bool myPet = false;
-		double myLeg = 40.5;
-
-		Console.WriteLine($"My name is {myName}");
-		Console.WriteLine($"My age is {myAge}");
-		Console.WriteLine($"Do I have a pet? {myPet}");
-        Console.WriteLine($"My shoe size is {myLeg}");
-        
 		Console.ReadKey();
 	}
 }
