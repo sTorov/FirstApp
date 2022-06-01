@@ -3,14 +3,11 @@
 class FirstApp
 {
 	static void Main(string[] args)
-	{
-		int olddata = 6;
-		string data = olddata.ToString();
+    {
+        Console.Write("Enter your age: ");
+        int age = Convert.ToInt32(Console.ReadLine());
+        Console.WriteLine($"Your age is {age}");
 
-        Console.WriteLine(data);
-
-		Console.WriteLine(olddata);
-
-		Console.ReadKey();
+        Console.ReadKey();
 	}
 }
