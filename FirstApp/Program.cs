@@ -2,19 +2,20 @@
 
 class FirstApp
 {
-	static void Main(string[] args)
-	{
+    static void Main(string[] args)
+    {
+        Console.Write("Enter your name: ");
+        var name = Console.ReadLine();
 
-		string myName = "Dima";
-		byte myAge = 26;
-		bool myPet = false;
-		double myLeg = 40.5;
+        Console.Write("Enter your age: ");
+        var age = int.Parse(Console.ReadLine());
 
-		Console.WriteLine($"My name is {myName}");
-		Console.WriteLine($"My age is {myAge}");
-		Console.WriteLine($"Do I have a pet? {myPet}");
-        Console.WriteLine($"My shoe size is {myLeg}");
-        
-		Console.ReadKey();
+        Console.WriteLine($"Your name is {name} and age is {age}");
+
+        Console.Write("Enter your birthdate: ");
+        var birthdate = Console.ReadLine();
+        Console.WriteLine($"Your birthdate is {birthdate}");
+
+        Console.ReadKey();
 	}
 }
