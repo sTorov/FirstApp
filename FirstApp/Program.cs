@@ -6,10 +6,12 @@ namespace Unit4
     {
         static void Main(string[] args)
         {
-            string A = "Yes";
-            string B = "No";
+            int A = 3;
+            int B = 4;
+            double X = 0.1;
+            double Y = 1.3;
 
-            bool C = A != B;
+            bool C = (A < B) || (X > Y);
 
             Console.WriteLine(C);
             Console.ReadKey();
