@@ -1,21 +1,18 @@
 ﻿using System;
 
-class FirstApp
+namespace Unit4
 {
-    static void Main(string[] args)
+    class Logic
     {
-        Console.Write("Enter your name: ");
-        var name = Console.ReadLine();
+        static void Main(string[] args)
+        {
+            string A = "Yes";
+            string B = "No";
 
-        Console.Write("Enter your age: ");
-        var age = int.Parse(Console.ReadLine());
+            bool C = A != B;
 
-        Console.WriteLine($"Your name is {name} and age is {age}");
-
-        Console.Write("Enter your birthdate: ");
-        var birthdate = Console.ReadLine();
-        Console.WriteLine($"Your birthdate is {birthdate}");
-
-        Console.ReadKey();
-	}
+            Console.WriteLine(C);
+            Console.ReadKey();
+        }
+    }
 }
