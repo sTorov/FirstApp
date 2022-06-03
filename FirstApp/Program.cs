@@ -6,15 +6,30 @@ namespace Unit4
     {
         static void Main(string[] args)
         {
-            int A = 3;
-            int B = 4;
-            double X = 0.1;
-            double Y = 1.3;
+            Console.WriteLine("Какой ваш любимый цвет?");
 
-            bool C = (A < B) || (X > Y);
+            var color = Console.ReadLine();
 
-            Console.WriteLine(C);
-            Console.ReadKey();
+            if (color == "red")
+            {
+                Console.BackgroundColor = ConsoleColor.Red;         //Цвет фона текста в консоли
+                Console.ForegroundColor = ConsoleColor.Black;       //Цвет шрифта
+                Console.WriteLine("Ваш любимый цвет красный!");
+            }
+            else if (color == "green")
+            {
+                Console.BackgroundColor = ConsoleColor.Green;
+                Console.ForegroundColor = ConsoleColor.Black;
+                Console.WriteLine("Ваш любимый цвет зеленый!");
+            }
+            else
+            {
+                Console.BackgroundColor = ConsoleColor.Cyan;
+                Console.ForegroundColor = ConsoleColor.Black;
+                Console.WriteLine("Ваш любимый цвет бирюзовый!");
+            }
+
+            Console.ReadLine();
         }
     }
 }
