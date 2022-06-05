@@ -1,21 +1,56 @@
 ﻿using System;
 
-class FirstApp
+namespace Unit4
 {
-    static void Main(string[] args)
+    class Logic
     {
-        Console.Write("Enter your name: ");
-        var name = Console.ReadLine();
+        static void Main(string[] args)
+        {            
+            int k = 0;
 
-        Console.Write("Enter your age: ");
-        var age = int.Parse(Console.ReadLine());
+            while (true)
+            {                
+                Console.WriteLine("Какой ваш любимый цвет?");
+                Console.WriteLine(k);
 
-        Console.WriteLine($"Your name is {name} and age is {age}");
+                var text = Console.ReadLine();
 
-        Console.Write("Enter your birthdate: ");
-        var birthdate = Console.ReadLine();
-        Console.WriteLine($"Your birthdate is {birthdate}");
-
-        Console.ReadKey();
-	}
+                if (text == "stop")
+                {
+                    Console.WriteLine("Цикл остановлен");
+                    break;
+                }
+                
+                switch (text)
+                    {
+                        case "red":
+                            Console.BackgroundColor = ConsoleColor.Red;         //Цвет фона текста в консоли
+                            Console.ForegroundColor = ConsoleColor.White;       //Цвет шрифта
+                            Console.WriteLine("Ваш любимый цвет красный!");
+                            break;
+                        case "green":
+                            Console.BackgroundColor = ConsoleColor.Green;
+                            Console.ForegroundColor = ConsoleColor.Black;
+                            Console.WriteLine("Ваш любимый цвет зеленый!");
+                            break;
+                        case "cyan":
+                            Console.BackgroundColor = ConsoleColor.Cyan;
+                            Console.ForegroundColor = ConsoleColor.Black;
+                            Console.WriteLine("Ваш любимый цвет бирюзовый!");
+                            break;
+                        case "yellow":
+                            Console.BackgroundColor = ConsoleColor.Yellow;
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.WriteLine("Ваш любимый цвет желтый!");
+                            break;
+                        default:
+                            continue;
+                    }
+                
+                k++;
+            }
+            
+            Console.ReadLine();
+        }
+    }
 }
