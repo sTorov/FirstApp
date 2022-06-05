@@ -38,11 +38,13 @@ namespace Unit4
                             Console.ForegroundColor = ConsoleColor.Black;
                             Console.WriteLine("Ваш любимый цвет бирюзовый!");
                             break;
-                        default:
+                        case "yellow":
                             Console.BackgroundColor = ConsoleColor.Yellow;
                             Console.ForegroundColor = ConsoleColor.Red;
                             Console.WriteLine("Ваш любимый цвет желтый!");
                             break;
+                        default:
+                            continue;
                     }
                 
                 k++;
