@@ -8,7 +8,7 @@ namespace Unit4
         {
             Console.WriteLine("Какой ваш любимый цвет?");
 
-            while (true)
+            do
             {              
                  switch (Console.ReadLine())
                 {
@@ -34,10 +34,10 @@ namespace Unit4
                         break;
                 }
             }
-            
-            
+            while (true);
 
-            Console.ReadLine();
+
+                Console.ReadLine();
         }
     }
 }
