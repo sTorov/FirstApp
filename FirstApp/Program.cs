@@ -7,12 +7,10 @@ namespace Unit4
         static void Main(string[] args)
         {
             Console.WriteLine("Какой ваш любимый цвет?");
-                        
-            for (int i = 1; i < 5; i++)
-            {
-                Console.WriteLine("Itration " + i);
-                
-                switch (Console.ReadLine())
+
+            for (;;)
+            {              
+                 switch (Console.ReadLine())
                 {
                     case "red":
                         Console.BackgroundColor = ConsoleColor.Red;         //Цвет фона текста в консоли
