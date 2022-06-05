@@ -8,9 +8,10 @@ namespace Unit4
         {
             Console.WriteLine("Какой ваш любимый цвет?");
 
-            do
-            {              
-                 switch (Console.ReadLine())
+            for (int i = 1; i < 4; i++)
+            {
+                Console.WriteLine(i); 
+                switch (Console.ReadLine())
                 {
                     case "red":
                         Console.BackgroundColor = ConsoleColor.Red;         //Цвет фона текста в консоли
@@ -34,7 +35,6 @@ namespace Unit4
                         break;
                 }
             }
-            while (true);
 
 
                 Console.ReadLine();
