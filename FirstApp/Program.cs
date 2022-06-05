@@ -8,7 +8,7 @@ namespace Unit4
         {
             Console.WriteLine("Какой ваш любимый цвет?");
 
-            for (;;)
+            while (true)
             {              
                  switch (Console.ReadLine())
                 {
