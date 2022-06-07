@@ -6,42 +6,39 @@ namespace Unit4
     {
         static void Main(string[] args)
         {
-            string[] favcolor = new string[3];
+            Console.WriteLine("Введите своё имя:");
+            string Name = Console.ReadLine();
+           
+            Console.WriteLine("Ваше имя по буквам: ");
 
-            for (int i = 0; i < favcolor.Length; i++)
+            foreach (char ch in Name)
             {
-                Console.WriteLine($"Введите ваш любимый цвет {i + 1}: ");
-                favcolor[i] = Console.ReadLine();
+                Console.Write(ch + " ");
             }
 
-            foreach (var color in favcolor)
+            Console.WriteLine("Последняя буква вашего имени: {0}", Name[Name.Length - 1]);
+
+
+
+            char[] cha = new char [Name.Length];
+
+            Console.WriteLine("\n" + Name.Length + "\n");
+
+            for (int i = 0; i < Name.Length; i++)
             {
-                switch (color)
-                {
-                    case "red":
-                        Console.BackgroundColor = ConsoleColor.Red;
-                        Console.ForegroundColor = ConsoleColor.White;
-                        Console.WriteLine("Ваш любимый цвет красный!");
-                        break;
-                    case "green":
-                        Console.BackgroundColor = ConsoleColor.Green;
-                        Console.ForegroundColor = ConsoleColor.Black;
-                        Console.WriteLine("Ваш любимый цвет зеленый!");
-                        break;
-                    case "cyan":
-                        Console.BackgroundColor = ConsoleColor.Cyan;
-                        Console.ForegroundColor = ConsoleColor.Black;
-                        Console.WriteLine("Ваш любимый цвет бирюзовый!");
-                        break;
-                    default:
-                        Console.BackgroundColor = ConsoleColor.Yellow;
-                        Console.ForegroundColor = ConsoleColor.Red;
-                        Console.WriteLine("Ваш любимый цвет желтый!");
-                        break;
-                }
+                cha[i] = Name[i];
+                Console.WriteLine(cha[i]);
             }
-         
-            Console.ReadLine();
+
+            Console.WriteLine();
+
+            for (int i = 0; i < Name.Length; i++)
+            {
+                char s = Name[i];
+                Console.WriteLine(s);
+            }
+
+            Console.ReadKey();
         }
     }
 }
