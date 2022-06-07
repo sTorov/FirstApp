@@ -6,35 +6,42 @@ namespace Unit4
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Введите своё имя:");
-            string Name = Console.ReadLine();
-           
-            Console.WriteLine("Ваше имя по буквам: ");
+            int[,] array = { { 1, 2, 3 }, { 5, 6, 7 }, { 8, 9, 10 }, { 11, 12, 13 } };
 
-            foreach (char ch in Name)
+            for (int i = 0; i < array.GetLength(0); i++)
             {
-                Console.Write(ch + " ");
+                for (int j = 0; j < array.GetLength(1); j++)
+                {
+                    Console.Write(array[i, j] + "\t");
+                }
+                Console.WriteLine();
             }
 
-            Console.WriteLine("Последняя буква вашего имени: {0}", Name[Name.Length - 1]);
+            Console.WriteLine(array.GetLength(0));
+            Console.WriteLine(array.GetUpperBound(0));
 
-            //Задание 4.3.7
+            //GetLength
 
-            char[] chars = new char [Name.Length];
-                       
-            for (int k = Name.Length - 1, i = 0; i < chars.Length; i++, k--)
+            for (int i = 0; i < array.GetLength(1); i++)
             {
-                chars[i] = Name[k];
-                Console.Write(chars[i] + " ");
+                for (int j = 0; j < array.GetLength(0); j++)
+                {
+                    Console.Write(array[j, i] + "\t");
+                }
+                Console.WriteLine();
             }
 
-            //Правильный вариант
+            //GetUpperBound
 
-            Console.WriteLine("\n");
+            Console.WriteLine();
 
-            for (int i = Name.Length - 1; i >= 0; i--)
+            for (int i = 0; i <= array.GetUpperBound(1); i++)
             {
-                Console.Write(Name[i] + " ");
+                for (int j = 0; j <= array.GetUpperBound(0); j++)
+                {
+                    Console.Write(array[j, i] + "\t");
+                }
+                Console.WriteLine();
             }
 
             Console.ReadKey();
