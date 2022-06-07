@@ -4,19 +4,23 @@ class FirstApp
 {
     static void Main(string[] args)
     {
-        (string name, string birthdate, int age) anketa;
-        
+        var (name, age, birthdate) = ("Dima", 26, "10.03.1996");
+
+        Console.WriteLine($"Your name is {name}");
+        Console.WriteLine($"Your age is {age}");
+        Console.WriteLine($"Your birthdate is {birthdate}");
+
         Console.Write("Enter your name: ");
-        anketa.name = Console.ReadLine();
+        name = Console.ReadLine();
 
         Console.Write("Enter your age: ");
-        anketa.age = int.Parse(Console.ReadLine());
-
-        Console.WriteLine($"Your name is {anketa.name} and age is {anketa.age}");
+        age = int.Parse(Console.ReadLine());
 
         Console.Write("Enter your birthdate: ");
-        anketa.birthdate = Console.ReadLine();
-        Console.WriteLine($"Your birthdate is {anketa.birthdate}");
+        birthdate = Console.ReadLine();
+
+        Console.WriteLine($"Your name is {name} and age is {age}");
+        Console.WriteLine($"Your birthdate is {birthdate}");
 
         Console.ReadKey();
 	}
