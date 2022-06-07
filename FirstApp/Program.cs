@@ -6,20 +6,23 @@ namespace Unit4
     {
         static void Main(string[] args)
         {
-            int[][] arr = new int[3][];
-            arr[0] = new int[2] { 1, 2 };
-            arr[1] = new int[3] { 1, 2, 3 };
-            arr[2] = new int[5] { 1, 2, 3, 4, 5 };
+            int[] array = { 1, 2, 3, 4, -1, -5, 0, -6, 1, -4 };
+            int positive = 0;
 
-            foreach (var array in arr)
+            for (int i = 0; i < array.Length; i++)
             {
-                foreach (var number in array)
-                {
-                    Console.Write(number + " ");
-                }
+                Console.Write(array[i] + " ");
+            }
+            Console.WriteLine();
+
+            for (int i = 0; i < array.Length; i++)
+            {
+                if (array[i] > 0)
+                    positive++;
             }
 
-            Console.ReadKey();
+            Console.WriteLine("Количество положительных элементов: " + positive);
+            Console.ReadLine();
         }
     }
 }
