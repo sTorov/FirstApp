@@ -18,24 +18,23 @@ namespace Unit4
 
             Console.WriteLine("Последняя буква вашего имени: {0}", Name[Name.Length - 1]);
 
+            //Задание 4.3.7
 
-
-            char[] cha = new char [Name.Length];
-
-            Console.WriteLine("\n" + Name.Length + "\n");
-
-            for (int i = 0; i < Name.Length; i++)
+            char[] chars = new char [Name.Length];
+                       
+            for (int k = Name.Length - 1, i = 0; i < chars.Length; i++, k--)
             {
-                cha[i] = Name[i];
-                Console.WriteLine(cha[i]);
+                chars[i] = Name[k];
+                Console.Write(chars[i] + " ");
             }
 
-            Console.WriteLine();
+            //Правильный вариант
 
-            for (int i = 0; i < Name.Length; i++)
+            Console.WriteLine("\n");
+
+            for (int i = Name.Length - 1; i >= 0; i--)
             {
-                char s = Name[i];
-                Console.WriteLine(s);
+                Console.Write(Name[i] + " ");
             }
 
             Console.ReadKey();
