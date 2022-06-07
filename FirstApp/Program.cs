@@ -4,23 +4,24 @@ class FirstApp
 {
     static void Main(string[] args)
     {
-        var (name, age, birthdate) = ("Dima", 26, "10.03.1996");
+        (string Name, string Type, double Age, int NameCount) Pet;
 
-        Console.WriteLine($"Your name is {name}");
-        Console.WriteLine($"Your age is {age}");
-        Console.WriteLine($"Your birthdate is {birthdate}");
+        Console.Write("Какой у Вас петомец?: ");
+        Pet.Type = Console.ReadLine();
 
-        Console.Write("Enter your name: ");
-        name = Console.ReadLine();
+        Console.Write("Как зовут вашего петомца?: ");
+        Pet.Name = Console.ReadLine();
+        Pet.NameCount = Pet.Name.Length;
 
-        Console.Write("Enter your age: ");
-        age = int.Parse(Console.ReadLine());
+        Console.Write("Сколько ему лет?: ");
+        Pet.Age = double.Parse(Console.ReadLine());
 
-        Console.Write("Enter your birthdate: ");
-        birthdate = Console.ReadLine();
+        Console.WriteLine("-------Анкета-------");
+        Console.WriteLine($"Ваш петомец - {Pet.Type}");
+        Console.WriteLine($"Вашего петомца зовут {Pet.Name}");
+        Console.WriteLine($"Возраст вашего петомца {Pet.Age}");
+        Console.WriteLine($"Длинна имени {Pet.Name}: " + Pet.NameCount);
 
-        Console.WriteLine($"Your name is {name} and age is {age}");
-        Console.WriteLine($"Your birthdate is {birthdate}");
 
         Console.ReadKey();
 	}
