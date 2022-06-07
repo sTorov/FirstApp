@@ -11,8 +11,8 @@ namespace Unit4
                 { 1, 2, 3, 4, -1, -5 },
                 { -12, 4, 0, 0, 3, -5}
             };
-                
-            int positive = 0;
+
+            int temp;
 
             for (int i = 0; i < array.GetLength(0); i++)
             {
@@ -28,23 +28,27 @@ namespace Unit4
             {
                 for (int j = 0; j < array.GetLength(1); j++)
                 {
-                    if (array[i, j] > 0)
-                        positive++;
+                    for (int k = j + 1; k < array.GetLength(1); k++)
+                    {
+                        if(array[i, j] > array[i, k])
+                        {
+                            temp = array[i, j];
+                            array[i, j] = array[i, k];
+                            array[i, k] = temp;
+                        }
+                    }
                 }
             }
 
-            Console.WriteLine("Количество положительных элементов: " + positive);
-            
-            // foreach
-            positive = 0;
-
-            foreach (var item in array)
+            for (int i = 0; i < array.GetLength(0); i++)
             {
-                if (item > 0)
-                    positive++;
+                for (int j = 0; j < array.GetLength(1); j++)
+                {
+                    Console.Write(array[i, j] + "\t");
+                }
+                Console.WriteLine();
             }
 
-            Console.WriteLine("Количество положительных элементов: " + positive);
 
             Console.ReadLine();
         }
