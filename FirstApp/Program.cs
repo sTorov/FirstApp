@@ -6,15 +6,18 @@ namespace Unit4
     {
         static void Main(string[] args)
         {
-            int[] arr = { 5, 6, 9, 1, 2, 3, 4 };
-            int sum = 0;
+            int[][] arr = new int[3][];
+            arr[0] = new int[2] { 1, 2 };
+            arr[1] = new int[3] { 1, 2, 3 };
+            arr[2] = new int[5] { 1, 2, 3, 4, 5 };
 
-            for (int i = 0; i < arr.Length; i++)
+            foreach (var array in arr)
             {
-                sum += arr[i];
+                foreach (var number in array)
+                {
+                    Console.Write(number + " ");
+                }
             }
-
-            Console.WriteLine("Сумма всех элементов: " + sum);
 
             Console.ReadKey();
         }
