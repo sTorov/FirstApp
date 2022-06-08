@@ -18,10 +18,6 @@ class FirstApp
 
         Console.WriteLine("Есть ли у вас животное (да/нет) : ");
         string PetAnswer = Console.ReadLine();
-        if (PetAnswer == "да" || PetAnswer == "Да")
-            User.Pet = true;
-        else
-            User.Pet = false;
-
+        User.Pet = PetAnswer == "Да" || PetAnswer == "да" ? true : false;
     }
 }
