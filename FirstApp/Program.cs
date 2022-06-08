@@ -15,5 +15,13 @@ class FirstApp
         Console.Write("Введите логин: ");
         User.Login = Console.ReadLine();
         User.LoginCount = User.Login.Length;
+
+        Console.WriteLine("Есть ли у вас животное (да/нет) : ");
+        string PetAnswer = Console.ReadLine();
+        if (PetAnswer == "да" || PetAnswer == "Да")
+            User.Pet = true;
+        else
+            User.Pet = false;
+
     }
 }
