@@ -14,5 +14,6 @@ class FirstApp
 
         Console.Write("Введите логин: ");
         User.Login = Console.ReadLine();
+        User.LoginCount = User.Login.Length;
     }
 }
