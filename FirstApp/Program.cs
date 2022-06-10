@@ -4,47 +4,36 @@ class FirstApp
 {
     class Logic
     {
-        static string ShowColor()
+        static int[] GetArrayFromConsole()
         {
-            Console.WriteLine("Какой ваш любимый цвет? (eng)");
-            string color = Console.ReadLine();
-
-            switch (color)
+            int temp;
+            int[] number = new int[5];
+            
+            for (int i = 0; i < number.Length; i++)
             {
-                case "red":
-                    Console.BackgroundColor = ConsoleColor.Red;
-                    Console.ForegroundColor = ConsoleColor.White;
-                    Console.WriteLine("Your color is " + color);
-                    return color;
-                case "green":
-                    Console.BackgroundColor = ConsoleColor.Green;
-                    Console.ForegroundColor = ConsoleColor.Black;
-                    Console.WriteLine("Your color is " + color);
-                    return color;
-                case "cyan":
-                    Console.BackgroundColor = ConsoleColor.Cyan;
-                    Console.ForegroundColor = ConsoleColor.Black;
-                    Console.WriteLine("Your color is " + color);
-                    return color;
-                default:
-                    Console.BackgroundColor = ConsoleColor.Yellow;
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("Your color is yellow");
-                    return color;
+                Console.Write($"Значение {i + 1}: ");
+                number[i] = int.Parse(Console.ReadLine());
             }
+
+            for (int i = 0; i < number.Length; i++)
+                for (int j = i + 1; j < number.Length; j++)
+                    if (number[i] > number[j])
+                    {
+                        temp = number[i];
+                        number[i] = number[j];
+                        number[j] = temp;
+                    }
+            
+            Console.WriteLine("\nСортировка по возрвстанию");
+            foreach (var item in number)
+                Console.Write(item + "\t");
+
+            return number;
         }
 
         static void Main(string[] args)
         {
-            string[] favcolor = new string[3];
-            for (int i = 0; i < favcolor.Length; i++)
-                favcolor[i] = ShowColor();
-            
-            Console.ResetColor();
-
-            Console.WriteLine("Ваши любимые цвета:");
-            foreach (var color in favcolor)
-                Console.WriteLine(color);
+            GetArrayFromConsole();
 
             Console.ReadLine();
         }
