@@ -4,19 +4,49 @@ class FirstApp
 {
     static void Main(string[] args)
     {
-        (string Name, string[] Dishes) User;
-
-        Console.Write("Введите имя: ");
-        User.Name = Console.ReadLine();
-
-        Console.WriteLine("Введите 5 любимых блюд");
-        User.Dishes = new string[5];
-        for (int i = 0; i < User.Dishes.Length; i++)
+        static string ShowColor()
         {
-            Console.Write($"Блюдо {i + 1}: ");
-            User.Dishes[i] = Console.ReadLine();
+            Console.WriteLine("Какой ваш любимый цвет? (eng)");
+            string color = Console.ReadLine();
+
+            switch (color)
+            {
+                case "red":
+                    Console.BackgroundColor = ConsoleColor.Red;
+                    Console.ForegroundColor = ConsoleColor.White;
+                    Console.WriteLine("Your color is " + color);
+                    return color;
+                case "green":
+                    Console.BackgroundColor = ConsoleColor.Green;
+                    Console.ForegroundColor = ConsoleColor.Black;
+                    Console.WriteLine("Your color is " + color);
+                    return color;
+                case "cyan":
+                    Console.BackgroundColor = ConsoleColor.Cyan;
+                    Console.ForegroundColor = ConsoleColor.Black;
+                    Console.WriteLine("Your color is " + color);
+                    return color;
+                default:
+                    Console.BackgroundColor = ConsoleColor.Yellow;
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Your color is yellow");
+                    return color;
+            }
         }
 
-        Console.ReadLine();
+        static void Main(string[] args)
+        {
+            string[] favcolor = new string[3];
+            for (int i = 0; i < favcolor.Length; i++)
+                favcolor[i] = ShowColor();
+            
+            Console.ResetColor();
+
+            Console.WriteLine("Ваши любимые цвета:");
+            foreach (var color in favcolor)
+                Console.WriteLine(color);
+
+            Console.ReadLine();
+        }
     }
 }
