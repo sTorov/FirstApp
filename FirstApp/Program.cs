@@ -31,12 +31,12 @@ class FirstApp
 
     static void Main(string[] args)
     {
-        //int[] array = GetArrayFromConsole();
-        //SortArray(array);
-                
-        int[] myArray = SortArray(GetArrayFromConsole(2));
+        var array = GetArrayFromConsole();
+        var sortedarray = SortArray(array);
 
-        foreach (var item in myArray)
+        //int[] myArray = SortArray(GetArrayFromConsole(2));
+
+        foreach (var item in sortedarray)
             Console.Write(item + " ");
 
         Console.ReadLine();
