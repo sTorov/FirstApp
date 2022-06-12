@@ -2,9 +2,9 @@
 
 class FirstApp
 {
-    static string ShowColor(string username)
+    static string ShowColor(string username, int userage)
     {
-        Console.WriteLine(username + " какой ваш любимый цвет? (eng)");
+        Console.WriteLine($"{username}, возраст {userage}\n Какой ваш любимый цвет? (eng)");
         string color = Console.ReadLine();
 
         switch (color)
@@ -45,7 +45,7 @@ class FirstApp
 
         string[] favcolor = new string[3];
         for (int i = 0; i < favcolor.Length; i++)
-            favcolor[i] = ShowColor(anketa.name);
+            favcolor[i] = ShowColor(anketa.name, anketa.age);
             
         Console.ResetColor();
 
