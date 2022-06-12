@@ -29,16 +29,29 @@ class FirstApp
         return array;
     }
 
+    static void ShowArray(int[] array, bool sort = false)
+    {
+        var temp = array;
+
+        if(sort == true)
+            SortArray(temp);
+        
+        foreach (var number in temp)
+            Console.Write(number + " ");
+    }
+
     static void Main(string[] args)
     {
-        var array = GetArrayFromConsole();
-        var sortedarray = SortArray(array);
+        //var array = GetArrayFromConsole();
+        //var sortedarray = SortArray(array);
 
         //int[] myArray = SortArray(GetArrayFromConsole(2));
 
-        foreach (var item in sortedarray)
-            Console.Write(item + " ");
-
+        var array = GetArrayFromConsole();
+        ShowArray(array);
+        Console.WriteLine();
+        ShowArray(array, true);
+        
         Console.ReadLine();
     }
    
