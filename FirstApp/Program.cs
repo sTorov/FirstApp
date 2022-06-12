@@ -2,9 +2,9 @@
 
 class FirstApp
 {
-    static int[] GetArrayFromConsole()
+    static int[] GetArrayFromConsole(int num = 5)
     {
-        int[] array = new int[5];
+        int[] array = new int[num];
         
         for (int i = 0; i < array.Length; i++)
         {
@@ -34,7 +34,7 @@ class FirstApp
         //int[] array = GetArrayFromConsole();
         //SortArray(array);
                 
-        int[] myArray = SortArray(GetArrayFromConsole());
+        int[] myArray = SortArray(GetArrayFromConsole(2));
 
         foreach (var item in myArray)
             Console.Write(item + " ");
