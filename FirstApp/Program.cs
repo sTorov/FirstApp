@@ -33,7 +33,7 @@ class FirstApp
     {
         var temp = array;
 
-        if(sort == true)
+        if(sort)
             SortArray(temp);
         
         foreach (var number in temp)
@@ -43,13 +43,16 @@ class FirstApp
     static void Main(string[] args)
     {
         //var array = GetArrayFromConsole();
-        //var sortedarray = SortArray(array);
+        //var sortedarray = SortArray(array); 
 
         //int[] myArray = SortArray(GetArrayFromConsole(2));
 
-        var array = GetArrayFromConsole();
-        ShowArray(array);
-        Console.WriteLine();
+        //var array = GetArrayFromConsole();
+        //ShowArray(array);
+        //Console.WriteLine();
+        //ShowArray(array, true);
+
+        var array = GetArrayFromConsole(10);
         ShowArray(array, true);
         
         Console.ReadLine();
