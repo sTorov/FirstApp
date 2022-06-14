@@ -2,20 +2,20 @@
 
 class FirstApp
 {
+    static void GetName(string name)
+    {
+        Console.WriteLine("Введите имя");
+        name = Console.ReadLine();
+    }
+    
     static void Main(string[] args)
     {
-        (string Name, string[] Dishes) User;
+        var someName = "Евгения";
+        Console.WriteLine(someName);
 
-        Console.Write("Введите имя: ");
-        User.Name = Console.ReadLine();
+        GetName(someName);
 
-        Console.WriteLine("Введите 5 любимых блюд");
-        User.Dishes = new string[5];
-        for (int i = 0; i < User.Dishes.Length; i++)
-        {
-            Console.Write($"Блюдо {i + 1}: ");
-            User.Dishes[i] = Console.ReadLine();
-        }
+        Console.WriteLine(someName);
 
         Console.ReadLine();
     }
