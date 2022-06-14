@@ -6,12 +6,13 @@ class FirstApp
 	{
 		var arr = new int[] { 1, 2, 3 };
 		var data = 10;
-		BigDataOperation(arr, data);
+		BigDataOperation(arr,ref data);
 
 		Console.WriteLine(arr[0]);
+		Console.WriteLine(data);
 	}
 
-	static void BigDataOperation(int[] arr,in int data)
+	static void BigDataOperation(int[] arr,ref int data)
 	{
 		data = 4;
 		arr[0] = data;
