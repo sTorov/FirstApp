@@ -2,6 +2,12 @@
 
 class FirstApp
 {
+    static void ChangeAge(int age)
+    {
+        Console.WriteLine("Введите возраст");
+        age = int.Parse(Console.ReadLine());
+    }
+    
     static void GetName(string name)
     {
         Console.WriteLine("Введите имя");
@@ -11,11 +17,15 @@ class FirstApp
     static void Main(string[] args)
     {
         var someName = "Евгения";
+        var age = 25;
         Console.WriteLine(someName);
+        Console.WriteLine(age);
 
         GetName(someName);
+        ChangeAge(age);
 
         Console.WriteLine(someName);
+        Console.WriteLine(age);
 
         Console.ReadLine();
     }
