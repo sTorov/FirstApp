@@ -8,20 +8,20 @@ class FirstApp
         age = int.Parse(Console.ReadLine());
     }
     
-    static void GetName(string name)
+    static void GetName(ref string name)
     {
         Console.WriteLine("Введите имя");
         name = Console.ReadLine();
     }
     
-    static void Main(string[] args)
+    static void Main(string[] args) 
     {
         var someName = "Евгения";
         var age = 25;
         Console.WriteLine(someName);
         Console.WriteLine(age);
 
-        GetName(someName);
+        GetName(ref someName);
         ChangeAge(age);
 
         Console.WriteLine(someName);
