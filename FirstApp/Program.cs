@@ -2,31 +2,19 @@
 
 class FirstApp
 {
-    static void ChangeAge(int age)
-    {
-        Console.WriteLine("Введите возраст");
-        age = int.Parse(Console.ReadLine());
-    }
-    
-    static void GetName(ref string name)
-    {
-        Console.WriteLine("Введите имя");
-        name = Console.ReadLine();
-    }
-    
-    static void Main(string[] args) 
-    {
-        var someName = "Евгения";
-        var age = 25;
-        Console.WriteLine(someName);
-        Console.WriteLine(age);
+	public static void Main(string[] args)
+	{
+		var arr = new int[] { 1, 2, 3 };
+		var data = 10;
+		BigDataOperation(arr, data);
 
-        GetName(ref someName);
-        ChangeAge(age);
+		Console.WriteLine(arr[0]);
+	}
 
-        Console.WriteLine(someName);
-        Console.WriteLine(age);
+	static void BigDataOperation(int[] arr,in int data)
+	{
+		data = 4;
+		arr[0] = data;
+	}
 
-        Console.ReadLine();
-    }
 }
