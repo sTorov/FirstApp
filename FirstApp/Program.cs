@@ -2,19 +2,22 @@
 
 class FirstApp
 {
+    static int num1 = 667;
+    
+    static int Sum()
+    {
+        var num2 = 1;
+        return num1 - num2;
+    }
+
     static void Main(string[] args)
     {
-        (string Name, string[] Dishes) User;
-
-        Console.Write("Введите имя: ");
-        User.Name = Console.ReadLine();
-
-        Console.WriteLine("Введите 5 любимых блюд");
-        User.Dishes = new string[5];
-        for (int i = 0; i < User.Dishes.Length; i++)
+        Console.WriteLine(num1);
+        Console.WriteLine(Sum());
+        if (num1 > 0)
         {
-            Console.Write($"Блюдо {i + 1}: ");
-            User.Dishes[i] = Console.ReadLine();
+            var num3 = 5;
+            Console.WriteLine(num1 + num3);
         }
 
         Console.ReadLine();
