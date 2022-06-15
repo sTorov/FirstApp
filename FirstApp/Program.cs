@@ -2,9 +2,12 @@
 
 class FirstApp
 {   
-    static void Echo(string phrase)
+    static void Echo(string phrase, int deep)
     {
         Console.WriteLine(phrase);
+
+        if (deep > 1)
+            Echo(phrase, --deep);       //depp - 1
     }
 
     static void Main(string[] args)
@@ -15,8 +18,7 @@ class FirstApp
         Console.WriteLine("Глубина эха");
         int deep = int.Parse(Console.ReadLine());
 
-        for (int i = 0; i < deep; i++)
-            Echo(str);
+        Echo(str, deep);
 
         Console.ReadLine();
     }
