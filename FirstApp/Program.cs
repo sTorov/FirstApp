@@ -2,19 +2,21 @@
 
 class FirstApp
 {   
-    static decimal Factorial(int x)
+    static int PowerUp(int N, byte pow)
     {
-        if (x == 0)
+        if (pow == 0)
             return 1;
+        else if (pow == 1)
+            return N;
         else
-            return x * Factorial(x - 1);
+            return N * PowerUp(N, --pow);
     }
 
     static void Main(string[] args)
     {
-        int x = 20;
+        int x = 2;
 
-        Console.WriteLine(Factorial(x));
+        Console.WriteLine(PowerUp(x, 10));
 
         Console.ReadLine();
     }
