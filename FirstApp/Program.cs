@@ -4,7 +4,10 @@ class FirstApp
 {   
     static void Echo(string phrase, int deep)
     {
-        Console.WriteLine(phrase);
+        if(phrase.Length > 2)
+            phrase = phrase.Remove(0, 2);
+
+        Console.WriteLine("..." + phrase);
 
         if (deep > 1)
             Echo(phrase, --deep);       //depp - 1
@@ -18,6 +21,7 @@ class FirstApp
         Console.WriteLine("Глубина эха");
         int deep = int.Parse(Console.ReadLine());
 
+        Console.WriteLine(str);
         Echo(str, deep);
 
         Console.ReadLine();
