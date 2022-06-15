@@ -1,24 +1,22 @@
 ﻿using System;
 
 class FirstApp
-{
-    static int num1 = 667;
-    
-    static int Sum()
+{   
+    static void Echo(string phrase)
     {
-        var num2 = 1;
-        return num1 - num2;
+        Console.WriteLine(phrase);
     }
 
     static void Main(string[] args)
     {
-        Console.WriteLine(num1);
-        Console.WriteLine(Sum());
-        if (num1 > 0)
-        {
-            var num3 = 5;
-            Console.WriteLine(num1 + num3);
-        }
+        Console.WriteLine("Введите фразу");
+        string str = Console.ReadLine();
+
+        Console.WriteLine("Глубина эха");
+        int deep = int.Parse(Console.ReadLine());
+
+        for (int i = 0; i < deep; i++)
+            Echo(str);
 
         Console.ReadLine();
     }
