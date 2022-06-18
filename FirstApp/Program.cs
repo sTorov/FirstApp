@@ -1,39 +1,26 @@
 ﻿using System;
 
-class Company
+class Bus
 {
-    public string Name;
-    public string Type;
-}
-class City
-{
-    public string Name;
-}
-class Department
-{
-    public Company Company;
-    public City City;
+    public int? Load;
+
+    public void PrintStatus()
+    {
+        if (Load.HasValue)
+            Console.WriteLine($"Пассажиров в автобусе - {Load.Value}");
+        else
+            Console.WriteLine("Автобус пуст");
+    }
 }
 
-class Program
+class Progarm
 {
     static void Main(string[] args)
     {
-        var departmet = GetCurrentDepartment();
+        Bus bus = new();
+        bus.PrintStatus();
 
-        if (departmet?.City?.Name == "Санкт-Петербург" && departmet?.Company?.Type == "Банк")
-            Console.WriteLine($"У банка {departmet?.Company?.Name ?? "Неизветная компания"} есть отделение в Санкт-Петербурге");
-        else
-            Console.WriteLine("Error");
-        
-        Console.ReadKey();
-    }
-
-    static Department GetCurrentDepartment()
-    {
-        City city = new City { Name = "Санкт-Петербург" };
-        Company company = new Company { Name = null, Type = "Банк" };
-        Department Obj = new Department { City = city, Company = company};
-        return Obj;
+        bus = new Bus { Load = 10 };
+        bus.PrintStatus();
     }
 }
