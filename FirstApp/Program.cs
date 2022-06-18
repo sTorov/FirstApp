@@ -46,26 +46,32 @@ struct Animal
     {
         Console.WriteLine($"Это {type} по кличке {name}, ему {age}");
     }
+
+    //Конструктор. Для структуры обязательно должны быть объявлены все поля
+    public Animal(string t, string n, int a)
+    {
+        type = t;
+        name = n;
+        age = a;
+    }
 }
 
 class General
 {
     static void Main(string[] args)
     {
-        Human person = new();
-        person.Greetings();
+        //Human person = new();
+        //person.Greetings();
 
-        person = new("Dima");
-        person.Greetings();
+        //person = new("Dima");
+        //person.Greetings();
 
-        person = new("Dima", 26);
-        person.Greetings();
-        
-        //Animal animal;
-        //animal.age = 4;
-        //animal.name = "Barsik";
-        //animal.type = "cat";
-        //animal.Info();
-                
+        //person = new("Dima", 26);
+        //person.Greetings();
+
+        Animal animal = new("cat", "Barsik", 4);
+        animal.Info();
+
+        Console.ReadLine();
     }
 }
