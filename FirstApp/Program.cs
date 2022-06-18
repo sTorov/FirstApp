@@ -1,29 +1,73 @@
 ﻿using System;
 
-class FirstApp
-{   
-    static void Echo(string phrase, int deep)
+class Human
+{
+    public class ClassHuman
     {
-        if(phrase.Length > 2)
-            phrase = phrase.Remove(0, 2);
+        public string Gender;
 
-        Console.WriteLine("..." + phrase);
-
-        if (deep > 1)
-            Echo(phrase, --deep);       //depp - 1
+        public void GenderInfo()
+        {
+            Console.WriteLine(Gender);
+        }
     }
 
+    public struct StructHuman
+    {
+        public string Gender;
+
+        public void GenderInfo()
+        {
+            Console.WriteLine(Gender);
+        }
+    }
+
+    //Поля класса
+    public string name;
+    public int age;
+
+    //Метод класса
+    public void Greetings()
+    {
+        Console.WriteLine($"Меня зовут {name}, мне {age}");
+    }    
+}
+
+struct Animal
+{
+    //Поля структуры
+    public string type;
+    public string name;
+    public int age;
+
+    //Метод структуры
+    public void Info()
+    {
+        Console.WriteLine($"Это {type} по кличке {name}, ему {age}");
+    }
+}
+
+class General
+{
     static void Main(string[] args)
     {
-        Console.WriteLine("Введите фразу");
-        string str = Console.ReadLine();
+        Human person = new();
+        person.age = 43;
+        person.name = "Dima";
+        person.Greetings();
 
-        Console.WriteLine("Глубина эха");
-        int deep = int.Parse(Console.ReadLine());
+        Animal animal;
+        animal.age = 4;
+        animal.name = "Barsik";
+        animal.type = "cat";
+        animal.Info();
 
-        Console.WriteLine(str);
-        Echo(str, deep);
+        Human.StructHuman newStruct;
+        newStruct.Gender = "Man";
+        newStruct.GenderInfo();
 
-        Console.ReadLine();
+        Human.ClassHuman newClass = new();
+        newClass.Gender = "Woman";
+        newClass.GenderInfo();
     }
 }
