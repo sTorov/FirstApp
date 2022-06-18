@@ -1,77 +1,18 @@
 ﻿using System;
 
-class Human
-{    
-    //Поля класса
-    public string name;
-    public int age;
-
-    //Метод класса
-    public void Greetings()
-    {
-        Console.WriteLine($"Меня зовут {name}, мне {age}");
-    }    
-
-    //Конструктор
-    public Human()
-    {
-        age = 99;
-        name = "Неизвестно";
-    }
-
-    //Конструктор 2
-    public Human(string n)
-    {
-        name = n;
-        age = 99;
-    }
-
-    //Конструктор 3
-    public Human(string n, int a)
-    {
-        age = a;
-        name = n;
-    }
-}
-
-struct Animal
+class Pen
 {
-    //Поля структуры
-    public string type;
-    public string name;
-    public int age;
+    public string Color;
+    public int Cost;
 
-    //Метод структуры
-    public void Info()
+    public Pen()
     {
-        Console.WriteLine($"Это {type} по кличке {name}, ему {age}");
+        Color = "Чёрный";
+        Cost = 100;
     }
-
-    //Конструктор. Для структуры обязательно должны быть объявлены все поля
-    public Animal(string t, string n, int a)
+    public Pen(string penColor,int penCost)
     {
-        type = t;
-        name = n;
-        age = a;
-    }
-}
-
-class General
-{
-    static void Main(string[] args)
-    {
-        //Human person = new();
-        //person.Greetings();
-
-        //person = new("Dima");
-        //person.Greetings();
-
-        //person = new("Dima", 26);
-        //person.Greetings();
-
-        Animal animal = new("cat", "Barsik", 4);
-        animal.Info();
-
-        Console.ReadLine();
+        Color = penColor;
+        Cost = penCost;
     }
 }
