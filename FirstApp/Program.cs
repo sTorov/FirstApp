@@ -60,15 +60,19 @@ class General
 {
     static void Main(string[] args)
     {
-        Human person = new();
-        person.Greetings();
+        //Human person = new();
+        //person.Greetings();
 
-        //Инициализатор
-        person = new Human{name = "Dima", age = 26};
-        person.Greetings();
+        ////Инициализатор
+        //person = new Human{name = "Dima", age = 26};
+        //person.Greetings();
 
-        //Animal animal = new("cat", "Barsik", 4);
-        //animal.Info();
+        Animal animal = new("cat", "Barsik", 4);
+        animal.Info();
+
+        //Инициализатор. Для структур не обязательно в инициализаторе указывать все поля
+        animal = new Animal {type = "Dog", name = "Tuzik", age = 6};
+        animal.Info();
 
         Console.ReadLine();
     }
