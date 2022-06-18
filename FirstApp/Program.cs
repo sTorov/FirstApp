@@ -1,73 +1,39 @@
 ﻿using System;
 
-class Human
+class Company
 {
-    public class ClassHuman
-    {
-        public string Gender;
-
-        public void GenderInfo()
-        {
-            Console.WriteLine(Gender);
-        }
-    }
-
-    public struct StructHuman
-    {
-        public string Gender;
-
-        public void GenderInfo()
-        {
-            Console.WriteLine(Gender);
-        }
-    }
-
-    //Поля класса
-    public string name;
-    public int age;
-
-    //Метод класса
-    public void Greetings()
-    {
-        Console.WriteLine($"Меня зовут {name}, мне {age}");
-    }    
+    public string Name;
+    public string Type;
+}
+class City
+{
+    public string Name;
+}
+class Department
+{
+    public Company Company;
+    public City City;
 }
 
-struct Animal
-{
-    //Поля структуры
-    public string type;
-    public string name;
-    public int age;
-
-    //Метод структуры
-    public void Info()
-    {
-        Console.WriteLine($"Это {type} по кличке {name}, ему {age}");
-    }
-}
-
-class General
+class Program
 {
     static void Main(string[] args)
     {
-        Human person = new();
-        person.age = 43;
-        person.name = "Dima";
-        person.Greetings();
+        var departmet = GetCurrentDepartment();
 
-        Animal animal;
-        animal.age = 4;
-        animal.name = "Barsik";
-        animal.type = "cat";
-        animal.Info();
+        if (departmet?.City?.Name == "Санкт-Петербург" && departmet?.Company?.Type == "Банк")
+            Console.WriteLine($"У банка {departmet?.Company?.Name ?? "Неизветная компания"} есть отделение в Санкт-Петербурге");
+        else
+            Console.WriteLine("Error");
+        
+        Console.ReadKey();
+    }
 
-        Human.StructHuman newStruct;
-        newStruct.Gender = "Man";
-        newStruct.GenderInfo();
-
-        Human.ClassHuman newClass = new();
-        newClass.Gender = "Woman";
-        newClass.GenderInfo();
+    static Department GetCurrentDepartment()
+    {
+        City city = new City { Name = "Санкт-Петербург" };
+        Company company = new Company { Name = null, Type = "Банк" };
+        Department Obj = new Department { City = city, Company = company};
+        return Obj;
     }
 }
