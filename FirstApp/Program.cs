@@ -19,9 +19,12 @@ class Program
 {
     static void Main(string[] args)
     {
+        Console.OutputEncoding = System.Text.Encoding.UTF7;
+        Console.InputEncoding = System.Text.Encoding.UTF7;
+        
         var departmet = GetCurrentDepartment();
 
-        if (departmet?.City?.Name == "Санкт-Петербург" && departmet?.Company?.Type == "Банк")
+        if (departmet?.City?.Name == "Москва" && departmet?.Company?.Type == "Банк")
             Console.WriteLine($"У банка {departmet?.Company?.Name ?? "Неизветная компания"} есть отделение в Санкт-Петербурге");
         else
             Console.WriteLine("Error");
@@ -31,9 +34,15 @@ class Program
 
     static Department GetCurrentDepartment()
     {
-        City city = new City { Name = "Санкт-Петербург" };
-        Company company = new Company { Name = null, Type = "Банк" };
-        Department Obj = new Department { City = city, Company = company};
+        Department Obj = new Department
+        {
+            City = new City { Name = "Москва" },
+            Company = new Company { Name = "Сбербанк", Type = "Банк" }
+        };
         return Obj;
+        //City city = new City { Name = "Санкт-Петербург" };
+        //Company company = new Company { Name = null, Type = "Банк" };
+        //Department Obj = new Department { City = city, Company = company };
     }
+
 }
