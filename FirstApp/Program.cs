@@ -1,24 +1,47 @@
 ﻿using System;
 
-class Car
+class Quadrate
 {
-    public double Fuel;
-    public int Mileage;
-    public Car()
-    {
-        Fuel = 50;
-        Mileage = 0;
-    }
+    public int a;
 
-    public void Move()
+    public double Perimeter(int a)
     {
-        //Move a kilometer
-        Mileage++;
-        Fuel -= 0.5;
+        return a * 4;
     }
-    public void ReFuel()
+    public double Square(int a)
     {
-        Fuel = 50;
+        return a ^ 2;
     }
 }
 
+class Triangle
+{
+    public int a;
+    public int b;
+    public int c;
+    public int ch;
+
+    public double Perimeter(int a, int b, int c)
+    {
+        return a + b + c;
+    }
+    public double Square(int c, int ch)
+    {
+        return (c * ch) / 2;
+    }
+}
+
+class Circle
+{
+    public int r;
+    double pi = Math.PI;
+
+    public double Perimeter(int r)
+    {
+        return 2 * pi * r;
+    }
+    public double Square(int r)
+    {
+        return pi * (r ^ 2);
+    }
+}
