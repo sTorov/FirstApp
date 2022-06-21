@@ -1,26 +1,24 @@
 ﻿using System;
 
-class Bus
+class Car
 {
-    public int? Load;
-
-    public void PrintStatus()
+    public double Fuel;
+    public int Mileage;
+    public Car()
     {
-        if (Load.HasValue)
-            Console.WriteLine($"Пассажиров в автобусе - {Load.Value}");
-        else
-            Console.WriteLine("Автобус пуст");
+        Fuel = 50;
+        Mileage = 0;
+    }
+
+    public void Move()
+    {
+        //Move a kilometer
+        Mileage++;
+        Fuel -= 0.5;
+    }
+    public void ReFuel()
+    {
+        Fuel = 50;
     }
 }
 
-class Progarm
-{
-    static void Main(string[] args)
-    {
-        Bus bus = new();
-        bus.PrintStatus();
-
-        bus = new Bus { Load = 10 };
-        bus.PrintStatus();
-    }
-}
