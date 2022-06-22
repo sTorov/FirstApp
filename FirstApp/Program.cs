@@ -19,6 +19,39 @@ namespace UserWork
                     age = value;
             }
         }
+
+        private string login;
+        public string Login
+        {
+            get
+            {
+                return login;
+            }
+            set
+            {
+                if (value.Length < 3)
+                    Console.WriteLine("Логин должен содержать не менее 3-х символов");
+                else
+                    login = value;
+            }           
+        }
+        
+        private string email;
+        public string Email
+        {
+            get 
+            { 
+                return email;
+            }
+            set
+            {
+                if (!value.Contains('@'))
+                    Console.WriteLine("Email должен содержать символ '@'");
+                else
+                    email = value;
+            }
+        }
+
     }
     class Program
     {
@@ -28,9 +61,13 @@ namespace UserWork
 
             //Setter
             user.Age = 23;
+            user.Login = "Dima";
+            user.Email = "Dima@gmail.com";
 
             //Getter
             Console.WriteLine(user.Age);
+            Console.WriteLine(user.Login);
+            Console.WriteLine(user.Email);
 
             Console.ReadLine();
         }
