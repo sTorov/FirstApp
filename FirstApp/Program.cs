@@ -45,7 +45,17 @@ namespace UserWork
             }
             set
             {
-                if (!value.Contains('@'))
+                int check = 0;
+                foreach (var item in value)
+                {
+                    if(item == '@')
+                    {
+                        check++;
+                        break;
+                    }
+                }
+
+                if (check != 1)
                     Console.WriteLine("Email должен содержать символ '@'");
                 else
                     email = value;
@@ -62,7 +72,7 @@ namespace UserWork
             //Setter
             user.Age = 23;
             user.Login = "Dima";
-            user.Email = "Dima@gmail.com";
+            user.Email = "Dimagmail.com";
 
             //Getter
             Console.WriteLine(user.Age);
