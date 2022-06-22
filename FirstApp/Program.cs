@@ -1,26 +1,61 @@
 ﻿using System;
 
-class Bus
+enum TurnDirection
 {
-    public int? Load;
-
-    public void PrintStatus()
-    {
-        if (Load.HasValue)
-            Console.WriteLine($"Пассажиров в автобусе - {Load.Value}");
-        else
-            Console.WriteLine("Автобус пуст");
-    }
+	None = 0,
+	Left,
+	Right
 }
 
-class Progarm
+class Car
 {
-    static void Main(string[] args)
-    {
-        Bus bus = new();
-        bus.PrintStatus();
+	private double Fuel;
+	private int Mileage;
+	private string color;
+	private TurnDirection turn;
 
-        bus = new Bus { Load = 10 };
-        bus.PrintStatus();
-    }
+	public Car()
+	{
+		Fuel = 50;
+		Mileage = 0;
+		color = "White";
+	}
+
+	private void Move()
+	{
+		// Move a kilometer
+		Mileage++;
+		Fuel -= 0.5;
+	}
+
+	private void Turn(TurnDirection direction)
+	{
+		turn = direction;
+	}
+
+	public void FillTheCar()
+	{
+		Fuel = 50;
+	}
+
+	public string GetColor()
+	{
+		return color;
+	}
+
+	public void ChangeColor(string newColor)
+	{
+		if (color != newColor)
+			color = newColor;
+	}
+
+	public bool IsTurningLeft()
+	{
+		return turn == TurnDirection.Left;
+	}
+
+	public bool IsTurningRight()
+	{
+		return turn == TurnDirection.Right;
+	}
 }
