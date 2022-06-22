@@ -1,15 +1,38 @@
 ﻿using System;
 
-class TrafficLigth
+namespace UserWork
 {
-	private string color;
-
-	private void ChangeColor(string newColor)
+    class User
     {
-        color = newColor;
+        private int age;
+        public int Age
+        {
+            get
+            {
+                return age;
+            }
+            set
+            {
+                if (value < 18)
+                    Console.WriteLine("Возраст должен быть не меньше 18");
+                else
+                    age = value;
+            }
+        }
     }
-    public string GetColor()
+    class Program
     {
-        return color;
+        static void Main(string[] args)
+        {
+            User user = new User();
+
+            //Setter
+            user.Age = 23;
+
+            //Getter
+            Console.WriteLine(user.Age);
+
+            Console.ReadLine();
+        }
     }
 }
