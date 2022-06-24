@@ -2,31 +2,33 @@
 
 class BaseClass
 {
-	public string Name;
-	protected string Description;
-	private int value;
+    protected string Name;
 
-    public BaseClass(int value, string Name)
+    public BaseClass(string name)
     {
-        this.value = value;
-        this.Name = Name;
+        Name = name;
     }
 }
 
-class InheritedClass : BaseClass
+class DerivedClass : BaseClass
 {
-	private int newValue;
+    public string Description;
+    public int Counter;
 
-    public InheritedClass(int newValue) : base(100, "null")
+    public DerivedClass(string name, string discription) : base(name)
     {
-        this.newValue = newValue;
+        Description = discription;
+    }
+    public DerivedClass(string name, string description, int counter) : this(name, description)
+    {
+        Counter = counter;
     }
 }
 class Program
 {
     static void Main(string[] args)
     {
-        BaseClass @class = new InheritedClass(5);
+        BaseClass derived = new DerivedClass("Без имени", "Описание", 12);
         Console.ReadKey();
     }
 }
