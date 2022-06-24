@@ -3,26 +3,22 @@
 class Obj
 {
     private string name;
-    private string description;
-    private string type;
+    private string owner;
+    private int length;
+    private int count;
 
-    public Obj(string type)
-    {
-        //Console.WriteLine("Вызван конструктор без параметров");
-        this.type = type;
-    }
-    public Obj(string name, string description) : this("Тип") // this()
+    public Obj(string name, string ownerName, int ObjLength, int count)
     {
         this.name = name;
-        this.description = description;
+        owner = ownerName;
+        length = ObjLength;
+        this.count = count;
     }
 }
 class Program
 {
     static void Main(string[] args)
     {
-        Obj obj = new Obj("Объект", "Нет описания");
 
-        Console.ReadKey();
     }
 }
