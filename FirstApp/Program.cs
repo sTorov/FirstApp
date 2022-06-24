@@ -1,48 +1,16 @@
 ﻿using System;
 
-class Car
+class Employee
 {
-    public double Fuel;
-    public int Mileage;
-    public Car()
-    {
-        Fuel = 50;
-        Mileage = 0;
-    }
-
-    public void Move()
-    {
-        //Move a kilometer
-        Mileage++;
-        Fuel -= 0.5;
-    }
-    public void ReFuel()
-    {
-        Fuel = 50;
-    }
+    public string Name;
+    public int Age;
+    public int Salary;
 }
-
-enum FuelType
+class ProjectManager : Employee
 {
-    Gas = 0,
-    Electricity
+    public string ProjectName;
 }
-
-class HybridCar : Car
+class Developer : Employee
 {
-    public FuelType FuelType;
-
-    public void ChangeFuelType(FuelType type)
-    {
-        FuelType = type;
-    }
-}
-
-class Program
-{
-    static void Main(string[] args)
-    {
-        Car car = new HybridCar();
-        HybridCar hybridCar = new HybridCar();
-    }
+    private string ProgrammingLanguage;
 }
