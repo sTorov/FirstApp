@@ -1,34 +1,28 @@
 ﻿using System;
 
-class BaseClass
-{
-    protected string Name;
+class Creature { }
+class Animal : Creature { }
+class Human : Creature { }
+class HomoSapiens : Human { }
 
-    public BaseClass(string name)
-    {
-        Name = name;
-    }
-}
-
-class DerivedClass : BaseClass
-{
-    public string Description;
-    public int Counter;
-
-    public DerivedClass(string name, string discription) : base(name)
-    {
-        Description = discription;
-    }
-    public DerivedClass(string name, string description, int counter) : this(name, description)
-    {
-        Counter = counter;
-    }
-}
 class Program
 {
-    static void Main(string[] args)
-    {
-        BaseClass derived = new DerivedClass("Без имени", "Описание", 12);
-        Console.ReadKey();
-    }
+	static void Main(string[] args)
+	{
+		HomoSapiens hs = new HomoSapiens();			//Объявление экземпляра класса HomoSapiens
+		Human human = hs;							//Неявное преобразование экз. класса HomoSapiens в Human
+		Creature creature = (Creature)human;        //Явное преобразование экз. класса Human в Creature
+		
+		Creature secondCreature = new Animal();     //Объявление экземпляра класса Animal
+		Animal animal = (Animal)secondCreature;     //Низходящее преобразование (неявно нельзя!)
+
+		bool expression;
+		expression = secondCreature is Animal;		//true
+		expression = secondCreature is Creature;    //true
+		expression = secondCreature is object;		//true
+		expression = secondCreature is Human;       //false
+
+		Animal secondanimal = secondCreature as Animal;
+		Console.ReadKey();
+	}
 }
