@@ -33,3 +33,17 @@ class E : C
         Console.WriteLine("E");
     }
 }
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        D d = new D();
+        E e = new E();
+
+        d.Display();
+        ((A)e).Display();
+        ((B)d).Display();
+        ((A)d).Display();
+    }
+}
