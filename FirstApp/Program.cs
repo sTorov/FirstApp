@@ -2,38 +2,34 @@
 {
     public virtual void Display()
     {
-        Console.WriteLine("Вызван метод класса A");
+        Console.WriteLine("A");
     }
 }
 class B : A
 {
-    public override void Display()
+    public new void Display()
     {
-        Console.WriteLine("Вызван метод класса B");
+        Console.WriteLine("B");
     }
 }
-class C : B
+class C : A
+{
+    public override void Display()
+    {
+        Console.WriteLine("C");
+    }
+}
+class D : B
 {
     public new void Display()
     {
-        Console.WriteLine("Вызван метод класса C");
+        Console.WriteLine("D");
     }
 }
-
-class Program
+class E : C
 {
-    static void Main(string[] args)
+    public new void Display()
     {
-        A a = new A();
-        B b = new B();
-        C c = new C();
-
-        a.Display();        // метод класса A
-        b.Display();        // метод класса B
-        ((A)b).Display();   // метод класса B
-
-        c.Display();        // метод класса C
-        ((A)c).Display();   // метод класса B
-        ((B)c).Display();	// метод класса B
+        Console.WriteLine("E");
     }
 }
