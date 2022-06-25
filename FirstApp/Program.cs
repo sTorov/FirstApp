@@ -1,74 +1,26 @@
 ﻿using System;
 
-class Car
+class BaseClass
 {
-    public int Mileage;
-    public Car()
+    public virtual void Display()
     {
-        Mileage = 0;
-    }
-
-    public virtual void Move()
-    {
-        Console.WriteLine("Вызван метод Move класса Car");
-        Mileage++;
+        Console.WriteLine("Метод класса BaseClass");
     }
 }
-
-enum FuelType
+class DerivedClass : BaseClass
 {
-    Gas = 0,
-    Electricity
+    public override void Display()
+    {
+        base.Display();
+        Console.WriteLine("Метод класса DerivedClass");
+    }
+
 }
-
-class HybridCar : Car
-{
-    public FuelType FuelType;
-    public double Gas;
-    public double Electricity;
-
-    public HybridCar()
-    {
-        Gas = 50;
-        Electricity = 50;
-    }
-
-    public override void Move()
-    {
-        base.Move();
-        Console.WriteLine("Вызван метод Move класса HybridCar");
-
-        switch (FuelType)
-        {
-            case FuelType.Gas:
-                Gas -= 0.5;
-                break;
-            case FuelType.Electricity:
-                Electricity -= 0.5;
-                break;
-        }
-
-    }
-    public void ChangeFuelType(FuelType type)
-    {
-        FuelType = type;
-    }
-}
-
 class Program
 {
     static void Main(string[] args)
     {
-        Car car = new Car();
-        HybridCar hybridCar = new HybridCar();
-
-        car.Move();             // метод класса Car
-        hybridCar.Move();       // метод класса HybridCar
-        ((Car)hybridCar).Move();// метод класса HybridCar
-        
-        hybridCar.Move();       // метод класса HybridCar
-
-        Car newCar = hybridCar as Car;
-        newCar.Move();          // метод класса HybridCar
+        DerivedClass obj = new DerivedClass();
+        obj.Display();
     }
 }
