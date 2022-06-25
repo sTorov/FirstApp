@@ -1,53 +1,67 @@
-﻿/*
- * Сигнатура метода — это уникальный набор информации о методе, состоящий из его имени, количества, 
- * типа и порядка параметров а также из модификаторов параметров. 
- */
+﻿using System;
+class Vector
+{
+    public int Y;
+    public int X;
+
+    public Vector Add(Vector second)
+    {
+        return new Vector 
+        { 
+            X = this.X + second.X, 
+            Y = this.Y + second.Y 
+        };
+    }
+
+    //Реализация перегрузки оператора "+"
+    //1
+    public static Vector operator + (Vector A, Vector B)
+    {
+        return new Vector
+        {
+            X = A.X + B.X,
+            Y = A.Y + B.Y
+        };
+    }
+    //2
+    public static Vector operator + (Vector A)
+    {
+        return new Vector
+        {
+            X = A.X,
+            Y = A.Y
+        };
+    }
+    //3
+    public static Vector operator + (Vector A, (int X, int Y) B)
+    {
+        return new Vector
+        {
+            X = A.X + B.X,
+            Y = A.Y + B.Y
+        };
+    }
+
+}
 class Program
 {
-    //Сигнатура Greetings(string)
-    void Greetings(string name)
-    {
-        Console.WriteLine("Привет, {0}", name);
-    }
-
-    /*
-     * Поскольку сигнатура не включает в себя тип возвращаемого значения и наименования 
-     * аргументов, данные методы будут иметь одинаковую сигнатуру Greetings(string, string)
-     */
-    void Greetings(string name, string surname)
-    {
-        Console.WriteLine($"Рад снова Вас видеть, {surname} {name}");
-    }
-
-    string Greetings(string name, string surname)
-    {
-        return $"Приветствую, {surname} {name}";
-    }
-
-    string Greetings(string firstUser, string secondUser)
-    {
-        return $"Добро пожаловать, {firstUser} и {secondUser}";
-    }
-
-    /*
-     * Перегрузка метода — это возможность использования разных методов с одинаковым названием, но отличными друг от друга сигнатурами.        * 
-     */
-    long Sum(long a, long b)
-    {
-        return a + b;
-    }
-
-    double Sum(double a, double b)
-    {
-        return a + b;
-    }
-
-    int Sum(int a, int b, int c)
-    {
-        return a + b + c;
-    }
     static void Main(string[] args)
     {
-        
+        Vector A = new Vector { X = 3, Y = 5 };
+        Vector B = new Vector { X = 7, Y = 13 };
+
+        Vector C = new Vector { X = A.X + B.X, Y = A.Y + B.Y };
+
+        Vector D = A.Add(B);
+
+        //Сложение векторов для типа Vector
+        //1
+        Vector E = A + B;
+        //2
+        Vector F = + A;
+        //3
+        Vector G = A + (3, 3);
+
+        Console.ReadLine();
     }
 }
