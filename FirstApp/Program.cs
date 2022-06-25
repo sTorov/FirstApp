@@ -1,45 +1,21 @@
-﻿class Citizen
+﻿class BaseClass
 {
-    public virtual double Age { get; set; }     //Виртуальное свойство
+    public virtual int Counter { get; set; }
+}
 
-    public void SayYourAge()
-    {
-        Console.WriteLine("Мне {0}", Age);
-    }
-}
-class CivilServant : Citizen
+class DerivedClass : BaseClass
 {
-    private double age;
-    public override double Age                  //Переопределённое свойство
-    { 
-        get
-        {
-            return age;
-        }
-        set 
-        { 
-            if(value < 18)
-                Console.WriteLine("Для работы госсслужащим гражданин должен быть не младше 18 лет");
-            else
-                age = value;
-        }
-    }
-}
-class Presedent : Citizen                       
-{
-    private double age;
-    public override double Age                     //Переопределённое свойство
+    private int counter;
+    public override int Counter
     {
         get
         {
-            return age;
+            return counter;
         }
         set
         {
-            if (value < 35)
-                Console.WriteLine("Для работы презедентом гражданин должен быть не младше 35 лет");
-            else
-                age = value;
+            if (value >= 0)
+                counter = value;
         }
     }
 }
