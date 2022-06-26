@@ -1,40 +1,34 @@
-﻿using System;
-
-class Car
+﻿abstract class Person
 {
-    public double Fuel;
-    public int Mileage;
-    public Car()
+    public string Name;
+    
+    public Person(string name)
     {
-        Fuel = 50;
-        Mileage = 0;
+        Name = name;
     }
-
-    public void Move()
+    public void DisplayName()
     {
-        //Move a kilometer
-        Mileage++;
-        Fuel -= 0.5;
-    }
-    public void ReFuel()
-    {
-        Fuel = 50;
+        Console.WriteLine(Name);
     }
 }
-
-enum FuelType
+class Employee : Person
 {
-    Gas = 0,
-    Electricity
-}
+    //Булевый флаг, сообщающий, находится ли сотрудник на смене
+    private bool IsOnShift;
 
-class HybridCar : Car
-{
-    public FuelType FuelType;
-
-    public void ChangeFuelType(FuelType type)
+    public Employee(bool isOnShift, string name) : base(name)
     {
-        FuelType = type;
+        IsOnShift = isOnShift;
+    }
+}
+class Guest : Person
+{
+    //Дата и время прибытия гостя
+    private DateTime ArrivalDate;
+
+    public Guest (DateTime arrivalDate, string name) : base (name)
+    {
+        ArrivalDate = arrivalDate;
     }
 }
 
@@ -42,7 +36,11 @@ class Program
 {
     static void Main(string[] args)
     {
-        Car car = new HybridCar();
-        HybridCar hybridCar = new HybridCar();
+        Employee employee = new Employee (true, "Николай" );
+        Guest guest = new Guest (new DateTime(2022, 3, 10), "Андрей");
+
+        //Также мы можем создавать объекты данных типов и обращаться к ним как объектам типа Person:
+        Person person = employee;
+        person = guest;
     }
 }
