@@ -1,46 +1,18 @@
-﻿abstract class Person
+﻿abstract class FourLeggedAnimal
 {
-    public string Name;
-    
-    public Person(string name)
+    public abstract void Describe();
+}
+class Dog : FourLeggedAnimal
+{
+    public override void Describe()
     {
-        Name = name;
-    }
-    public void DisplayName()
-    {
-        Console.WriteLine(Name);
+        Console.WriteLine("Это животное - собака"); ;
     }
 }
-class Employee : Person
+class Cat : FourLeggedAnimal
 {
-    //Булевый флаг, сообщающий, находится ли сотрудник на смене
-    private bool IsOnShift;
-
-    public Employee(bool isOnShift, string name) : base(name)
+    public override void Describe()
     {
-        IsOnShift = isOnShift;
-    }
-}
-class Guest : Person
-{
-    //Дата и время прибытия гостя
-    private DateTime ArrivalDate;
-
-    public Guest (DateTime arrivalDate, string name) : base (name)
-    {
-        ArrivalDate = arrivalDate;
-    }
-}
-
-class Program
-{
-    static void Main(string[] args)
-    {
-        Employee employee = new Employee (true, "Николай" );
-        Guest guest = new Guest (new DateTime(2022, 3, 10), "Андрей");
-
-        //Также мы можем создавать объекты данных типов и обращаться к ним как объектам типа Person:
-        Person person = employee;
-        person = guest;
+        Console.WriteLine("Это животное - кошка");
     }
 }
