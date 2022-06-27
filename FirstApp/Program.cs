@@ -1,23 +1,22 @@
-﻿abstract class FourLeggedAnimal
+﻿/*
+ * Производный класс обязан реализовать все абстрактные члены базового класса. 
+ * Однако мы можем отказаться от реализации, но в этом случае производный класс 
+ * также должен быть определен как абстрактный
+ * 
+ * Таким образом, в классе DerivedAbstractClass мы можем не определять реализацию 
+ * поля Name, но в производных от этого класса классах всё равно будем обязаны это сделать.
+ */
+
+abstract class AbstractClass
 {
-    public abstract string Name { get; set; }
-}
-class Dog : FourLeggedAnimal
-{
-    private string name;
-    public override string Name 
+    public abstract string Name
     {
-        get
-        {
-            return name;
-        } 
-        set
-        {
-            name = value;
-        }
+        get;
+        set;
     }
 }
-class Cat : FourLeggedAnimal
+
+abstract class DerivedAbstractClass : AbstractClass
 {
-    public override string Name { get; set; }
+    public abstract void Display();
 }
