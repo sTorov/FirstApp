@@ -1,22 +1,48 @@
-﻿/*
- * Производный класс обязан реализовать все абстрактные члены базового класса. 
- * Однако мы можем отказаться от реализации, но в этом случае производный класс 
- * также должен быть определен как абстрактный
- * 
- * Таким образом, в классе DerivedAbstractClass мы можем не определять реализацию 
- * поля Name, но в производных от этого класса классах всё равно будем обязаны это сделать.
- */
-
-abstract class AbstractClass
+﻿abstract class Transport
 {
-    public abstract string Name
+    public abstract void Move();
+}
+class Boat : Transport
+{
+    public override void Move()
     {
-        get;
-        set;
+        //...
+    }
+}
+class Car : Transport
+{
+    public int Mileage;
+    public double Fuel;
+
+    public Car()
+    {
+        Fuel = 50;
+        Mileage = 0;
+    }
+
+    public override void Move()
+    {
+        Mileage++;
+        Fuel -= 0.5;
+    }
+    public void FillTheCar()
+    { 
+        Fuel = 50;
     }
 }
 
-abstract class DerivedAbstractClass : AbstractClass
+enum FuelType
 {
-    public abstract void Display();
+    Gas = 0,
+    Electricity
+}
+
+class HybridCar : Car
+{
+    public FuelType FuelType;
+
+    public void ChangeFuelType(FuelType type)
+    {
+        FuelType = type;
+    }
 }
