@@ -1,21 +1,19 @@
 ﻿/*
- * При агрегации реализуется слабая связь, то есть в данном случае объекты SystemUnit и 
- * MotherBoard будут равноправны. В конструктор SystemUnit передается ссылка на уже имеющийся 
- * объект MotherBoard, который был создан вне SystemUnit.
- * 
- * Отношение агрегации на диаграммах UML отображается также, как и отношение композиции, 
- * только теперь ромбик будет незакрашенным
+ * Наследование является базовым принципом ООП и позволяет классу-наследнику унаследовать
+ * функционал родительского класса. Отношения наследования еще называют генерализацией или
+ * обобщением. Наследование определяет отношение IS A, то есть «является»
  */
 
-class MotherBoard
+class User
 {
+    public string Login;
+    public string Name;
 }
-class SystemUnit
-{
-    private MotherBoard motherBoard;
 
-    public SystemUnit(MotherBoard motherBoard)
+class Admin : User
+{
+    public void ManageUsers()
     {
-        this.motherBoard = motherBoard;
+        // ...
     }
 }
