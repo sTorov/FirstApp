@@ -1,35 +1,16 @@
-﻿abstract class FourLeggedAnimal
+﻿abstract class ComputerPart
 {
-    public virtual void Describe()
-    {
-        Console.WriteLine("Неизвестное животное");
-    }
+    public abstract void Work();
 }
-class Dog : FourLeggedAnimal
+class Processor : ComputerPart
 {
-    public override void Describe()
-    {
-        Console.WriteLine("Это животное - собака"); ;
-    }
+    public override void Work() {}
 }
-class Cat : FourLeggedAnimal
+class MotherBoart : ComputerPart
 {
-    
+    public override void Work() {}
 }
-
-class Program
+class GraphicCard : ComputerPart
 {
-    static void Main(string[] args)
-    {
-        Dog dog = new Dog();
-        Cat cat = new Cat();
-
-        dog.Describe();         // Собака
-        cat.Describe();         // Неизвестное животное
-        FourLeggedAnimal animal = dog;
-        animal.Describe();      // Собака
-
-        animal = cat;
-        animal.Describe();      // Неизвестное животное
-    }
+    public override void Work() {}
 }
