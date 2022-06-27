@@ -1,46 +1,22 @@
-﻿/*
- * Переменные и свойства, которые хранят состояние, общее для всех объектов класса, 
- * следует определять как статические.
- * 
- * Важно понимать, что статические методы могут обращаться только к статическим членам
- * класса и переданным им параметрам. Обращаться к нестатическим методам, полям или 
- * свойствам внутри них невозможно. Также, статический метод нельзя переопределить 
- * или объявить виртуальным.
- */
-
-class Counter
+﻿class Helper
 {
-    private static int increasingCounter;
-    public static int IncreasingCounter
+    public static void Swap(ref int num1,ref int num2)
     {
-        get
-        {
-            return increasingCounter;
-        }
-        set
-        {
-            if (value > increasingCounter)
-            {
-                increasingCounter = value;
-            }
-        }
-    }
-}
-
-class Helper
-{
-    public static int Sum(int a, int b, int c)
-    {
-        return a + b + c;
+        int temp = num1;
+        num1 = num2;
+        num2 = temp;
     }
 }
 class Program
 {
     static void Main(string[] args)
     {
-        Counter.IncreasingCounter++;
-        Console.WriteLine(Counter.IncreasingCounter);
+        int num1 = 3;
+        int num2 = 58;
 
-        int value = Helper.Sum(1, 2, 3);
+        Helper.Swap(ref num1,ref num2);
+
+        Console.WriteLine(num1); //58
+        Console.WriteLine(num2); //3
     }
 }
