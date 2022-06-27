@@ -1,40 +1,19 @@
-﻿using System;
-
-class Car
+﻿class SimpleClass
 {
-    public double Fuel;
-    public int Mileage;
-    public Car()
-    {
-        Fuel = 50;
-        Mileage = 0;
-    }
+    public static int MinValue = 100;
 
-    public void Move()
-    {
-        //Move a kilometer
-        Mileage++;
-        Fuel -= 0.5;
-    }
-    public void ReFuel()
-    {
-        Fuel = 50;
-    }
-}
+    public int Value;
 
-enum FuelType
-{
-    Gas = 0,
-    Electricity
-}
-
-class HybridCar : Car
-{
-    public FuelType FuelType;
-
-    public void ChangeFuelType(FuelType type)
+    public SimpleClass(int value)
     {
-        FuelType = type;
+        if (value < MinValue)
+        {
+            Value = MinValue;
+        }
+        else
+        {
+            Value = value;
+        }
     }
 }
 
@@ -42,7 +21,16 @@ class Program
 {
     static void Main(string[] args)
     {
-        Car car = new HybridCar();
-        HybridCar hybridCar = new HybridCar();
+        SimpleClass simpleClass = new(200);
+        SimpleClass simpleClass2 = new(30);
+
+        /*
+         * Для обращения к статическому элементу вне класса, стоит обращаться к нему через класс, 
+         * в котором он располагается, в нашем случае — SimpleClass.
+         */
+
+        Console.WriteLine(SimpleClass.MinValue);
+
+        Console.ReadKey();
     }
 }
