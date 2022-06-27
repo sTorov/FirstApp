@@ -1,16 +1,23 @@
-﻿abstract class ComputerPart
+﻿abstract class FourLeggedAnimal
 {
-    public abstract void Work();
+    public abstract string Name { get; set; }
 }
-class Processor : ComputerPart
+class Dog : FourLeggedAnimal
 {
-    public override void Work() {}
+    private string name;
+    public override string Name 
+    {
+        get
+        {
+            return name;
+        } 
+        set
+        {
+            name = value;
+        }
+    }
 }
-class MotherBoart : ComputerPart
+class Cat : FourLeggedAnimal
 {
-    public override void Work() {}
-}
-class GraphicCard : ComputerPart
-{
-    public override void Work() {}
+    public override string Name { get; set; }
 }
