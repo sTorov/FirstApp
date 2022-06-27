@@ -1,6 +1,9 @@
 ﻿abstract class FourLeggedAnimal
 {
-    public abstract void Describe();
+    public virtual void Describe()
+    {
+        Console.WriteLine("Неизвестное животное");
+    }
 }
 class Dog : FourLeggedAnimal
 {
@@ -11,8 +14,22 @@ class Dog : FourLeggedAnimal
 }
 class Cat : FourLeggedAnimal
 {
-    public override void Describe()
+    
+}
+
+class Program
+{
+    static void Main(string[] args)
     {
-        Console.WriteLine("Это животное - кошка");
+        Dog dog = new Dog();
+        Cat cat = new Cat();
+
+        dog.Describe();         // Собака
+        cat.Describe();         // Неизвестное животное
+        FourLeggedAnimal animal = dog;
+        animal.Describe();      // Собака
+
+        animal = cat;
+        animal.Describe();      // Неизвестное животное
     }
 }
