@@ -1,48 +1,16 @@
-﻿using System;
+﻿/*
+ * Ассоциация — это отношение, при котором объекты одного типа неким образом
+ * связаны с объектами другого типа. Объект одного типа может содержать или 
+ * использовать объект другого типа.
+ * 
+ * В виде UML-диаграмм такое отношение отражается обычной стрелкой
+ */
 
-class Car
+class MotherBoard
 {
-    public double Fuel;
-    public int Mileage;
-    public Car()
-    {
-        Fuel = 50;
-        Mileage = 0;
-    }
-
-    public void Move()
-    {
-        //Move a kilometer
-        Mileage++;
-        Fuel -= 0.5;
-    }
-    public void ReFuel()
-    {
-        Fuel = 50;
-    }
 }
 
-enum FuelType
+class SystemUnit
 {
-    Gas = 0,
-    Electricity
-}
-
-class HybridCar : Car
-{
-    public FuelType FuelType;
-
-    public void ChangeFuelType(FuelType type)
-    {
-        FuelType = type;
-    }
-}
-
-class Program
-{
-    static void Main(string[] args)
-    {
-        Car car = new HybridCar();
-        HybridCar hybridCar = new HybridCar();
-    }
+    private MotherBoard motherBoard;
 }
