@@ -1,15 +1,20 @@
-﻿class Obj
-{
-    public string Name;
-    public string Description;
+﻿/*
+ * Статические классы часто используют для расположения в них каких-либо однородных 
+ * операций, например, класс с вспомогательными функциями для работы с файлами, 
+ * или функции для работы с математическими операциями (как пример: класс System.Math).
+ * 
+ * Если объявить класс, который имеет нестатические элементы, как static, 
+ * то мы получим ошибку
+ */
 
-    public static string Parent;
-    public static int DaysInWeek;
-    public static int MaxValue;
-    static Obj()
+static class Car
+{
+    public static int MinPrice = 100_000;
+    public static int MaxPrice;
+
+    static Car()
     {
-        Parent = "System.Object";
-        DaysInWeek = 7;
-        MaxValue = 2000;
+        Console.WriteLine("Вызван статический конструктор класса Car");
+        MaxPrice = 1_000_000;
     }
 }
