@@ -1,20 +1,18 @@
-﻿/*
- * Статические классы часто используют для расположения в них каких-либо однородных 
- * операций, например, класс с вспомогательными функциями для работы с файлами, 
- * или функции для работы с математическими операциями (как пример: класс System.Math).
- * 
- * Если объявить класс, который имеет нестатические элементы, как static, 
- * то мы получим ошибку
- */
-
-static class Car
+﻿static class StringExtensions
 {
-    public static int MinPrice = 100_000;
-    public static int MaxPrice;
-
-    static Car()
+    public static char GetLastChar(this string source)
     {
-        Console.WriteLine("Вызван статический конструктор класса Car");
-        MaxPrice = 1_000_000;
+        return source[source.Length - 1];
+    }
+}
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        string str = "Hello";
+        Console.WriteLine(str.GetLastChar());
+
+        Console.WriteLine("Строка".GetLastChar());
     }
 }
