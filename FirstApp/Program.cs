@@ -1,42 +1,15 @@
-﻿/*
- * Статические конструкторы имеют следующие отличительные черты:
-
-
-Статические конструкторы не могут иметь модификатора доступа.
-
-Статические конструкторы не могут принимать параметры.
-
-Статические конструкторы не могут использовать нестатические поля (и не могут 
-использовать и ключевое слово this).
-
-Статический конструктор невозможно вызвать в коде.
-
-Статический конструктор выполняется при первом создании экземпляра данного класса, 
-либо при первом обращении к статическим членам класса.
- */
-
-class Car
+﻿class Obj
 {
-    public static int MinPrice = 100_000;
-    public static int MaxPrice;
+    public string Name;
+    public string Description;
 
-    static Car()
+    public static string Parent;
+    public static int DaysInWeek;
+    public static int MaxValue;
+    static Obj()
     {
-        Console.WriteLine("Вызван статический конструктор класса Car");
-        MaxPrice = 1_000_000;
-    }
-
-    public int Price;
-}
-class Program
-{
-    static void Main(string[] args)
-    {
-        Car car = new Car();
-
-        Console.WriteLine(Car.MinPrice);
-        Console.WriteLine(Car.MaxPrice);
-
-        Console.ReadLine();
+        Parent = "System.Object";
+        DaysInWeek = 7;
+        MaxValue = 2000;
     }
 }
