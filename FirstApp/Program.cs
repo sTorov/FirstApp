@@ -1,12 +1,9 @@
-﻿class Car<T>
-{
-    public T Engine;
-}
-class ElectricEngine
-{
+﻿/*
+ * Для получения значения для определённого типа T стоит вызывать default(T). Данная конструкция вернёт null, 
+ * если тип T — ссылочный, и 0 — если тип значимый.
+ */
 
-}
-class GasEngine
+class Generic<T>
 {
-
+	public T Field = default(T); // Поле типа T
 }
