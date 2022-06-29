@@ -3,9 +3,9 @@
  * выступать другой тип данных. Такой параметр также называется универсальным параметром.
  */
 
-class Order
+class Order<T>
 {
-	public object Number;
+	public T Number;
 	public string Description;
 
 	//...
@@ -14,19 +14,13 @@ class Program
 {
 	static void Main(string[] args)
     {
-		Order order1 = new Order();
-		Order order2 = new Order();
+		Order<int> order1 = new Order<int>();
+		Order<string> order2 = new Order<string>();
 
 		order1.Number = 1234;
 		order2.Number = "NN-1234";
 
-        if (order1.Number.GetType() == typeof(int))
-        {
-			int number1 = (int)order1.Number;
-		}
-		if(order2.Number.GetType() == typeof(string))
-        {
-			string number2 = (string)order2.Number;
-        }
+		int number1 = order1.Number;
+		string number2 = order2.Number;
 	}
 }
