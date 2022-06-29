@@ -3,12 +3,30 @@
  * выступать другой тип данных. Такой параметр также называется универсальным параметром.
  */
 
-class Generic<T>
+class Order
 {
-	public T Field; // Поле типа T
+	public object Number;
+	public string Description;
 
-	public void Method(T param) // Параметр типа T
-	{
+	//...
+}
+class Program
+{
+	static void Main(string[] args)
+    {
+		Order order1 = new Order();
+		Order order2 = new Order();
 
+		order1.Number = 1234;
+		order2.Number = "NN-1234";
+
+        if (order1.Number.GetType() == typeof(int))
+        {
+			int number1 = (int)order1.Number;
+		}
+		if(order2.Number.GetType() == typeof(string))
+        {
+			string number2 = (string)order2.Number;
+        }
 	}
 }
