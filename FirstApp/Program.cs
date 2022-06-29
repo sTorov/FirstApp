@@ -1,9 +1,19 @@
-﻿/*
- * Для получения значения для определённого типа T стоит вызывать default(T). Данная конструкция вернёт null, 
- * если тип T — ссылочный, и 0 — если тип значимый.
- */
-
-class Generic<T>
+﻿class Generic<T1, T2, T3>
 {
-	public T Field = default(T); // Поле типа T
+	public T1 Field; // Поле типа T1
+
+	public T2 Property { get; set; } // Свойство типа T2
+
+	public void Method(T3 param) // Параметр типа T3
+	{
+
+	}
+}
+
+class Program
+{
+	static void Main(string[] args)
+    {
+		Generic<object, int, string> generic = new Generic<object, int, string>();
+    }
 }
