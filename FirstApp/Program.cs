@@ -1,48 +1,14 @@
-﻿using System;
+﻿/*
+ * Обобщённый тип — это тип, который имеет параметр, в качестве которого может 
+ * выступать другой тип данных. Такой параметр также называется универсальным параметром.
+ */
 
-class Car
+class Generic<T>
 {
-    public double Fuel;
-    public int Mileage;
-    public Car()
-    {
-        Fuel = 50;
-        Mileage = 0;
-    }
+	public T Field; // Поле типа T
 
-    public void Move()
-    {
-        //Move a kilometer
-        Mileage++;
-        Fuel -= 0.5;
-    }
-    public void ReFuel()
-    {
-        Fuel = 50;
-    }
-}
+	public void Method(T param) // Параметр типа T
+	{
 
-enum FuelType
-{
-    Gas = 0,
-    Electricity
-}
-
-class HybridCar : Car
-{
-    public FuelType FuelType;
-
-    public void ChangeFuelType(FuelType type)
-    {
-        FuelType = type;
-    }
-}
-
-class Program
-{
-    static void Main(string[] args)
-    {
-        Car car = new HybridCar();
-        HybridCar hybridCar = new HybridCar();
-    }
+	}
 }
