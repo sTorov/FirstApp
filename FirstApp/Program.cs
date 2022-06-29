@@ -1,20 +1,20 @@
-﻿//Реализация наследования без указания типа. Важно понимать, что с таким способом наследования класс-наследник
-//может быть только обобщённым. Но это повышает гибкость.
+﻿//В данном случае классу-наследнику необязательно быть обобщением, это может быть и обычный класс.
+//Его использование будет выглядеть как:
 class BaseClass<T>
 {
     public T Field;
 }
-class DerivedClass<T> : BaseClass<T>
+class DerivedClass : BaseClass<int>
 {
-    public T Property { get; set; }
+    public string Property { get; set; }
 }
 
 class Program
 {
     static void Main(string[] args)
     {
-        DerivedClass<int> derived = new DerivedClass<int>();
-        derived.Field = 13;     // Тип int
-        derived.Property = 22;	// Тип int
+        DerivedClass derived = new DerivedClass();
+        derived.Field = 13;         // Тип int
+        derived.Property = "22";	// Тип string
     }
 }
