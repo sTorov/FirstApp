@@ -1,22 +1,31 @@
-﻿//При этом стоит учитывать, что если на уровне базового класса для универсального параметра установлено
-//ограничение, то подобное ограничение должно быть определено и в производных классах, которые также используют
-//этот параметр:
+﻿abstract class CarPart { }
+class Battery : CarPart { }
+class Differential : CarPart { }
+class Wheel : CarPart { }
 
-class BaseClass<T> where T : struct
+abstract class Engine { }
+class ElectricEngine : Engine{ }
+class GasEngine : Engine{ }
+
+abstract class Car<TEngine> where TEngine : Engine
 {
-    public T Field;
-}
-class DerivedClass<T> : BaseClass<T> where T : struct
-{
-    public T Property { get; set; }
+    public TEngine Engine;
+
+    public abstract void ChangePart<TPart>(TPart newPart) where TPart : CarPart;
+    
 }
 
-class Program
+class ElectricCar : Car<ElectricEngine>
 {
-    static void Main(string[] args)
+    public override void ChangePart<TPart>(TPart newPart) 
+    { 
+        
+    }
+}
+class GasCar : Car<GasEngine>
+{
+    public override void ChangePart<TPart>(TPart newPart)
     {
-        DerivedClass<long> derived2 = new DerivedClass<long>();
-        derived2.Field = 11;        // Тип long
-        derived2.Property = 23;     // Тип long
+
     }
 }
