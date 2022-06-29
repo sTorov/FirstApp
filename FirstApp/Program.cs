@@ -1,18 +1,20 @@
-﻿class Car<TEngine> where TEngine : Engine
+﻿//Реализация наследования без указания типа. Важно понимать, что с таким способом наследования класс-наследник
+//может быть только обобщённым. Но это повышает гибкость.
+class BaseClass<T>
 {
-    public TEngine Engine;
-
-    public virtual void ChangePart<TPart>(TPart newPart) where TPart : CarPart 
-    {
-        
-    } 
+    public T Field;
+}
+class DerivedClass<T> : BaseClass<T>
+{
+    public T Property { get; set; }
 }
 
-abstract class CarPart { }
-abstract class Engine { }
-
-class Battery : CarPart { }
-class Differential : CarPart { }
-class Wheel : CarPart { }
-class ElectricEngine : Engine{ }
-class GasEngine : Engine{ }
+class Program
+{
+    static void Main(string[] args)
+    {
+        DerivedClass<int> derived = new DerivedClass<int>();
+        derived.Field = 13;     // Тип int
+        derived.Property = 22;	// Тип int
+    }
+}
