@@ -1,48 +1,13 @@
-﻿using System;
-
-class Car
+﻿class Drive
 {
-    public double Fuel;
-    public int Mileage;
-    public Car()
-    {
-        Fuel = 50;
-        Mileage = 0;
-    }
+    public string DiskName { get; }
+    public long TotalSpace { get; }
+    public long FreeSpace { get; }
 
-    public void Move()
+    public Drive(string diskName, long totalSpace, long freeSpace)
     {
-        //Move a kilometer
-        Mileage++;
-        Fuel -= 0.5;
-    }
-    public void ReFuel()
-    {
-        Fuel = 50;
-    }
-}
-
-enum FuelType
-{
-    Gas = 0,
-    Electricity
-}
-
-class HybridCar : Car
-{
-    public FuelType FuelType;
-
-    public void ChangeFuelType(FuelType type)
-    {
-        FuelType = type;
-    }
-}
-
-class Program
-{
-    static void Main(string[] args)
-    {
-        Car car = new HybridCar();
-        HybridCar hybridCar = new HybridCar();
+        DiskName = diskName;
+        TotalSpace = totalSpace;
+        FreeSpace = freeSpace;
     }
 }
