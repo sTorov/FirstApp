@@ -1,34 +1,27 @@
-﻿class Drive
+﻿public class Folder
 {
-    public string DiskName { get; }
-    public long TotalSpace { get; }
-    public long FreeSpace { get; }
-
-    public Drive(string diskName, long totalSpace, long freeSpace)
+    public Folder(string name)
     {
-        DiskName = diskName;
-        TotalSpace = totalSpace;
-        FreeSpace = freeSpace;
+        Name = name;
     }
 
-    Dictionary<string, Folder> Folders = new Dictionary<string, Folder>();
+    string Name { get; set; }
+    List<string> Files { get; set; } = new List<string>();
 
-    public void CreateFolder(string name)
+    public void AddFile(string name)
     {
-        Folders.Add(name, new Folder());
+        if (!Files.Contains(name))
+            Files.Add(name);
     }
 }
 
-class SystemDrive : Drive
+class Program
 {
-    public long ReservedSpace { get; }
-
-    public SystemDrive(string diskName, long totalSpace, long freeSpace, long reservedSpace) : base (diskName, totalSpace, freeSpace)
+    static void Main(string[] args)
     {
-        ReservedSpace = reservedSpace;
+        Folder folder = new Folder("Папка");
+        folder.AddFile("Новый файл");
+
+        Console.ReadLine();
     }
-}
-public class Folder
-{
-    public List<string> Files { get; set; } = new List<string>();
 }
