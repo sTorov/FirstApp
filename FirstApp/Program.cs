@@ -18,6 +18,16 @@
         Folders.Add(name, new Folder());
     }
 }
+
+class SystemDrive : Drive
+{
+    public long ReservedSpace { get; }
+
+    public SystemDrive(string diskName, long totalSpace, long freeSpace, long reservedSpace) : base (diskName, totalSpace, freeSpace)
+    {
+        ReservedSpace = reservedSpace;
+    }
+}
 public class Folder
 {
     public List<string> Files { get; set; } = new List<string>();
