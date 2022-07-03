@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 
 namespace DriverManager
 {
@@ -12,7 +13,7 @@ namespace DriverManager
 
             DriveInfo[] drives = DriveInfo.GetDrives();
 
-            foreach (DriveInfo drive in drives)
+            foreach (DriveInfo drive in drives.Where(drive => drive.DriveType == DriveType.Fixed))
             {
                 Console.WriteLine($"Название: {drive.Name}");
                 Console.WriteLine($"Тип: {drive.DriveType}");
