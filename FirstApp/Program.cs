@@ -7,25 +7,11 @@ namespace DriverManager
     {
         static void Main(string[] args)
         {
-            Console.OutputEncoding = System.Text.Encoding.UTF7;
-            Console.InputEncoding = System.Text.Encoding.UTF7;
+            DirectoryInfo dirInfo = new DirectoryInfo("C:\\Users\\1357680\\Desktop\\CSarpDir");
+            if (!dirInfo.Exists)
+                dirInfo.Create();
 
-            GetAmountOfElements();
-
-            Console.ReadLine();
-        }
-        static void GetAmountOfElements()
-        {
-            try
-            {
-                DirectoryInfo dirInfo = new DirectoryInfo("C:\\");
-                if(dirInfo.Exists)
-                    Console.WriteLine($"Папки: {dirInfo.GetDirectories().Length}\nФайлы: {dirInfo.GetFiles().Length}");
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.Message);
-            }
+            dirInfo.CreateSubdirectory("Sub");
         }
     }
 }
