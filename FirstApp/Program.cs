@@ -25,7 +25,12 @@ namespace DriverManager
                 DirectoryInfo newDir = new DirectoryInfo("C:\\DirCSharp");
                 if (!newDir.Exists)
                     newDir.Create();
-                
+
+                Console.WriteLine($"\nНазвание каталога: {newDir.Name}");
+                Console.WriteLine($"Полное название каталога: {newDir.FullName}");
+                Console.WriteLine($"Время создания каталога: {newDir.CreationTime}");
+                Console.WriteLine($"Корневой каталог: {newDir.Root}");
+
                 Console.WriteLine($"\nПапки: {dirInfo.GetDirectories().Length}\nФайлы: {dirInfo.GetFiles().Length}");
             }
             catch (Exception e)
