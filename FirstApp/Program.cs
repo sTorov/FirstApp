@@ -8,37 +8,26 @@ namespace DriverManager
         static void Main(string[] args)
         {
             Console.OutputEncoding = System.Text.Encoding.UTF7;
-            Console.InputEncoding = System.Text.Encoding.UTF7;
+            Console.InputEncoding = System.Text.Encoding.UTF7;            
 
-            GetAmountOfElements();
+            Del();
 
             Console.ReadLine();
         }
-        static void GetAmountOfElements()
+
+        static void Del()
         {
             try
             {
-                DirectoryInfo dirInfo = new DirectoryInfo("C:\\");
-                if(dirInfo.Exists)
-                    Console.WriteLine($"Папки: {dirInfo.GetDirectories().Length}\nФайлы: {dirInfo.GetFiles().Length}");
-                
-                DirectoryInfo newDir = new DirectoryInfo("C:\\DirCSharp");
-                if (!newDir.Exists)
-                    newDir.Create();
+                DirectoryInfo dirInfo = new DirectoryInfo(@"C:\Users\1357680\Desktop\testFolder");
+                if (!dirInfo.Exists)
+                    dirInfo.Create();
 
-                Console.WriteLine($"\nНазвание каталога: {newDir.Name}");
-                Console.WriteLine($"Полное название каталога: {newDir.FullName}");
-                Console.WriteLine($"Время создания каталога: {newDir.CreationTime}");
-                Console.WriteLine($"Корневой каталог: {newDir.Root}");
-
-                Console.WriteLine($"\nПапки: {dirInfo.GetDirectories().Length}\nФайлы: {dirInfo.GetFiles().Length}\n");
-
-                newDir.Delete();
-                Console.WriteLine($"{newDir.Name} удалена");
+                dirInfo.MoveTo(@"C:\$Recycle.Bin\testFolder");
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                Console.WriteLine(e.Message);
+                Console.WriteLine(ex.Message);
             }
         }
     }
