@@ -15,18 +15,37 @@ namespace DriverManager
 
             foreach (DriveInfo drive in drives.Where(drive => drive.DriveType == DriveType.Fixed))
             {
-                Console.WriteLine($"Название: {drive.Name}");
-                Console.WriteLine($"Тип: {drive.DriveType}");
-                if(drive.IsReady)
-                {
-                    Console.WriteLine($"Объём: {drive.TotalSize}");
-                    Console.WriteLine($"Свободно: {drive.TotalFreeSpace}");
-                    Console.WriteLine($"Метка: {drive.VolumeLabel}");
-                }
-                Console.WriteLine();
+                WriteDriveInfo(drive);
+
+                DirectoryInfo root = drive.RootDirectory;
+                var folders = root.GetDirectories();
+
+                WriteFoldersInfo(folders);
             }
 
             Console.ReadLine();
+        }
+
+        static void WriteDriveInfo(DriveInfo drive)
+        {
+            Console.WriteLine($"Название: {drive.Name}");
+            Console.WriteLine($"Тип: {drive.DriveType}");
+            if (drive.IsReady)
+            {
+                Console.WriteLine($"Объём: {drive.TotalSize}");
+                Console.WriteLine($"Свободно: {drive.TotalFreeSpace}");
+                Console.WriteLine($"Метка: {drive.VolumeLabel}");
+            }
+            Console.WriteLine();
+        }
+        static void WriteFoldersInfo(DirectoryInfo[] folders)
+        {
+            Console.WriteLine("Папки:\n");
+            foreach (var folder in folders)
+            {
+                Console.WriteLine(folder.Name);
+            }
+            Console.WriteLine("\n");
         }
     }
 }
