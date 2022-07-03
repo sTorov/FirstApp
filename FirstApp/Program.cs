@@ -1,13 +1,31 @@
-﻿class Drive
-{
-    public string DiskName { get; }
-    public long TotalSpace { get; }
-    public long FreeSpace { get; }
+﻿using System;
+using System.IO;
 
-    public Drive(string diskName, long totalSpace, long freeSpace)
+namespace DriverManager
+{
+    class Program
     {
-        DiskName = diskName;
-        TotalSpace = totalSpace;
-        FreeSpace = freeSpace;
+        static void Main(string[] args)
+        {
+            Console.OutputEncoding = System.Text.Encoding.UTF7;
+            Console.InputEncoding = System.Text.Encoding.UTF7;
+
+            DriveInfo[] drives = DriveInfo.GetDrives();
+
+            foreach (DriveInfo drive in drives)
+            {
+                Console.WriteLine($"Название: {drive.Name}");
+                Console.WriteLine($"Тип: {drive.DriveType}");
+                if(drive.IsReady)
+                {
+                    Console.WriteLine($"Объём: {drive.TotalSize}");
+                    Console.WriteLine($"Свободно: {drive.TotalFreeSpace}");
+                    Console.WriteLine($"Метка: {drive.VolumeLabel}");
+                }
+                Console.WriteLine();
+            }
+
+            Console.ReadLine();
+        }
     }
 }
