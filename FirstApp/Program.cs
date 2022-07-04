@@ -43,7 +43,14 @@ namespace DriverManager
             Console.WriteLine("Папки:\n");
             foreach (var folder in folders)
             {
-                Console.WriteLine(folder.Name);
+                try
+                {
+                    Console.WriteLine(folder.Name + $" - {DirectoryExctention.DirSize(folder)} байт");
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(folder.Name + $" - Не удалось расчитать размер: {e.Message}");
+                }                
             }
             Console.WriteLine("\n");
         }
