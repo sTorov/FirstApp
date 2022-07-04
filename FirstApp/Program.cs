@@ -4,25 +4,15 @@ class FileWriter
 {
     public static void Main()
     {
-        string filePath = @"D:\CSharpLess\Students.txt"; // Укажем путь 
-        if (!File.Exists(filePath)) // Проверим, существует ли файл по данному пути
-        {
-            //   Если не существует - создаём и записываем в строку
-            using (StreamWriter sw = File.CreateText(filePath))  // Конструкция Using (будет рассмотрена в последующих юнитах)
-            {
-                sw.WriteLine("Олег");
-                sw.WriteLine("Дмитрий");
-                sw.WriteLine("Иван");
-            }
-        }
-        // Откроем файл и прочитаем его содержимое
+        string filePath = @"D:\VisualStudio\repos\FirstApp\FirstApp\Program.cs";
+                
         using (StreamReader sr = File.OpenText(filePath))
         {
             string str = "";
-            while ((str = sr.ReadLine()) != null) // Пока не кончатся строки - считываем из файла по одной и выводим в консоль
-            {
+            while ((str = sr.ReadLine()) != null)
                 Console.WriteLine(str);
-            }
-        }
+        }        
+
+        Console.ReadLine();
     }
 }
