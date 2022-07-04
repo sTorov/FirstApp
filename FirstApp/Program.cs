@@ -20,7 +20,9 @@ namespace DriverManager
                 DirectoryInfo root = drive.RootDirectory;
                 var folders = root.GetDirectories();
 
+                WriteFilesInfo(root);
                 WriteFoldersInfo(folders);
+
             }
 
             Console.ReadLine();
@@ -40,7 +42,7 @@ namespace DriverManager
         }
         static void WriteFoldersInfo(DirectoryInfo[] folders)
         {
-            Console.WriteLine("Папки:\n");
+            Console.WriteLine("\nПапки:\n");
             foreach (var folder in folders)
             {
                 try
@@ -52,7 +54,16 @@ namespace DriverManager
                     Console.WriteLine(folder.Name + $" - Не удалось расчитать размер: {e.Message}");
                 }                
             }
-            Console.WriteLine("\n");
+            Console.WriteLine();
+        }
+
+        static void WriteFilesInfo(DirectoryInfo rootFolder)
+        {
+            Console.WriteLine("\nФайлы:\n");
+            foreach (var file in rootFolder.GetFiles())
+            {
+                Console.WriteLine(file.Name + $" - {file.Length} байт");
+            }
         }
     }
 }
