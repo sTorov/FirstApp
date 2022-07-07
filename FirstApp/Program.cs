@@ -1,16 +1,43 @@
-﻿[Serializable] //   Атрибут сериализации
-class Person
-{
-    //     Простая модель класса 
-    [NonSerialized]
-    private string name;
-    public string Name { get { return name; } set { name = value; } }
-    public int Year { get; set; }
+﻿using System.Runtime.Serialization.Formatters.Binary;
 
-    // Метод - конструктор
-    public Person(string name, int year)
+namespace Serialization
+{
+    // Описываем наш класс и помечаем его атрибутом для последующей сериализации
+    [Serializable]
+    class Pet
     {
-        Name = name;
-        Year = year;
+        public string Name { get; set; }
+        public int Age { get; set; }
+
+        public Pet(string name, int age)
+        {
+            Name = name;
+            Age = age;
+        }
+    }
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            // объект для сериализации
+            var pet = new Pet("Rex", 2);
+            Console.WriteLine("Объект был создан");
+
+            BinaryFormatter formatter = new BinaryFormatter();
+            // получаем поток, куда будем записывать сериализованный объект
+            using (var fs = new FileStream("myPets.dat", FileMode.OpenOrCreate))
+            {
+                formatter.Serialize(fs, pet);
+                Console.WriteLine("Файл сериализован");
+            }
+            // десериализация
+            using (var fs = new FileStream("myPets.dat", FileMode.OpenOrCreate))
+            {
+                var newPet = (Pet)formatter.Deserialize(fs);
+                Console.WriteLine("Файл десериализован");
+                Console.WriteLine($"Имя: {newPet.Name} -- Возраст: {newPet.Age}");
+            }
+            Console.ReadLine();
+        }
     }
 }
