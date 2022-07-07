@@ -26,8 +26,8 @@ namespace Serialization
 
             using (var fs = new FileStream(@"C:\Users\1357680\Desktop\Contact.dat", FileMode.OpenOrCreate))
             {
-                formatter.Serialize(fs, contact);
-                Console.WriteLine("Файл сериализован");
+                var newContact = (Contact)formatter.Deserialize(fs);
+                Console.WriteLine($"{newContact.Name} {newContact.PhoneNumber} {newContact.Email}");
             }
 
             Console.ReadLine();
