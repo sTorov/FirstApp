@@ -2,41 +2,34 @@
 
 namespace Serialization
 {
-    // Описываем наш класс и помечаем его атрибутом для последующей сериализации
     [Serializable]
-    class Pet
+    class Contact
     {
         public string Name { get; set; }
-        public int Age { get; set; }
+        public long PhoneNumber { get; set; }
+        public string Email { get; set; }
 
-        public Pet(string name, int age)
+        public Contact(string name, long phoneNumber, string email)
         {
             Name = name;
-            Age = age;
+            PhoneNumber = phoneNumber;
+            Email = email;
         }
     }
     class Program
     {
         static void Main(string[] args)
         {
-            // объект для сериализации
-            var pet = new Pet("Rex", 2);
-            Console.WriteLine("Объект был создан");
+            var contact = new Contact("Dima", 89991112233, "Dima@gmail.com");
 
             BinaryFormatter formatter = new BinaryFormatter();
-            // получаем поток, куда будем записывать сериализованный объект
-            using (var fs = new FileStream("myPets.dat", FileMode.OpenOrCreate))
+
+            using (var fs = new FileStream(@"C:\Users\1357680\Desktop\Contact.dat", FileMode.OpenOrCreate))
             {
-                formatter.Serialize(fs, pet);
+                formatter.Serialize(fs, contact);
                 Console.WriteLine("Файл сериализован");
             }
-            // десериализация
-            using (var fs = new FileStream("myPets.dat", FileMode.OpenOrCreate))
-            {
-                var newPet = (Pet)formatter.Deserialize(fs);
-                Console.WriteLine("Файл десериализован");
-                Console.WriteLine($"Имя: {newPet.Name} -- Возраст: {newPet.Age}");
-            }
+
             Console.ReadLine();
         }
     }
