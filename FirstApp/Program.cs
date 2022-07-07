@@ -1,11 +1,9 @@
-﻿using System;
-using System.IO;
-using System.Linq;
-
-namespace DriverManager
+﻿namespace DriverManager
 {
     class Program
     {
+        public static FileInfo path =new FileInfo("DiskInfo.txt");
+
         static void Main(string[] args)
         {
             Console.OutputEncoding = System.Text.Encoding.UTF7;
@@ -13,56 +11,65 @@ namespace DriverManager
 
             DriveInfo[] drives = DriveInfo.GetDrives();
 
+            path.Delete();
+
             foreach (DriveInfo drive in drives.Where(drive => drive.DriveType == DriveType.Fixed))
             {
-                WriteDriveInfo(drive);
 
                 DirectoryInfo root = drive.RootDirectory;
                 var folders = root.GetDirectories();
 
-                WriteFilesInfo(root);
-                WriteFoldersInfo(folders);
+                Console.WriteLine($"Сканирую {drive.Name}");
 
+                using(StreamWriter sw = path.AppendText())
+                {
+                    WriteDriveInfo(drive, sw);
+                    WriteFilesInfo(root, sw);
+                    WriteFoldersInfo(folders, sw);
+                }
+
+                Console.WriteLine("Завершено");
+                Console.WriteLine("__________");
             }
 
             Console.ReadLine();
         }
 
-        static void WriteDriveInfo(DriveInfo drive)
+        static void WriteDriveInfo(DriveInfo drive, StreamWriter sw)
         {
-            Console.WriteLine($"Название: {drive.Name}");
-            Console.WriteLine($"Тип: {drive.DriveType}");
+            sw.WriteLine($"Название: {drive.Name}");
+            sw.WriteLine($"Тип: {drive.DriveType}");
             if (drive.IsReady)
             {
-                Console.WriteLine($"Объём: {drive.TotalSize}");
-                Console.WriteLine($"Свободно: {drive.TotalFreeSpace}");
-                Console.WriteLine($"Метка: {drive.VolumeLabel}");
+                sw.WriteLine($"Объём: {drive.TotalSize}");
+                sw.WriteLine($"Свободно: {drive.TotalFreeSpace}");
+                sw.WriteLine($"Метка: {drive.VolumeLabel}");
             }
-            Console.WriteLine();
+            sw.WriteLine();
         }
-        static void WriteFoldersInfo(DirectoryInfo[] folders)
+        static void WriteFoldersInfo(DirectoryInfo[] folders, StreamWriter sw)
         {
-            Console.WriteLine("\nПапки:\n");
+            sw.WriteLine("\nПапки:\n");
             foreach (var folder in folders)
             {
                 try
                 {
-                    Console.WriteLine(folder.Name + $" - {DirectoryExctention.DirSize(folder)} байт");
+                    sw.WriteLine(folder.Name + $" - {DirectoryExctention.DirSize(folder)} байт");
                 }
                 catch (Exception e)
                 {
-                    Console.WriteLine(folder.Name + $" - Не удалось расчитать размер: {e.Message}");
+                    sw.WriteLine(folder.Name + $" - Не удалось расчитать размер: {e.Message}");
                 }                
             }
-            Console.WriteLine();
+            sw.WriteLine();
         }
 
-        static void WriteFilesInfo(DirectoryInfo rootFolder)
+        static void WriteFilesInfo(DirectoryInfo rootFolder, StreamWriter sw)
         {
-            Console.WriteLine("\nФайлы:\n");
+            sw.WriteLine("\nФайлы:\n");
             foreach (var file in rootFolder.GetFiles())
             {
-                Console.WriteLine(file.Name + $" - {file.Length} байт");
+                sw.WriteLine(file.Name + $" - {file.Length} байт");
             }
         }
     }
