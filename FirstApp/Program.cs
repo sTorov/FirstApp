@@ -1,19 +1,14 @@
 ﻿class Program
 {
-    static int Division(int a, int b)
-    {
-        return a / b;
-    }
-
     static void Main()
     {
         try
         {
-            throw new ArgumentOutOfRangeException("Ошибка");
+            throw new RankException();
         }
-        catch (ArgumentOutOfRangeException ex)
+        catch (RankException ex)
         {
-            Console.WriteLine(ex.Message);
+            Console.WriteLine(ex.GetType());
         }
         finally
         {
