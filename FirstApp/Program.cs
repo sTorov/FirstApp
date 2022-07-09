@@ -9,20 +9,15 @@
     {
         try
         {
-            var result = Division(7, 0);
-
-            Console.WriteLine(result);
+            throw new ArgumentOutOfRangeException("Ошибка");
         }
-        catch (Exception ex)
+        catch (ArgumentOutOfRangeException ex)
         {
-            if (ex is DivideByZeroException)
-                Console.WriteLine("На ноль делить нельзя" + ex.Data);
-            else
-                Console.WriteLine("Произошла непредвиденная ошибка");
+            Console.WriteLine(ex.Message);
         }
         finally
         {
-            Console.WriteLine("Сработал блок finally");
+            Console.Read();
         }
 
         Console.ReadLine();
