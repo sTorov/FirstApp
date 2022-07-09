@@ -2,8 +2,8 @@
 {
     static void Main()
     {
-        Exception exception = new Exception();
+        Exception exception = new Exception("Ошибка");
 
-        exception.Data.Add("Дата создания исключения: ", DateTime.Now);
+        exception.HelpLink = "www.yandex.ru";
     }
 }
