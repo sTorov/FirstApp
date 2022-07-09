@@ -1,13 +1,9 @@
-﻿class Drive
+﻿class Program
 {
-    public string DiskName { get; }
-    public long TotalSpace { get; }
-    public long FreeSpace { get; }
-
-    public Drive(string diskName, long totalSpace, long freeSpace)
+    static void Main()
     {
-        DiskName = diskName;
-        TotalSpace = totalSpace;
-        FreeSpace = freeSpace;
+        Exception exception = new Exception();
+
+        exception.Data.Add("Дата создания исключения: ", DateTime.Now);
     }
 }
