@@ -1,17 +1,31 @@
 ﻿class Program
 {
-    delegate int SubDelegate(int a, int b);
+    delegate void ShowDelegate();
     static void Main()
     {
-        SubDelegate sub = Sub;
+        ShowDelegate show = Method1;
+        show += Method2;
+        show += Method3;
+        show += Method4;
 
-        Console.WriteLine(sub.Invoke(5, 2));
-
-        Console.WriteLine(sub(7, 2));
+        show.Invoke();
     }
 
-    static int Sub(int a, int b)
+    static void Method1()
     {
-        return a - b;
+        Console.WriteLine("Метод 1");
     }
+    static void Method2()
+    {
+        Console.WriteLine("Метод 2");
+    }
+    static void Method3()
+    {
+        Console.WriteLine("Метод 3");
+    }
+    static void Method4()
+    {
+        Console.WriteLine("Метод 4");
+    }
+
 }
