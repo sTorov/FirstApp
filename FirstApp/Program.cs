@@ -1,17 +1,14 @@
 ﻿class Program
 {
-    delegate void ShowMessageDelegate();
-    delegate int SumDelegate(int a, int b, int c);
-    delegate bool CheckLengthDelegate(string _row);
-    static void Main()
+    static void Main() 
     {
-        ShowMessageDelegate showMessageDelegate = ShowMessage;
+        Action showMessageDelegate = ShowMessage;
         showMessageDelegate.Invoke();
 
-        SumDelegate sumDelegate = Sum;
+        Func<int, int, int, int> sumDelegate = Sum;
         Console.WriteLine(sumDelegate.Invoke(1, 2, 3));
 
-        CheckLengthDelegate checkLengthDelegate = CheckLength;
+        Predicate<string> checkLengthDelegate = CheckLength;
         Console.WriteLine(checkLengthDelegate.Invoke("skill_factory"));
     }
 
