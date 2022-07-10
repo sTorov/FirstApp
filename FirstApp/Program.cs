@@ -1,34 +1,28 @@
-﻿class Program
+﻿namespace DelegatePractices
 {
-    delegate void ShowDelegate();
-    static void Main()
+    class Program
     {
-        ShowDelegate show = Method1;
-        show += Method2;
-        show += Method3;
-        show += Method4;
+        delegate void CalculateDelegate(int a, int b);
+        static void Main(string[] args)
+        {
+            CalculateDelegate calcDelegate = CalculateOne;
 
-        show -= Method4;
-        show -= Method2;
+            calcDelegate += CalculateTwo;
+            calcDelegate -= CalculateTwo;
 
-        show.Invoke();
-    }
+            calcDelegate.Invoke(100, 30);
 
-    static void Method1()
-    {
-        Console.WriteLine("Метод 1");
-    }
-    static void Method2()
-    {
-        Console.WriteLine("Метод 2");
-    }
-    static void Method3()
-    {
-        Console.WriteLine("Метод 3");
-    }
-    static void Method4()
-    {
-        Console.WriteLine("Метод 4");
-    }
+            Console.Read();
+        }
 
+        static void CalculateOne(int a, int b)
+        {
+            Console.WriteLine(a - b);
+        }
+
+        static void CalculateTwo(int a, int b)
+        {
+            Console.WriteLine(a + b);
+        }
+    }
 }
