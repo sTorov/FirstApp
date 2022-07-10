@@ -1,16 +1,19 @@
-﻿namespace DelegatePractices
+﻿namespace DelegateDemo
 {
-    class Program
+    public class AnonymousMethods
     {
-        delegate int CalculateDelegate(int a, int b);
+        public delegate string GreetingsDelegate(string name);
+
         static void Main(string[] args)
         {
-            CalculateDelegate calculateDelegate = delegate (int a, int b)
+            string Message = "добро пожаловать на SkillFactory!";       //+++
+            GreetingsDelegate gd = delegate (string name)
             {
-                return a + b;
+                return "Привет @" + name + " " + Message;               //+++
             };
-
-            int result = calculateDelegate.Invoke(50, 10);
+            string GreetingsMessage = gd.Invoke("Будущий гуру");
+            Console.WriteLine(GreetingsMessage);
+            Console.ReadKey();
         }
     }
 }
