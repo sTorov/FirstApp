@@ -1,30 +1,16 @@
-﻿class Program
+﻿namespace DelegatePractices
 {
-    static void Main() 
+    class Program
     {
-        Action showMessageDelegate = ShowMessage;
-        showMessageDelegate.Invoke();
+        delegate int CalculateDelegate(int a, int b);
+        static void Main(string[] args)
+        {
+            CalculateDelegate calculateDelegate = delegate (int a, int b)
+            {
+                return a + b;
+            };
 
-        Func<int, int, int, int> sumDelegate = Sum;
-        Console.WriteLine(sumDelegate.Invoke(1, 2, 3));
-
-        Predicate<string> checkLengthDelegate = CheckLength;
-        Console.WriteLine(checkLengthDelegate.Invoke("skill_factory"));
-    }
-
-    static void ShowMessage()
-    {
-        Console.WriteLine("Hello World!");
-    }
-
-    static int Sum(int a, int b, int c)
-    {
-        return a + b + c;
-    }
-
-    static bool CheckLength(string _row)
-    {
-        if (_row.Length > 3) return true;
-        return false;
+            int result = calculateDelegate.Invoke(50, 10);
+        }
     }
 }
