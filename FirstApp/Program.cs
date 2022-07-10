@@ -1,20 +1,15 @@
 ﻿class Program
 {
+    delegate int SubDelegate(int a, int b);
     static void Main()
     {
-        try
-        {
-            throw new RankException();
-        }
-        catch (RankException ex)
-        {
-            Console.WriteLine(ex.GetType());
-        }
-        finally
-        {
-            Console.Read();
-        }
+        SubDelegate sub = Sub;
 
-        Console.ReadLine();
+        Console.WriteLine(sub.Invoke(5, 2));
+    }
+
+    static int Sub(int a, int b)
+    {
+        return a - b;
     }
 }
