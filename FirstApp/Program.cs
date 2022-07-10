@@ -1,34 +1,33 @@
 ﻿class Program
 {
-    delegate void ShowDelegate();
+    delegate void ShowMessageDelegate();
+    delegate int SumDelegate(int a, int b, int c);
+    delegate bool CheckLengthDelegate(string _row);
     static void Main()
     {
-        ShowDelegate show1 = Method1;
-        show1 += Method3;
+        ShowMessageDelegate showMessageDelegate = ShowMessage;
+        showMessageDelegate.Invoke();
 
-        ShowDelegate show2 = Method2;
-        show2 += Method4;
+        SumDelegate sumDelegate = Sum;
+        Console.WriteLine(sumDelegate.Invoke(1, 2, 3));
 
-        ShowDelegate show3 = show1 + show2;
-
-        show3.Invoke();
+        CheckLengthDelegate checkLengthDelegate = CheckLength;
+        Console.WriteLine(checkLengthDelegate.Invoke("skill_factory"));
     }
 
-    static void Method1()
+    static void ShowMessage()
     {
-        Console.WriteLine("Метод 1");
-    }
-    static void Method2()
-    {
-        Console.WriteLine("Метод 2");
-    }
-    static void Method3()
-    {
-        Console.WriteLine("Метод 3");
-    }
-    static void Method4()
-    {
-        Console.WriteLine("Метод 4");
+        Console.WriteLine("Hello World!");
     }
 
+    static int Sum(int a, int b, int c)
+    {
+        return a + b + c;
+    }
+
+    static bool CheckLength(string _row)
+    {
+        if (_row.Length > 3) return true;
+        return false;
+    }
 }
