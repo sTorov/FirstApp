@@ -1,29 +1,54 @@
-﻿public delegate void Notify();  // делегат                
-public class ProcessBusinessLogic
+﻿namespace CheckNumber
 {
-    public event Notify ProcessCompleted; // событие
-    public void StartProcess()
+    class Program
     {
-        Console.WriteLine("Процесс начат!");
-        OnProcessCompleted();
-    }
-    protected virtual void OnProcessCompleted()
-    {
-        ProcessCompleted?.Invoke();
-    }
-}
+        static void Main()
+        {
+            NumberReader reader = new NumberReader();
+            reader.NumberEnteredEvent += ShowNumber;
 
-class Program
-{
-    static void Main()
-    {
-        ProcessBusinessLogic bl = new ProcessBusinessLogic();
-        bl.ProcessCompleted += bl_ProcessCompleted;
-        bl.StartProcess();
+            while (true)
+            {
+                try
+                {
+                    reader.Read();
+                }
+                catch (FormatException)
+                {
+                    Console.WriteLine("Введено не корректное значение!");
+                }
+            }
+        }
+        static void ShowNumber(int number)
+        {
+            switch (number)
+            {
+                case 1:
+                    Console.WriteLine("Введено значение 1");
+                    break;
+                case 2:
+                    Console.WriteLine("Введено значение 2");
+                    break;
+            }
+        }
     }
-    //Перехватчик событий
-    public static void bl_ProcessCompleted()
+
+    class NumberReader
     {
-        Console.WriteLine("Процесс завершен!");
+        public delegate void NumberEnteredDelegate(int number);
+        public event NumberEnteredDelegate NumberEnteredEvent;
+        public void Read()
+        {
+            Console.WriteLine();
+            Console.WriteLine("Введите число 1 или 2");
+            int number = int.Parse(Console.ReadLine());
+            if (number != 1 && number != 2) throw new FormatException();
+
+            NumberEntered(number);
+        }
+        protected virtual void NumberEntered(int number)
+        {
+            NumberEnteredEvent?.Invoke(number);
+        }
     }
 }
