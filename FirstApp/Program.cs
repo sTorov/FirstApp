@@ -6,17 +6,16 @@ class BMW : Car { }
 
 class Program
 {
-    delegate Car CarDelegate (string name);
+    delegate void BMWInfo (BMW bmw);
     static void Main()
     {
-        CarDelegate carDelegate;
-        carDelegate = BuildBMW;     //ковариантность
-        Car c = carDelegate("X6");
-        Console.WriteLine(c.Model);
+        BMWInfo bmwinfo = GetCarInfo;
+        BMW bmw = new BMW { Model = "X6" };     //контравариативность
+        bmwinfo(bmw);
         Console.ReadLine();
     }
-    private static BMW BuildBMW(string model)
+    private static void GetCarInfo(Car p)
     {
-        return new BMW { Model = model};
+        Console.WriteLine(p.Model);
     }
 }
