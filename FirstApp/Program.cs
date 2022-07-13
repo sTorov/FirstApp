@@ -1,15 +1,15 @@
-﻿class Car { }
-class Lexus : Car { }
+﻿class Parent { }
+class Child : Parent { }
 class Program
 {
-    public delegate Car CarInfo();
+    delegate void ChildInfo(Child child);
     static void Main()
     {
-        CarInfo lexusInfo = LexusInfo;
-        Lexus lexus = (Lexus)lexusInfo.Invoke();
+        ChildInfo childInfo = ParentInfo;
+        childInfo.Invoke(new Child());
     }
-    static Lexus LexusInfo()
-    { 
-        return null;
+    static void ParentInfo(Parent parent)
+    {
+        Console.WriteLine(parent.GetType());
     }
 }
