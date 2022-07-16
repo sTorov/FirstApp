@@ -2,11 +2,14 @@
 {
     public interface IWriter        //Объявление интерфейса
     {
-        void Write();
+        void Write()
+        {
+            Console.WriteLine("Hello! I am Writer!");
+        }
     }
 
     public class Writer : IWriter       //Наследование интерфейса (контракт)
-    {                                   //Класс-наследник обязан реализовать весь функционал интерфейса
+    {                                   
 
     }
 }
