@@ -1,5 +1,13 @@
 ﻿class Program
 {
+    public interface ILogger        //Объявление интерфейса
+    {
+        void Log()
+        {
+            Console.WriteLine("Hello! I am Logger!");
+        }
+    }
+
     public interface IWriter        //Объявление интерфейса
     {
         void Write()
@@ -8,7 +16,7 @@
         }
     }
 
-    public class Writer : IWriter       //Наследование интерфейса (контракт)
+    public class Writer : IWriter , ILogger      //Множественное наследование интерфейсов
     {                                   
 
     }
