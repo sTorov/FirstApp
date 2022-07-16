@@ -1,20 +1,12 @@
 ﻿class Program
 {
-    static void Main()
+    public interface IWriter        //Объявление интерфейса
     {
-        try
-        {
-            throw new RankException();
-        }
-        catch (RankException ex)
-        {
-            Console.WriteLine(ex.GetType());
-        }
-        finally
-        {
-            Console.Read();
-        }
+        void Write();
+    }
 
-        Console.ReadLine();
+    public class Writer : IWriter       //Наследование интерфейса (контракт)
+    {                                   //Класс-наследник обязан реализовать весь функционал интерфейса
+
     }
 }
