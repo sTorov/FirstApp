@@ -32,7 +32,9 @@
         }
 
         public void Event(string message)
-        {            
+        {
+            Console.BackgroundColor = ConsoleColor.Red;
+            Console.ForegroundColor = ConsoleColor.Black;
             Console.WriteLine(message);
         }
     }
