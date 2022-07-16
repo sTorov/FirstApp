@@ -1,23 +1,30 @@
-﻿class Program
+﻿public interface IManager
 {
-    public interface ILogger        //Объявление интерфейса
+    void Create();
+    void Read();
+    void Update();
+    void Delete();
+}
+
+public class Manager : IManager
+{
+    public void Create()
     {
-        void Log()
-        {
-            Console.WriteLine("Hello! I am Logger!");
-        }
+
     }
 
-    public interface IWriter        //Объявление интерфейса
+    public void Read()
     {
-        void Write()
-        {
-            Console.WriteLine("Hello! I am Writer!");
-        }
+
     }
 
-    public class Writer : IWriter , ILogger      //Множественное наследование интерфейсов
-    {                                   
+    public void Update()
+    {
+
+    }
+
+    public void Delete()
+    {
 
     }
 }
