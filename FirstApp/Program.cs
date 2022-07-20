@@ -4,34 +4,34 @@
     {
         static void Main()
         {
-            IGarageManager<Car, Garage> garageManager1= new GarageManagerBase();            //Обычное объявление
-            IGarageManager<Bike, Garage> garageManager2 = new GarageManagerBase();          //Контравариация   (Bike => Car)
-            IGarageManager<Car, House> garageManager3 = new GarageManagerBase();            //Ковариация       (House => Garage)
+            User user = new User();
+            Account account = new Account();
+            
+            IUpdater<Account> updater = new UserService(); 
 
-                                                                          // Garage : House       Bike : Car
+            var userService = new UserService();
+            userService.Update(user);
         }
     }
-    
-    class Car { }
-    class Bike: Car { }
 
-    class House { }
-    class Garage : House { }
-
-    public interface IGarageManager<in T, out Z>
+    public class User
     {
-        Z GetGarageInfo();
-        void Add(T car);
+
     }
 
-    class GarageManagerBase : IGarageManager<Car, Garage>
+    public class Account : User
     {
-        public void Add(Car car)
-        {
-            throw new NotImplementedException();
-        }
 
-        public Garage GetGarageInfo()
+    }
+
+    public interface IUpdater<in T>
+    {
+        void Update(T entity);
+    }
+
+    class UserService : IUpdater<User>
+    {
+        public void Update(User entity)
         {
             throw new NotImplementedException();
         }
