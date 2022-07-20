@@ -1,41 +1,33 @@
 ﻿namespace InterfacePractices
-{ 
-    class Program
+{
+    public interface ICreatable
     {
-        static void Main()
-        {
-            
-        }
+        void Create();
     }
 
-    public interface IWriter
+    public interface IDeletable
     {
-        void Write();
+        void Delete();
     }
 
-    public interface IReader
+    public interface IUpdatable
     {
-        void Read();
+        void Update();
     }
 
-    public interface IMailer
+    class Entity : ICreatable, IDeletable, IUpdatable
     {
-        void SendEmail();
-    }
-
-    class FileManager : IWriter, IReader, IMailer
-    {
-        void IReader.Read()
+        public void Create()
         {
             throw new NotImplementedException();
         }
 
-        void IMailer.SendEmail()
+        public void Delete()
         {
             throw new NotImplementedException();
         }
 
-        void IWriter.Write()
+        public void Update()
         {
             throw new NotImplementedException();
         }
