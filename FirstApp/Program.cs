@@ -1,12 +1,54 @@
-﻿class Program
-{
-    public interface IWriter        //Объявление интерфейса
+﻿namespace InterfacePractices
+{ 
+    class Program
     {
-        void Write();
+        static void Main()
+        {
+            IFile file = new FileInfo();
+            IBinaryFile binaryFile = new FileInfo();
+            FileInfo fileInfo = new FileInfo();
+
+            file.ReadFile();
+
+            binaryFile.ReadFile();
+            binaryFile.OpenBinaryFile();
+
+            fileInfo.Search("Текст для поиска");
+        }
     }
 
-    public class Writer : IWriter       //Наследование интерфейса (контракт)
-    {                                   //Класс-наследник обязан реализовать весь функционал интерфейса
+    public interface IFile
+    {
+        void ReadFile();
+    }
 
+    public interface IBinaryFile
+    {
+        void ReadFile();
+        void OpenBinaryFile();
+    }
+
+    class FileInfo : IFile, IBinaryFile
+    {
+        void IBinaryFile.OpenBinaryFile()
+        {
+            Console.WriteLine("Открываю бинарный файл...");
+        }
+
+        void IFile.ReadFile()
+        {
+            Console.WriteLine("Читаю текстовый файл..");
+        }
+
+        void IBinaryFile.ReadFile()
+        {
+            Console.WriteLine("Открываю текстовый файл...");
+        }
+
+        public void Search(string text)
+        {
+            Console.WriteLine("Начался поиск текста в файле...");
+        }
     }
 }
+
