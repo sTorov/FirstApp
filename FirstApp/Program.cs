@@ -5,29 +5,27 @@
         static void Main()
         {
             IMessanger<Phone> viberInPhone = new Viber<Phone>();                //Обычное обобщение
+            viberInPhone.DeviceInfo(new Phone());
+
             IMessanger<IPhone> viberInIPhone = new Viber<IPhone>();             //Обычное обобщение
+            viberInIPhone.DeviceInfo(new IPhone());
 
-            IMessanger<Phone> viberOutPhone = new Viber<IPhone>();              //Ковариация (более конкретный тип, нежели указан в обобщении)
-
-            viberInPhone.DeviceInfo();
-            viberInIPhone.DeviceInfo();
+            IMessanger<IPhone> viberOutPhone = new Viber<Phone>();              //Контравариация (более универсальный тип, нежели указан в обобщении)
 
             Console.ReadLine();
         }
     }
     
-    public interface IMessanger<out T>              //Ковариантный интерфейс !!!<out T>
+    public interface IMessanger<in T>              //Контрариантный интерфейс !!!<in T>
     {
-        T DeviceInfo();
+        void DeviceInfo(T device);
     }
 
-    public class Viber<TPhone> : IMessanger<TPhone> where TPhone : Phone, new()
+    public class Viber<TPhone> : IMessanger<TPhone> where TPhone : Phone
     {
-        public TPhone DeviceInfo()
+        public void DeviceInfo(TPhone phone)
         {
-            TPhone device = new TPhone();
-            Console.WriteLine(device);
-            return new TPhone();
+            Console.WriteLine(phone);
         }
     }
 
