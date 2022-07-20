@@ -1,21 +1,24 @@
-﻿//Сильно упрощает рефакторинг при изменении функционала интерфейса
-
-public interface ICalculator                     
+﻿public interface IWriter
 {
-    //void Solve(int number);
-    void Solve(int numberOme, int numberTwo);
+    void Write();
 }
 
-public class BaseCalculator : ICalculator
+class BaseWriter : IWriter
 {
-    void ICalculator.Solve(int number)
+    void IWriter.Write()
     {
-
-    }
-
-    void ICalculator.Solve(int numberOme, int numberTwo)
-    {
-
+        
     }
 }
 
+class Program
+{
+    static void Main()
+    {
+        BaseWriter baseWriter = new BaseWriter();
+
+        ((IWriter)baseWriter).Write();
+
+        Console.ReadLine();
+    }
+}
