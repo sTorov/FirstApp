@@ -1,12 +1,18 @@
-﻿class Program
+﻿namespace InterfacePractices
 {
-    public interface IWriter        //Объявление интерфейса
+    public interface IMessanger<T>              //Обощённый интерфейс
     {
-        void Write();
+        T DeviceInfo();
     }
 
-    public class Writer : IWriter       //Наследование интерфейса (контракт)
-    {                                   //Класс-наследник обязан реализовать весь функционал интерфейса
-
+    public class Viber : IMessanger<Phone>
+    {
+        public Phone DeviceInfo()
+        {
+            throw new NotImplementedException();
+        }
     }
+
+    public class Phone { }
+    public class Computer { }
 }
