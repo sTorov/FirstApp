@@ -1,30 +1,35 @@
-﻿public interface IManager
+﻿public interface IWhatsApp                      //Интерфейс 1
 {
-    void Create();
-    void Read();
-    void Update();
-    void Delete();
+    public void SendMessage(string message); 
 }
 
-public class Manager : IManager
+public interface IViber                         //Интерфейс 2
 {
-    public void Create()
-    {
+    public void SendMessage(string message);
+}
 
+public class NewMessage : IWhatsApp, IViber     //Реализация 2-х интерфейсов, имеющих одинаковую сигнатуру
+{
+    void IWhatsApp.SendMessage(string message)              //Явная реализация интерфейса
+    {
+        Console.WriteLine("{0}: {1}", "WhatsApp", message);
     }
 
-    public void Read()
+    void IViber.SendMessage(string message)                 //Явная реализация интерфейса
     {
-
+        Console.WriteLine("{0}: {1}", "Viber", message);
     }
+}
 
-    public void Update()
+class Program
+{
+    static void Main()
     {
+        NewMessage newMessage = new NewMessage();
 
-    }
+        ((IWhatsApp)newMessage).SendMessage("Hello world");             //Вызов метода интерфейса IWhatsApp  
+        ((IViber)newMessage).SendMessage("Hello world");                //Вызов метода интерфейса IViber
 
-    public void Delete()
-    {
-
+        Console.ReadLine();
     }
 }
