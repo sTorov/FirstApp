@@ -4,50 +4,40 @@
     {
         static void Main()
         {
-            IFile file = new FileInfo();
-            IBinaryFile binaryFile = new FileInfo();
-            FileInfo fileInfo = new FileInfo();
-
-            file.ReadFile();
-
-            binaryFile.ReadFile();
-            binaryFile.OpenBinaryFile();
-
-            fileInfo.Search("Текст для поиска");
+            
         }
     }
 
-    public interface IFile
+    public interface IWriter
     {
-        void ReadFile();
+        void Write();
     }
 
-    public interface IBinaryFile
+    public interface IReader
     {
-        void ReadFile();
-        void OpenBinaryFile();
+        void Read();
     }
 
-    class FileInfo : IFile, IBinaryFile
+    public interface IMailer
     {
-        void IBinaryFile.OpenBinaryFile()
+        void SendEmail();
+    }
+
+    class FileManager : IWriter, IReader, IMailer
+    {
+        void IReader.Read()
         {
-            Console.WriteLine("Открываю бинарный файл...");
+            throw new NotImplementedException();
         }
 
-        void IFile.ReadFile()
+        void IMailer.SendEmail()
         {
-            Console.WriteLine("Читаю текстовый файл..");
+            throw new NotImplementedException();
         }
 
-        void IBinaryFile.ReadFile()
+        void IWriter.Write()
         {
-            Console.WriteLine("Открываю текстовый файл...");
-        }
-
-        public void Search(string text)
-        {
-            Console.WriteLine("Начался поиск текста в файле...");
+            throw new NotImplementedException();
         }
     }
 }
