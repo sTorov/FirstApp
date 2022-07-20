@@ -1,11 +1,11 @@
 ﻿public interface IWorker
 {
-    void Build();
+    public void Build();
 }
 
 class BaseWorker : IWorker
 {
-    public void Build()
+    void IWorker.Build()
     {
         
     }
@@ -17,7 +17,7 @@ class Program
     {
         BaseWorker worker = new BaseWorker();
 
-        worker.Build();
+        ((IWorker)worker).Build();
         
         Console.ReadLine();
     }
