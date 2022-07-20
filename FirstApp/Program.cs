@@ -4,32 +4,36 @@
     {
         static void Main()
         {
-            IMessanger<Phone> viberInPhone = new Viber<Phone>();                //Обычное обобщение
-            viberInPhone.DeviceInfo(new Phone());
+            IGarageManager<Car, Garage> garageManager1= new GarageManagerBase();            //Обычное объявление
+            IGarageManager<Bike, Garage> garageManager2 = new GarageManagerBase();          //Контравариация   (Bike => Car)
+            IGarageManager<Car, House> garageManager3 = new GarageManagerBase();            //Ковариация       (House => Garage)
 
-            IMessanger<IPhone> viberInIPhone = new Viber<IPhone>();             //Обычное обобщение
-            viberInIPhone.DeviceInfo(new IPhone());
-
-            IMessanger<IPhone> viberOutPhone = new Viber<Phone>();              //Контравариация (более универсальный тип, нежели указан в обобщении)
-
-            Console.ReadLine();
+                                                                          // Garage : House       Bike : Car
         }
     }
     
-    public interface IMessanger<in T>              //Контрариантный интерфейс !!!<in T>
+    class Car { }
+    class Bike: Car { }
+
+    class House { }
+    class Garage : House { }
+
+    public interface IGarageManager<in T, out Z>
     {
-        void DeviceInfo(T device);
+        Z GetGarageInfo();
+        void Add(T car);
     }
 
-    public class Viber<TPhone> : IMessanger<TPhone> where TPhone : Phone
+    class GarageManagerBase : IGarageManager<Car, Garage>
     {
-        public void DeviceInfo(TPhone phone)
+        public void Add(Car car)
         {
-            Console.WriteLine(phone);
+            throw new NotImplementedException();
+        }
+
+        public Garage GetGarageInfo()
+        {
+            throw new NotImplementedException();
         }
     }
-
-    public class Phone { }
-    public class IPhone : Phone { }
-    public class Computer { }
 }
