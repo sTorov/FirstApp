@@ -1,11 +1,11 @@
-﻿public interface IWriter
+﻿public interface IWorker
 {
-    void Write();
+    void Build();
 }
 
-class BaseWriter : IWriter
+class BaseWorker : IWorker
 {
-    void IWriter.Write()
+    public void Build()
     {
         
     }
@@ -15,10 +15,10 @@ class Program
 {
     static void Main()
     {
-        BaseWriter baseWriter = new BaseWriter();
+        BaseWorker worker = new BaseWorker();
 
-        ((IWriter)baseWriter).Write();
-
+        worker.Build();
+        
         Console.ReadLine();
     }
 }
