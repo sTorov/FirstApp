@@ -7,6 +7,9 @@
 
     public class Writer : IWriter       //Наследование интерфейса (контракт)
     {                                   //Класс-наследник обязан реализовать весь функционал интерфейса
-
+        public void Write()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
