@@ -1,6 +1,0 @@
-﻿namespace TelegramBot
-{
-    interface IBotClient
-    {
-    }
-}
