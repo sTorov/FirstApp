@@ -34,7 +34,8 @@ namespace TelegramBot
 
             if (update.Type == UpdateType.Message)
             {
-                await _telegarmClient.SendTextMessageAsync(update.Message.Chat.Id, "Вы отправили сообщение", cancellationToken: cancellationToken);
+                await _telegarmClient.SendTextMessageAsync(update.Message.Chat.Id, $"Вы отправили сообщение {update.Message.Text}", cancellationToken: cancellationToken);
+                Console.WriteLine($"Получено сообщение {update.Message.Text}");
                 return;
             }
         }
