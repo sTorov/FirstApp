@@ -31,6 +31,7 @@ namespace TelegramBot
             services.AddTransient<VoiceMessageController>();
             services.AddTransient<TextMessageController>();
             services.AddTransient<InlineKeyboardController>();
+            services.AddSingleton<IFileHandler, AudioFileHandler>();
 
             services.AddSingleton<ITelegramBotClient>(provider => new TelegramBotClient(appSettings.BotToken));
             services.AddSingleton<IStorage, MemoryStorage>();
@@ -40,7 +41,13 @@ namespace TelegramBot
 
         static AppSettings BuildAppSettings()
         {
-            return new AppSettings { BotToken = "5360370613:AAH-GlwbOI6REN-Yia-Sqqksrxvafl0BA3A" };
+            return new AppSettings 
+            { 
+                DownloadFolder = @"C:\Users\evmor\Downloads",
+                BotToken = "5360370613:AAH-GlwbOI6REN-Yia-Sqqksrxvafl0BA3A",
+                AudioFileName = "audio",
+                InputAudioFormat = "ogg"
+            };
         }
     }
 }
