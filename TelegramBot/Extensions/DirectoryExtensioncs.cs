@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TelegramBot.Extensions
 {
-    public static class DirectoryExtensioncs
+    public static class DirectoryExtensions
     {
         /// <summary>
         /// Получаем путь до каталога с sln. файлом

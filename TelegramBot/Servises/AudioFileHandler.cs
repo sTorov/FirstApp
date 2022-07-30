@@ -1,5 +1,6 @@
 ﻿using Telegram.Bot;
 using TelegramBot.Configuration;
+using TelegramBot.Utilities;
 
 namespace TelegramBot.Servises
 {
@@ -31,9 +32,17 @@ namespace TelegramBot.Servises
             }
         }
 
-        public string Process(string param)
+        public string Process(string inputParam)
         {
-            throw new NotImplementedException();
+            string inputAudioPath = Path.Combine(_appSettings.DownloadFolder,$"{_appSettings.AudioFileName}.{_appSettings.InputAudioFormat}");
+            string outputAudioPath = Path.Combine(_appSettings.DownloadFolder, $"{_appSettings.AudioFileName}.{_appSettings.OutputAudioFormat}");
+
+            Console.WriteLine("Начинаем конвертацию...");
+            AudioConverter.TryConvert(inputAudioPath, outputAudioPath);
+            Console.WriteLine("Файл конвертирован");
+
+            return "Конвертация успешно завершена";
+
         }
     }
 }

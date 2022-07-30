@@ -1,21 +1,20 @@
 ﻿using Telegram.Bot;
 using Telegram.Bot.Types;
-using TelegramBot.Configuration;
 using TelegramBot.Servises;
 
 namespace TelegramBot.Controllers
 {
     class VoiceMessageController
     {
-        private readonly AppSettings _appSettings;
         private readonly ITelegramBotClient _telegramClient;
         private readonly IFileHandler _audioFileHandler;
+        private readonly IStorage _memoryStorage;
 
-        public VoiceMessageController(ITelegramBotClient telegramClient, AppSettings appSettings, IFileHandler audioFileHandler)
+        public VoiceMessageController(ITelegramBotClient telegramClient, IFileHandler audioFileHandler, IStorage memoryStorage)
         {
-            _appSettings = appSettings;
             _telegramClient = telegramClient;
             _audioFileHandler = audioFileHandler;
+            _memoryStorage = memoryStorage;
         }
 
         public async Task Handle(Message message, CancellationToken ct)
@@ -27,6 +26,11 @@ namespace TelegramBot.Controllers
             await _audioFileHandler.Download(fileId, ct);
 
             await _telegramClient.SendTextMessageAsync(message.Chat.Id, $"Голосовое сообщение загружено", cancellationToken: ct);
+
+            var userLanguageCode = _memoryStorage.GetSession(message.Chat.Id).LanguageCode;
+            _audioFileHandler.Process(userLanguageCode);
+
+            await _telegramClient.SendTextMessageAsync(message.Chat.Id, $"Голосовое сообщение успешно конвертировано в формат .WAV", cancellationToken: ct);
         }
     }
 
