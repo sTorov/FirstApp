@@ -27,10 +27,11 @@ namespace TelegramBot.Controllers
             {
                 "ru" => "Русский",
                 "en" => "Английский",
+                "fr" => "Французский",
+                "ja" => "Японский",
                 _ => String.Empty
             };
             
-            Console.WriteLine($"Контроллер {GetType().Name} обнаружил нажатие на кнопку");
             await _telegramClient.SendTextMessageAsync
                 (
                     callbackQuery.From.Id, 

@@ -41,13 +41,14 @@ namespace TelegramBot
 
         static AppSettings BuildAppSettings()
         {
-            return new AppSettings 
-            { 
+            return new AppSettings
+            {
                 DownloadFolder = @"C:\Users\1357680\Downloads",
                 BotToken = "5360370613:AAH-GlwbOI6REN-Yia-Sqqksrxvafl0BA3A",
                 AudioFileName = "audio",
                 InputAudioFormat = "ogg",
-                OutputAudioFormat = "wav"
+                OutputAudioFormat = "wav",
+                InputAudioBitrate = 48000F
             };
         }
     }

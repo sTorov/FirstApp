@@ -24,6 +24,8 @@ namespace TelegramBot.Controllers
                     {
                         InlineKeyboardButton.WithCallbackData($"Русский", $"ru"),
                         InlineKeyboardButton.WithCallbackData($"English", $"en"),
+                        InlineKeyboardButton.WithCallbackData($"Français", $"fr"),
+                        InlineKeyboardButton.WithCallbackData($"日本語", $"ja"),
                     });
                     await _telegramClient.SendTextMessageAsync
                         (

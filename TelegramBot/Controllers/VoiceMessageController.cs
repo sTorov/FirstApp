@@ -25,12 +25,12 @@ namespace TelegramBot.Controllers
 
             await _audioFileHandler.Download(fileId, ct);
 
-            await _telegramClient.SendTextMessageAsync(message.Chat.Id, $"Голосовое сообщение загружено", cancellationToken: ct);
+            //Получаем язык из сессии пользователя
+            string userLanguageCode = _memoryStorage.GetSession(message.Chat.Id).LanguageCode;
+            //Запустим обработку
+            var result = _audioFileHandler.Process(userLanguageCode);
 
-            var userLanguageCode = _memoryStorage.GetSession(message.Chat.Id).LanguageCode;
-            _audioFileHandler.Process(userLanguageCode);
-
-            await _telegramClient.SendTextMessageAsync(message.Chat.Id, $"Голосовое сообщение успешно конвертировано в формат .WAV", cancellationToken: ct);
+            await _telegramClient.SendTextMessageAsync(message.Chat.Id, result, cancellationToken: ct);
         }
     }
 
