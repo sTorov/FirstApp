@@ -2,16 +2,11 @@
 {
 	static void Main()
 	{
-		Console.WriteLine("Сколько элементов будет в массиве?");
-		var count = Int32.Parse(Console.ReadLine());
-
-		var array = new int[count];
-
-		for (int i = 0; i < count; i++)
-		{
-			array[i] = Int32.Parse(Console.ReadLine());
-		}
-
-		Console.WriteLine("Все элементы записаны");
+        Console.WriteLine("Введите свой возраст");
+		int age = int.Parse(Console.ReadLine());
+		if(age > 13)
+            Console.WriteLine("Вы успешно зарегестрированы");
+		else
+			Console.WriteLine("Пользователи младше 14 лет не могут быть зарегестрированы");
 	}
 }
