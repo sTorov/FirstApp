@@ -1,12 +1,10 @@
 ﻿class Program
 {
-    public interface IWriter        //Объявление интерфейса
+    static void Main()
     {
-        void Write();
-    }
-
-    public class Writer : IWriter       //Наследование интерфейса (контракт)
-    {                                   //Класс-наследник обязан реализовать весь функционал интерфейса
-
+        Console.WriteLine("Как Вас зовут?");
+        string name = Console.ReadLine();
+        string greetings = "Привет, " + name;
+        Console.WriteLine(greetings);
     }
 }
