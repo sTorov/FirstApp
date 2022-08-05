@@ -1,38 +1,17 @@
 ﻿class Program
 {
-    static void Main()
-    {
-        int count;
+	static void Main()
+	{
+		Console.WriteLine("Сколько элементов будет в массиве?");
+		var count = Int32.Parse(Console.ReadLine());
 
-        while (true)
-        {
-            Console.WriteLine("Сколько элементов будет в массиве?");
+		var array = new int[count];
 
-            try
-            {
-                count = int.Parse(Console.ReadLine());
-                if (count <= 0)
-                    throw new Exception("Введённое значение должно быть больше 0!");
-                break;
-            }
-            catch (FormatException)
-            {
-                Console.WriteLine("Введите число!");
-                Console.ReadKey();
-                Console.Clear();
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.Message);
-                Console.ReadKey();
-                Console.Clear();
-            }
-        }
+		for (int i = 0; i < count; i++)
+		{
+			array[i] = Int32.Parse(Console.ReadLine());
+		}
 
-        string[] array = new string[count];
-        for (int i = 0; i < count; i++)
-            array[i] = Console.ReadLine();
-
-        Console.WriteLine("Все элементы записаны");
-    }
+		Console.WriteLine("Все элементы записаны");
+	}
 }
