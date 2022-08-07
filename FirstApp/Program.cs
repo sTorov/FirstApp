@@ -1,12 +1,24 @@
 ﻿class Program
 {
-	static void Main()
+	static void GetPageForUser(User user)
 	{
-        Console.WriteLine("Введите свой возраст");
-		int age = int.Parse(Console.ReadLine());
-		if(age > 13)
-            Console.WriteLine("Вы успешно зарегестрированы");
-		else
-			Console.WriteLine("Пользователи младше 14 лет не могут быть зарегестрированы");
+		if (!user.LoggedIn)
+			return;
+
+		Console.WriteLine("User logged in");
+
+		if (!user.HasAccessToSection)
+			return;
+
+		Console.WriteLine("User has access to that section");
+
+		if (user.HasUnseenNews)
+			ShowNews();
+
+
+		if (user.HasAdminRights)
+			DecorateAdminTools();
+
+
 	}
 }
