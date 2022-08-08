@@ -1,51 +1,49 @@
 ﻿class Program
 {
-	static void Main()
-	{
-		int[] ints = new int[] { 12, 3, 4, 54, 23, 9, 10, 10 ,0 , 6};
-		int[] sortedArray = QuickSort(ints, 0, ints.Length - 1);
-
-        Console.WriteLine($"Отсортированный массив: {string.Join(", ", sortedArray)}");
-
-		Console.ReadKey();
-	}
-
-	static int[] QuickSort(int[] array, int minIndex, int maxIndex)
-	{
-		if(minIndex >= maxIndex)
-			return array;
-		
-		int pivotIndex = GetPivotIndez(array, minIndex, maxIndex);
-
-		QuickSort(array, minIndex, pivotIndex - 1);		
-		QuickSort(array, pivotIndex + 1, maxIndex);
-		
-		return array;
-	}
-
-	static int GetPivotIndez(int[] array, int minIndex, int maxIndex)
+    static void Main()
     {
-		int pivot = minIndex - 1;
+        int[] ints = new int[] { 1, 2, 3, 5, 6, 7 };
+        int[] ints2 = GetArray(ints, 2);
 
-        for (int i = minIndex; i <= maxIndex; i++)
+        Console.WriteLine(String.Join(", ", ints));
+        Console.WriteLine(String.Join(", ", ints2));
+
+
+        Console.ReadKey();
+    }
+
+    static int[] GetArray(int[] array, int value)
+    {
+        int[] newArray = new int[array.Length + 1];
+        int index = GetInsertIndex(array, value);
+
+        newArray[index] = value;
+
+        for (int i = 0; i < index; i++)
+            newArray[i] = array[i];
+        for(int i = index; i < array.Length; i++)
+            newArray[i + 1] = array[i];
+
+        return newArray;
+    }
+
+    static int GetInsertIndex(int[] array, int value)
+    {
+        int left = 0;
+        int right = array.Length - 1;
+        int middle = 0;
+
+        while (left <= right)
         {
-			if (array[i] < array[maxIndex])
-            {
-				pivot++;
-				Swap(ref array[pivot], ref array[i]);
-            }
+            middle = (left + right) / 2;
+
+            if (array[middle] > value)
+                right = middle - 1;
+            else if (array[middle] < value)
+                left = middle + 1;
+            else
+                return middle;
         }
-
-		pivot++;
-		Swap(ref array[pivot], ref array[maxIndex]);
-
-		return pivot;
-    }
-
-	static void Swap(ref int leftItem, ref int rightItem)
-    {
-		int temp = leftItem;
-		leftItem = rightItem;
-		rightItem = temp;
-    }
+        return middle;
+    }    
 }
