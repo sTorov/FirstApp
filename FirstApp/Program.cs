@@ -2,8 +2,8 @@
 {
     static void Main()
     {
-        int[] ints = new int[] { 1, 2, 3, 5, 6, 7 };
-        int[] ints2 = GetArray(ints, 2);
+        int[] ints = new int[] { 1, 3, 3, 5, 6, 7, 7, 10 };
+        int[] ints2 = GetArray(ints, 6);
 
         Console.WriteLine(String.Join(", ", ints));
         Console.WriteLine(String.Join(", ", ints2));
@@ -29,21 +29,12 @@
 
     static int GetInsertIndex(int[] array, int value)
     {
-        int left = 0;
-        int right = array.Length - 1;
-        int middle = 0;
+        int i;
+        
+        for(i = 0; i < array.Length; i++)
+            if (array[i] > value)
+                return i;
 
-        while (left <= right)
-        {
-            middle = (left + right) / 2;
-
-            if (array[middle] > value)
-                right = middle - 1;
-            else if (array[middle] < value)
-                left = middle + 1;
-            else
-                return middle;
-        }
-        return middle;
+        return i;        
     }    
 }
