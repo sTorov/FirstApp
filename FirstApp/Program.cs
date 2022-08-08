@@ -2,52 +2,50 @@
 {
 	static void Main()
 	{
-		int[] ints = new int[3];
-		Random random = new();
-		int temp = 0;
+		int[] ints = new int[] { 12, 3, 4, 54, 23, 9, 10, 10 ,0 , 6};
+		int[] sortedArray = QuickSort(ints, 0, ints.Length - 1);
 
-		for(int i = 0; i < ints.Length; i++)
-        {
-			temp = random.Next(0, 10);
-			if (!Array.Exists(ints, s => s == temp))
-            {
-				ints[i] = temp;
-				continue;
-            }
+        Console.WriteLine($"Отсортированный массив: {string.Join(", ", sortedArray)}");
 
-			i--;
-        }
-		Array.Sort(ints);
-
-		foreach(var num in ints)
-			Console.Write(num + " ");
-		Console.WriteLine();
-
-		int result = BinarySearch(5, ints, 0, ints.Length - 1);
-		string s;
-		Console.WriteLine(s = result != -1 ? "индекс: " + result : "NaN");
 		Console.ReadKey();
 	}
 
-	static int BinarySearch(int value, int[] array, int left, int right)
-    {
-		int middle, midElement;
+	static int[] QuickSort(int[] array, int minIndex, int maxIndex)
+	{
+		if(minIndex >= maxIndex)
+			return array;
+		
+		int pivotIndex = GetPivotIndez(array, minIndex, maxIndex);
 
-		do
-		{
-			middle = (left + right) / 2;
-
-			midElement = array[middle];
-
-			if (midElement == value)
-				return middle;
-			else if (value < midElement)
-				right = middle - 1;
-			else
-				left = middle + 1;			
-		}
-		while (left <= right);
-
-		return -1;
+		QuickSort(array, minIndex, pivotIndex - 1);		
+		QuickSort(array, pivotIndex + 1, maxIndex);
+		
+		return array;
 	}
+
+	static int GetPivotIndez(int[] array, int minIndex, int maxIndex)
+    {
+		int pivot = minIndex - 1;
+
+        for (int i = minIndex; i <= maxIndex; i++)
+        {
+			if (array[i] < array[maxIndex])
+            {
+				pivot++;
+				Swap(ref array[pivot], ref array[i]);
+            }
+        }
+
+		pivot++;
+		Swap(ref array[pivot], ref array[maxIndex]);
+
+		return pivot;
+    }
+
+	static void Swap(ref int leftItem, ref int rightItem)
+    {
+		int temp = leftItem;
+		leftItem = rightItem;
+		rightItem = temp;
+    }
 }
