@@ -2,7 +2,7 @@
 {
 	static void Main()
 	{
-		int[] ints = new int[5];
+		int[] ints = new int[3];
 		Random random = new();
 		int temp = 0;
 
@@ -23,29 +23,31 @@
 			Console.Write(num + " ");
 		Console.WriteLine();
 
-		int result = BinarySearchRecurs(5, ints, 0, ints.Length - 1);
+		int result = BinarySearch(5, ints, 0, ints.Length - 1);
 		string s;
 		Console.WriteLine(s = result != -1 ? "индекс: " + result : "NaN");
 		Console.ReadKey();
 	}
 
-	static int BinarySearchRecurs(int value, int[] array, int left, int right)
+	static int BinarySearch(int value, int[] array, int left, int right)
     {
-		int middle = (left + right) / 2;
-		
-		int midElement = array[middle];
+		int middle, midElement;
 
-		if(midElement == value)
-			return middle;
+		do
+		{
+			middle = (left + right) / 2;
 
-		if(left < right)
-        {
-			if(value < midElement)
-				return BinarySearchRecurs(value, array, left, middle - 1);
-			
-			return BinarySearchRecurs(value, array, middle + 1, right);
-        }
+			midElement = array[middle];
+
+			if (midElement == value)
+				return middle;
+			else if (value < midElement)
+				right = middle - 1;
+			else
+				left = middle + 1;			
+		}
+		while (left <= right);
 
 		return -1;
-    }
+	}
 }
