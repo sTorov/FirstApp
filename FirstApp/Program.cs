@@ -1,29 +1,40 @@
-﻿class Program
+﻿using System.Text;
+
+class Program
 {
     static void Main()
     {
-        Estimate(20);        
+		UseString(70000);
+        Console.WriteLine("Ready to switch");
+		Console.ReadKey();
 
-        Console.ReadKey();
-    } 
-    
-    static void CreateMatrix(int n)
-    {
-        var matrix = new int[n][];        
-
-        for(int i = 0; i < n; i++)
-            matrix[i] = new int[n];
-
-        for(int i = 0; i < n; i++)
-            for(int j = 0; j < n; j++)
-                matrix[i][j] = i + j;
+		UseStringBuilder(70000);
+		Console.ReadKey();
     }
 
-    static void Estimate(int n)
-    {
-        for(int i = 0; i < n; i++)
-        {
-            CreateMatrix(10000);
-        }
-    }
+	static string UseString(int n)
+	{
+		string value = "";
+
+		for (int i = 0; i < n; i++)
+		{
+			value += i.ToString();
+			value += " ";
+		}
+
+		return value;
+	}
+
+	static string UseStringBuilder(int n)
+	{
+		StringBuilder builder = new StringBuilder();
+
+		for (int i = 0; i < n; i++)
+		{
+			builder.Append(i.ToString());
+			builder.Append(" ");
+		}
+
+		return builder.ToString();
+	}
 }
