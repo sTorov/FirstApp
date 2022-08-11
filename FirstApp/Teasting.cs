@@ -1,4 +1,5 @@
 ﻿using BenchmarkDotNet.Attributes;
+using System.Text;
 
 namespace FirstApp
 {
@@ -6,19 +7,34 @@ namespace FirstApp
     [RankColumn]
     public class Testing
     {
+        static int Iterations = 10000;
+
         [Benchmark]
-        public void CreateMatrix()
+        public string UseString()
         {
-            int n = 10000;
+            string value = "";
 
-            var matrix = new int[n][];
+            for(int i = 0; i < Iterations; i++)
+            {
+                value += i.ToString();
+                value += " ";
+            }
 
-            for (int i = 0; i < n; i++)
-                matrix[i] = new int[n];
-
-            for (int i = 0; i < n; i++)
-                for (int j = 0; j < n; j++)
-                    matrix[i][j] = i + j;
+            return value;
         }
-    }
+
+        [Benchmark]
+        public string UseStringBuilder()
+        {
+            StringBuilder builder = new();
+
+            for(int i = 0; i < Iterations; i++)
+            {
+                builder.Append(i.ToString());
+                builder.Append(" ");
+            }
+
+            return builder.ToString();
+        }
+    }    
 }
