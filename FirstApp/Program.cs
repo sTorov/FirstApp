@@ -1,15 +1,15 @@
-﻿using System.Diagnostics;
-
-class Program
+﻿class Program
 {
     static void Main()
     {
-        Estimate(20);
+        Estimate(20);        
+
+        Console.ReadKey();
     } 
     
     static void CreateMatrix(int n)
     {
-        var matrix = new int[n][];
+        var matrix = new int[n][];        
 
         for(int i = 0; i < n; i++)
             matrix[i] = new int[n];
@@ -21,17 +21,9 @@ class Program
 
     static void Estimate(int n)
     {
-        var timer = new Stopwatch();
-        timer.Start();
-
         for(int i = 0; i < n; i++)
         {
-            timer.Restart();
-
             CreateMatrix(10000);
-
-            timer.Stop();
-            Console.WriteLine(timer.ElapsedMilliseconds);
         }
     }
 }
