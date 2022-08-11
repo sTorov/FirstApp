@@ -4,7 +4,8 @@ class Program
 {
     static void Main()
     {
-        Estimate(20);
+       var array = Estimate(20);
+        MiddleTime(array);
     } 
     
     static void CreateMatrix(int n)
@@ -19,9 +20,11 @@ class Program
                 matrix[i][j] = i + j;
     }
 
-    static void Estimate(int n)
+    static long[] Estimate(int n)
     {
         var timer = new Stopwatch();
+        long[] times = new long[n];
+
         timer.Start();
 
         for(int i = 0; i < n; i++)
@@ -31,7 +34,19 @@ class Program
             CreateMatrix(10000);
 
             timer.Stop();
-            Console.WriteLine(timer.ElapsedMilliseconds);
+            times[i] = timer.ElapsedMilliseconds;
         }
+
+        return times;
+    }
+
+    static void MiddleTime(long[] array)
+    {
+        long sum = 0;
+        for (int i = 0; i < array.Length; i++)
+            sum += array[i];
+
+        Console.WriteLine(sum / array.Length);       
+        
     }
 }
