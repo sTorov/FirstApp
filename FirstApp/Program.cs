@@ -2,19 +2,12 @@
 {
     static void Main()
     {
-        int[] sort = { 1, 3, 5, 7, 8};
-        int[] nonSort = { 1, 3, 1, 1, 5 };
+        string path = @"D:\cdev_Text.txt";
 
-        Console.WriteLine(ChechArraySortIncreasing(sort));
-        Console.WriteLine(ChechArraySortIncreasing(nonSort));
-    }
+        char[] ch = { ' ', '\n' };
 
-    static bool ChechArraySortIncreasing(int[] array)
-    {
-        for (int i = 0; i < array.Length - 1; i++)
-            if (array[i] > array[i + 1])
-                return false;
+        string[] str = File.ReadAllText(path).Split(ch, StringSplitOptions.RemoveEmptyEntries);
 
-        return true;
+        Console.WriteLine(str.Length);
     }
 }
