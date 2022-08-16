@@ -13,5 +13,8 @@ class Program
         HashSet<char> chars = new HashSet<char>();
         chars.UnionWith(words);
         Console.WriteLine(chars.Count);
+        Console.WriteLine(chars.Overlaps(new[] {'1', '2', '3', '4', '5', '6', '7', '8', '9', '0'}));
+        chars.ExceptWith(new char[] {' ', ',', '.'});
+        Console.WriteLine(chars.Count);
     }
 }
