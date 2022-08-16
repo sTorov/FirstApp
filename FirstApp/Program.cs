@@ -10,32 +10,40 @@ class Program
         phoneBook.Add(new Contact("Dima", "dima@gmail.com", 78991234567));
         phoneBook.Add(new Contact("Ivan", "ivan@gmail.com", 78911987654));
 
-        Console.WriteLine(phoneBook[0].Equals(phoneBook[0]));
-        Console.WriteLine(phoneBook[0].Equals(phoneBook[1]));
-        Console.WriteLine(phoneBook[0].Equals(new object()));
-
-        Console.WriteLine(AddUnique(new Contact("Dima", "dima@gmail.com", 78991234567), phoneBook));
-        Console.WriteLine(AddUnique(new Contact("Ivan", "ivan@gmail.com", 78911987654), phoneBook));
-        Console.WriteLine(AddUnique(new Contact("Anton", "anton@gmail.com", 78991234567), phoneBook));
-        Console.WriteLine(AddUnique(new Contact("Dima", "dima@gmail.com", 71111111111), phoneBook));
+        AddUnique(new Contact("Dima", "dima@gmail.com", 78991234567), phoneBook);
+        AddUnique(new Contact("Ivan", "ivan@gmail.com", 78911987654), phoneBook);
+        AddUnique(new Contact("Anton", "anton@gmail.com", 78991234567), phoneBook);
+        AddUnique(new Contact("Dima", "dima@gmail.com", 71111111111), phoneBook);
 
     }
 
-    static bool AddUnique(Contact contact, List<Contact> phoneBook)
+    private static void AddUnique(Contact newContact, List<Contact> phoneBook)
     {
-        if (phoneBook.Contains(contact))
-            return false;
+        bool alreadyExists = false;
 
-        phoneBook.Add(contact);
-        phoneBook.Sort();
-        foreach(var item in phoneBook)
-            Console.WriteLine(item);
+        // пробегаемся по списку и смотрим, есть ли уже с таким именем
+        foreach (var contact in phoneBook)
+        {
+            if (contact.Name == newContact.Name)
+            {
+                //  если вдруг находим  -  выставляем флаг и прерываем цикл
+                alreadyExists = true;
+                break;
+            }
+        }
 
-        return true;
+        if (!alreadyExists)
+            phoneBook.Add(newContact);
+
+        //  сортируем список по имени
+        phoneBook.Sort((a, b) => string.Compare(a.Name, b.Name, StringComparison.Ordinal));
+
+        foreach (var contact in phoneBook)
+            Console.WriteLine(contact.Name + ": " + contact.PhoneNumber);
     }
 }
 
-class Contact : IComparable<Contact>
+class Contact
 {
     public string Name { get; set; }
     public string Email { get; set; }
@@ -46,26 +54,5 @@ class Contact : IComparable<Contact>
         Name = name;
         Email = email;
         PhoneNumber = phoneNumber;
-    }
-
-    public override bool Equals(object? obj)
-    {
-        if(obj is Contact contact)
-        {
-            if(Name == contact.Name && Email == contact.Email && PhoneNumber == contact.PhoneNumber)
-                return true;
-            return false;
-        }
-        return false;
-    }
-
-    public override string ToString()
-    {
-        return "Имя: " + Name + " E-mail: " + Email + " Телефон: " + PhoneNumber;
-    }
-
-    public int CompareTo(Contact? obj)
-    {
-        return Name.CompareTo(obj?.Name);
     }
 }
