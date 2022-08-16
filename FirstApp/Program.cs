@@ -1,13 +1,34 @@
-﻿class Program
+﻿using System.Collections;
+
+class Program
 {
     static void Main()
     {
-        string path = @"D:\cdev_Text.txt";
+        var months = new[]
+        {
+           "Jan", "Feb", "Mar", "Apr", "May" , "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+        };
 
-        char[] ch = { ' ', '\n' };
+        var numbers = new[]
+        {
+            1, 2, 3, 5, 6, 7, 8, 9, 10, 11, 12
+        };
 
-        string[] str = File.ReadAllText(path).Split(ch, StringSplitOptions.RemoveEmptyEntries);
+        var list = new ArrayList();
 
-        Console.WriteLine(str.Length);
+        for(int i = 0, j = 0; i < numbers.Length; i++, j++)
+        {
+            if (months[j] == "Apr")
+            {
+                list.Add(months[j]);
+                j++;
+            }
+            
+            list.Add(months[j]);
+            list.Add(numbers[i]);
+        }
+
+        foreach(var item in list)
+            Console.WriteLine(item);
     }
 }
