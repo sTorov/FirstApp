@@ -5,32 +5,31 @@ class Program
 {
     static void Main()
     {
-        var months = new List<string>()
+        string[] names =
         {
-           "Jan", "Feb", "Mar", "Apr", "May"
+            "Игорь",        //повтор
+            "Андрей",
+            "Василий",
+            "София",
+            "Елена",
+            "Анна",
+            "Игорь"         //повтор
         };
 
-        var missing = new ArrayList()
-        {
-           1, 2, 3, 5, "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
-        };
+        //выведем длину массива в консоль
+        Console.WriteLine("Длина массива " + names.Length + "\n");
+        Console.WriteLine("Данные в массиве");
+        foreach(string name in names)
+            Console.WriteLine(name);
+        Console.WriteLine();
 
-        GetMissing(months, missing);
-    }
-
-    private static void GetMissing(List<string> months, ArrayList missing)
-    {
-        // инициализируем массив для 7 нужных нам недостающих элементов
-        var missedArray = new string[7];
-
-        // извлекаем эти элементы из ArrayList, и копируем в массив
-        missing.GetRange(4, 7).CopyTo(missedArray);
-
-        // Добавляем наш массив в конец списка
-        months.AddRange(missedArray);
-
-        // смотрим, что получилось
-        foreach (var month in months)
-            Console.WriteLine(month);
+        //создаём хеш-сет, передавая в конструктор наш массив
+        HashSet<string> set = new HashSet<string>(names);
+        //посчитаем объекты в массиве
+        Console.WriteLine("Длина хеш-сета " + set.Count + "\n");
+        //выведем элементы в консоль, посмотрим, есть ли дубликаты
+        Console.WriteLine("Элементы хеш-сета");
+        foreach(var obj in set)
+            Console.WriteLine(obj);
     }
 }
