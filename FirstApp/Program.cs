@@ -5,54 +5,32 @@ class Program
 {
     static void Main()
     {
-        var phoneBook = new List<Contact>();
-
-        phoneBook.Add(new Contact("Dima", "dima@gmail.com", 78991234567));
-        phoneBook.Add(new Contact("Ivan", "ivan@gmail.com", 78911987654));
-
-        AddUnique(new Contact("Dima", "dima@gmail.com", 78991234567), phoneBook);
-        AddUnique(new Contact("Ivan", "ivan@gmail.com", 78911987654), phoneBook);
-        AddUnique(new Contact("Anton", "anton@gmail.com", 78991234567), phoneBook);
-        AddUnique(new Contact("Dima", "dima@gmail.com", 71111111111), phoneBook);
-
-    }
-
-    private static void AddUnique(Contact newContact, List<Contact> phoneBook)
-    {
-        bool alreadyExists = false;
-
-        // пробегаемся по списку и смотрим, есть ли уже с таким именем
-        foreach (var contact in phoneBook)
+        var months = new List<string>()
         {
-            if (contact.Name == newContact.Name)
-            {
-                //  если вдруг находим  -  выставляем флаг и прерываем цикл
-                alreadyExists = true;
-                break;
-            }
-        }
+           "Jan", "Feb", "Mar", "Apr", "May"
+        };
 
-        if (!alreadyExists)
-            phoneBook.Add(newContact);
+        var missing = new ArrayList()
+        {
+           1, 2, 3, 5, "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+        };
 
-        //  сортируем список по имени
-        phoneBook.Sort((a, b) => string.Compare(a.Name, b.Name, StringComparison.Ordinal));
-
-        foreach (var contact in phoneBook)
-            Console.WriteLine(contact.Name + ": " + contact.PhoneNumber);
+        GetMissing(months, missing);
     }
-}
 
-class Contact
-{
-    public string Name { get; set; }
-    public string Email { get; set; }
-    public long PhoneNumber { get; set; }
-
-    public Contact(string name, string email, long phoneNumber)
+    private static void GetMissing(List<string> months, ArrayList missing)
     {
-        Name = name;
-        Email = email;
-        PhoneNumber = phoneNumber;
+        // инициализируем массив для 7 нужных нам недостающих элементов
+        var missedArray = new string[7];
+
+        // извлекаем эти элементы из ArrayList, и копируем в массив
+        missing.GetRange(4, 7).CopyTo(missedArray);
+
+        // Добавляем наш массив в конец списка
+        months.AddRange(missedArray);
+
+        // смотрим, что получилось
+        foreach (var month in months)
+            Console.WriteLine(month);
     }
 }
