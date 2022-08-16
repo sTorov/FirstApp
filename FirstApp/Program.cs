@@ -9,12 +9,30 @@ class Program
 {
     static void Main()
     {
-        string words = "Подсчитайте, сколько уникальных символов в этом предложении, используя HashSet<T>, учитывая знаки препинания, но не учитывая пробелы в начале и в конце предложения.";
+        Console.OutputEncoding = System.Text.Encoding.UTF7;
+        Console.InputEncoding = System.Text.Encoding.Unicode;
+
+        while (true)
+        {
+            Console.WriteLine("Введите любой текст");
+            string str = Console.ReadLine();
+            Analizer(str);
+            Console.ReadKey();
+            Console.Clear();
+        }        
+    }
+
+    static void Analizer(string words)
+    {
         HashSet<char> chars = new HashSet<char>();
+
         chars.UnionWith(words);
-        Console.WriteLine(chars.Count);
-        Console.WriteLine(chars.Overlaps(new[] {'1', '2', '3', '4', '5', '6', '7', '8', '9', '0'}));
-        chars.ExceptWith(new char[] {' ', ',', '.'});
-        Console.WriteLine(chars.Count);
+
+        Console.WriteLine("Количество уникальных символов: " + chars.Count);
+        Console.WriteLine("Наличие цифр: " + chars.Overlaps(new[] { '1', '2', '3', '4', '5', '6', '7', '8', '9', '0' }));
+
+        chars.ExceptWith(new char[] { ' ', ',', '.' });
+
+        Console.WriteLine("Количество уникальных символов без знаков препинания: " + chars.Count);
     }
 }
