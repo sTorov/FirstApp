@@ -1,40 +1,26 @@
 ﻿using System.Collections;
 using System.Text;
 
+/*
+ * Специфичный метод. Изменяет HashSet<T> таким образом, 
+ * чтобы он содержал только те элементы, которые есть в нём 
+ * самом или otherCollection, исключая дубликаты на уровне обеих коллекций.
+ */
+
 class Program
 {
     static void Main()
     {
-        string[] names =
+        var hSet  = new HashSet<string>()
         {
-            "Игорь",        //повтор
-            "Андрей",
-            "Василий",
-            "София",
-            "Елена",
-            "Анна",
-            "Игорь"         //повтор
+            "Иван", "Дмитрий"
         };
 
-        //выведем длину массива в консоль
-        Console.WriteLine("Длина массива " + names.Length + "\n");
-        Console.WriteLine("Данные в массиве");
-        foreach(string name in names)
-            Console.WriteLine(name);
-        Console.WriteLine();
+        hSet.SymmetricExceptWith(new[] {"Дмитрий", "Сергей", "Игорь" });
 
-        //создаём хеш-сет, передавая в конструктор наш массив
-        HashSet<string> set = new HashSet<string>(names);
-        //посчитаем объекты в массиве
-        Console.WriteLine("Длина хеш-сета " + set.Count + "\n");
-        //выведем элементы в консоль, посмотрим, есть ли дубликаты
-        Console.WriteLine("Элементы хеш-сета");
-        foreach(var obj in set)
-            Console.WriteLine(obj);
+        Console.WriteLine("Элементы после объединения с новой коллекцией");
+        foreach(var i in hSet)
+            Console.WriteLine(i);
 
-        set.UnionWith(new string[] { "Дмитрий", "Сергей", "Игорь" });
-        Console.WriteLine("\n" + "Элементы после объединения с новой коллекцией" + "\n");
-        foreach(var item in set)
-            Console.WriteLine(item);
     }
 }
