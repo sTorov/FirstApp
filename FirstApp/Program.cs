@@ -2,25 +2,46 @@
 using System.Text;
 
 /*
- * Специфичный метод. Изменяет HashSet<T> таким образом, 
- * чтобы он содержал только те элементы, которые есть в нём 
- * самом или otherCollection, исключая дубликаты на уровне обеих коллекций.
+ * ExceptWith() Удаляет из хэш-сета все элементы, содержащиеся в другой коллекции.
  */
 
 class Program
 {
     static void Main()
     {
-        var hSet  = new HashSet<string>()
-        {
-            "Иван", "Дмитрий"
-        };
+        //Создадим два множества
+        SortedSet<char> lettersOne = new SortedSet<char>();
+        SortedSet<char> lettersTwo = new SortedSet<char>();
 
-        hSet.SymmetricExceptWith(new[] {"Дмитрий", "Сергей", "Игорь" });
+        //Добавим элементы в первую
+        lettersOne.Add('A');
+        lettersOne.Add('B');
+        lettersOne.Add('C');
+        lettersOne.Add('Z');
 
-        Console.WriteLine("Элементы после объединения с новой коллекцией");
-        foreach(var i in hSet)
-            Console.WriteLine(i);
+        //выведим
+        PrintCollection(lettersOne, "Первая коллекция");
 
+        //Добавим элементы во вторую коллекцию
+        lettersTwo.Add('Y');
+        lettersTwo.Add('X');
+        lettersTwo.Add('Z');
+
+        //выведим
+        PrintCollection(lettersTwo, "Вторая коллекция");
+
+        //Выполним вычитание множеств
+        lettersOne.ExceptWith(lettersTwo);
+
+        //выведим результат
+        PrintCollection(lettersOne, "Результат вычитания");
+    }
+
+    static void PrintCollection(SortedSet<char> chars, string s)
+    {
+        Console.WriteLine(s);
+        foreach (var item in chars)
+            Console.Write(item + " ");
+        Console.WriteLine("\n");
     }
 }
