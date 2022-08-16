@@ -16,19 +16,16 @@ class Program
 
         var list = new ArrayList();
 
-        for(int i = 0, j = 0; i < numbers.Length; i++, j++)
+        foreach (var number in numbers)
         {
-            if (months[j] == "Apr")
-            {
-                list.Add(months[j]);
-                j++;
-            }
-            
-            list.Add(months[j]);
-            list.Add(numbers[i]);
+            // добавляем в ArrayList строку месяца (начинаем с нулевого по индексу)
+            list.Add(months[number - 1]);
+
+            // добавляем его порядковый номер
+            list.Add(number);
         }
 
-        foreach(var item in list)
+        foreach (var item in list)
             Console.WriteLine(item);
     }
 }
