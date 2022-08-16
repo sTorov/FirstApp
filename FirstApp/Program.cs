@@ -5,27 +5,26 @@ class Program
 {
     static void Main()
     {
-        ArrayList list = new ArrayList { 111, 111, "Hello ", 555, "world ", "again! ", 223, "Yoohoo!!!" };
+        var phoneBook = new List<Contact>();
 
-        var newList = GetList(list);
+        phoneBook.Add(new Contact("Dima", "dima@gmail.com", 78991234567));
+        phoneBook.Add(new Contact("Ivan", "ivan@gmail.com", 78911987654));
 
-        foreach(var item in newList)
-            Console.WriteLine(item);
+        foreach (Contact contact in phoneBook)
+            Console.WriteLine(contact.Name + ": " + contact.PhoneNumber);
     }
+}
 
-    static ArrayList GetList(ArrayList input)
+class Contact
+{
+    public string Name { get; set; }
+    public string Email { get; set; }
+    public long PhoneNumber { get; set; }
+
+    public Contact(string name, string email, long phoneNumber)
     {
-        int sum = 0;
-        StringBuilder str = new StringBuilder();
-
-        foreach(var item in input)
-        {
-            if (item is int)
-                sum += (int)item;
-            if (item is string)
-                str.Append(item);
-        }
-
-        return new ArrayList { sum, str.ToString() };
+        Name = name;
+        Email = email;
+        PhoneNumber = phoneNumber;
     }
 }
