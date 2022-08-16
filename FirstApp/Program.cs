@@ -4,28 +4,32 @@ class Program
 {
     static void Main()
     {
-        var months = new[]
-        {
-           "Jan", "Feb", "Mar", "Apr", "May" , "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
-        };
+        ArrayList list = new ArrayList { 111, 111, "Hello", 555, "world", "again!", 52354, "Yoohoo!!!" };
 
-        var numbers = new[]
-        {
-            1, 2, 3, 5, 6, 7, 8, 9, 10, 11, 12
-        };
+        var newList = GetList(list);
 
-        var list = new ArrayList();
-
-        foreach (var number in numbers)
-        {
-            // добавляем в ArrayList строку месяца (начинаем с нулевого по индексу)
-            list.Add(months[number - 1]);
-
-            // добавляем его порядковый номер
-            list.Add(number);
-        }
-
-        foreach (var item in list)
+        foreach(var item in newList)
             Console.WriteLine(item);
+    }
+
+    static ArrayList GetList(ArrayList input)
+    {
+        ArrayList result = new ArrayList();
+        int sum = 0;
+        string str = string.Empty;
+
+        foreach(var item in input)
+        {
+            if (item is int)
+                sum += (int)item;
+            if (item is string)
+                str += (string)item + " ";
+        }
+        str = str.Trim();
+
+        result.Add(sum);
+        result.Add(str);
+
+        return result;
     }
 }
