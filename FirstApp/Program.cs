@@ -1,10 +1,11 @@
 ﻿using System.Collections;
+using System.Text;
 
 class Program
 {
     static void Main()
     {
-        ArrayList list = new ArrayList { 111, 111, "Hello", 555, "world", "again!", 52354, "Yoohoo!!!" };
+        ArrayList list = new ArrayList { 111, 111, "Hello ", 555, "world ", "again! ", 223, "Yoohoo!!!" };
 
         var newList = GetList(list);
 
@@ -14,22 +15,17 @@ class Program
 
     static ArrayList GetList(ArrayList input)
     {
-        ArrayList result = new ArrayList();
         int sum = 0;
-        string str = string.Empty;
+        StringBuilder str = new StringBuilder();
 
         foreach(var item in input)
         {
             if (item is int)
                 sum += (int)item;
             if (item is string)
-                str += (string)item + " ";
+                str.Append(item);
         }
-        str = str.Trim();
 
-        result.Add(sum);
-        result.Add(str);
-
-        return result;
+        return new ArrayList { sum, str.ToString() };
     }
 }
