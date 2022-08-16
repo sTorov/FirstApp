@@ -31,5 +31,10 @@ class Program
         Console.WriteLine("Элементы хеш-сета");
         foreach(var obj in set)
             Console.WriteLine(obj);
+
+        set.UnionWith(new string[] { "Дмитрий", "Сергей", "Игорь" });
+        Console.WriteLine("\n" + "Элементы после объединения с новой коллекцией" + "\n");
+        foreach(var item in set)
+            Console.WriteLine(item);
     }
 }
