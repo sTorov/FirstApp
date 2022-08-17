@@ -1,4 +1,6 @@
-﻿namespace FirstApp
+﻿using System.Diagnostics;
+
+namespace FirstApp
 {
     class SortedDictionary
     {
@@ -10,23 +12,28 @@
                 ["Иван"] = new Contact(456456456, "ivan@ivan.ru")
             };
 
-            foreach (var contact in bookPhone)
-                Console.WriteLine(contact.Key + ": " + contact.Value);
+            //foreach (var contact in bookPhone)
+            //    Console.WriteLine(contact.Key + ": " + contact.Value);
 
-            Console.WriteLine();
+            //Console.WriteLine();
+
+            Stopwatch watch = Stopwatch.StartNew();
+
             bookPhone.TryAdd("Василий", new Contact(111222333, "vasya@gmail.com"));
 
-            foreach (var contact in bookPhone)
-                Console.WriteLine(contact.Key + ": " + contact.Value);
+            Console.WriteLine(watch.Elapsed.TotalMilliseconds + "\n");
 
-            Console.WriteLine();
-            if (bookPhone.TryGetValue("Василий", out Contact value))
-                value.PhoneNumber = 000111000111;
+            //foreach (var contact in bookPhone)
+            //    Console.WriteLine(contact.Key + ": " + contact.Value);
 
-            foreach (var contact in bookPhone)
-                Console.WriteLine(contact.Key + ": " + contact.Value);
+            //Console.WriteLine();
+            //if (bookPhone.TryGetValue("Василий", out Contact value))
+            //    value.PhoneNumber = 000111000111;
 
-            Console.WriteLine();
+            //foreach (var contact in bookPhone)
+            //    Console.WriteLine(contact.Key + ": " + contact.Value);
+
+            //Console.WriteLine();
         }
     }
 }
