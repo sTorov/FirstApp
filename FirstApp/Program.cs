@@ -9,30 +9,52 @@ class Program
 {
     static void Main()
     {
-        Console.OutputEncoding = System.Text.Encoding.UTF7;
-        Console.InputEncoding = System.Text.Encoding.Unicode;
+        Console.OutputEncoding = Encoding.UTF7;
+        Console.InputEncoding = Encoding.Unicode;
+        
+        //Создадми словарь, ключём будет строка, значение - массив строк
+        var cities = new Dictionary<string, string[]>(3/*Размер указывать не обязательно*/);
 
-        while (true)
+        //Добавим новые значения
+        cities.Add("Россия", new[] {"Москва", "Санкт-Петербург", "Волгоград"});
+        cities.Add("Украина", new[] {"Киев", "Львов", "Николаев"});
+        cities.Add("Беларусь", new[] { "Минск", "Витебск", "Гродно"});
+
+        //Посмотрим всё что есть в словаре
+        foreach (var citiesByCountry in cities)
         {
-            Console.WriteLine("Введите любой текст");
-            string str = Console.ReadLine();
-            Analizer(str);
-            Console.ReadKey();
-            Console.Clear();
-        }        
-    }
+            Console.Write(citiesByCountry.Key + ": ");
+            foreach (var city in citiesByCountry.Value)
+                Console.Write(city + " ");
 
-    static void Analizer(string words)
-    {
-        HashSet<char> chars = new HashSet<char>();
+            Console.WriteLine();
+        }
 
-        chars.UnionWith(words);
+        Console.WriteLine();
 
-        Console.WriteLine("Количество уникальных символов: " + chars.Count);
-        Console.WriteLine("Наличие цифр: " + chars.Overlaps(new[] { '1', '2', '3', '4', '5', '6', '7', '8', '9', '0' }));
+        //Теперь попробуем вывести значение по ключу
+        var russianCities = cities["Россия"];
+        Console.WriteLine("Города России:");
+        foreach (var city in russianCities)
+            Console.WriteLine(city);
 
-        chars.ExceptWith(new char[] { ' ', ',', '.' });
+        Console.WriteLine();
 
-        Console.WriteLine("Количество уникальных символов без знаков препинания: " + chars.Count);
+        //изменение значения по ключу
+        cities["Россия"] = new[] { "Мурманск", "Казань"};
+
+        //удаление по ключу
+        cities.Remove("Беларусь");
+
+        //Посмотрим всё что есть в словаре после преобразований
+        foreach (var citiesByCountry in cities)
+        {
+            Console.Write(citiesByCountry.Key + ": ");
+            foreach (var city in citiesByCountry.Value)
+                Console.Write(city + " ");
+
+            Console.WriteLine();
+        }
+
     }
 }
