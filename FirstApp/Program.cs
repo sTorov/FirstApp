@@ -5,44 +5,31 @@ class Program
 {
     static void Main()
     {
-        Dictionary<string, Contact> bookPhone = new Dictionary<string, Contact>()
-        {
-            ["Дмитрий"] = new Contact(123123123, "dima@com.ru"),
-            ["Иван"] = new Contact(456456456, "ivan@ivan.ru")
-        };
+        //Создадим сортированный словарь
+        SortedDictionary<string, int> sortedDictionary = new SortedDictionary<string, int>();
 
-        foreach (var contact in bookPhone)
-            Console.WriteLine(contact.Key + ": " + contact.Value);
+        //Добавим несколько элементов в случайном порядке
+        sortedDictionary.Add("zebra", 5);
+        sortedDictionary.Add("cat", 2);
+        sortedDictionary.Add("dog", 9);
+        sortedDictionary.Add("mouse", 4);
+        sortedDictionary.Add("programmer", 100);
 
-        Console.WriteLine();
-        bookPhone.TryAdd("Василий", new Contact(111222333, "vasya@gmail.com"));
-
-        foreach (var contact in bookPhone)
-            Console.WriteLine(contact.Key + ": " + contact.Value);
-
-        Console.WriteLine();
-        if (bookPhone.TryGetValue("Василий", out Contact? value))           /////////////////
-            value.PhoneNumber = 000111000111;
-
-        foreach (var contact in bookPhone)
-            Console.WriteLine(contact.Key + ": " + contact.Value);
+        //Ищем зебру
+        if(sortedDictionary.ContainsKey("zebra"))
+            Console.WriteLine("Нашли зебру");
+        //Ищем собаку
+        if(sortedDictionary.ContainsKey("dog"))
+            Console.WriteLine("Нашли собаку");
+        //Ищем обезьяну
+        if(sortedDictionary.ContainsKey("ape"))
+            Console.WriteLine("Нашли обезьяну");
 
         Console.WriteLine();
-    }
-}
-public class Contact // модель класса
-{
-    public Contact(long phoneNumber, string email) // метод-конструктор
-    {
-        PhoneNumber = phoneNumber;
-        Email = email;
-    }
+        //Выведем коллекцию
+        Console.WriteLine("Посмотрим всех:");
 
-    public long PhoneNumber { get; set; }
-    public string Email { get; set; }
-
-    public override string ToString()
-    {
-        return "Телефон: " + PhoneNumber + " E-mail: " + Email;
+        foreach(KeyValuePair<string, int> p in sortedDictionary)
+            Console.WriteLine($"{p.Key} = {p.Value}");
     }
 }
