@@ -8,8 +8,8 @@
             Email = email;
         }
 
-        public long PhoneNumber { get; }
-        public string Email { get; }
+        public long PhoneNumber { get; set; }
+        public string Email { get; set; }
 
         public override string ToString()
         {
