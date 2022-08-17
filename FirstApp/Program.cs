@@ -5,31 +5,38 @@ class Program
 {
     static void Main()
     {
-        //Создадим сортированный словарь
-        SortedDictionary<string, int> sortedDictionary = new SortedDictionary<string, int>();
+        //создадим числовой стек
+        Stack<int> numbers = new Stack<int>();
 
-        //Добавим несколько элементов в случайном порядке
-        sortedDictionary.Add("zebra", 5);
-        sortedDictionary.Add("cat", 2);
-        sortedDictionary.Add("dog", 9);
-        sortedDictionary.Add("mouse", 4);
-        sortedDictionary.Add("programmer", 100);
+        numbers.Push(3); // в стеке 3
+        numbers.Push(5); // в стеке 5, 3
+        numbers.Push(8); // в стеке 8, 5, 3
 
-        //Ищем зебру
-        if(sortedDictionary.ContainsKey("zebra"))
-            Console.WriteLine("Нашли зебру");
-        //Ищем собаку
-        if(sortedDictionary.ContainsKey("dog"))
-            Console.WriteLine("Нашли собаку");
-        //Ищем обезьяну
-        if(sortedDictionary.ContainsKey("ape"))
-            Console.WriteLine("Нашли обезьяну");
+        Console.WriteLine("Элементы числового стека:");
+        foreach (var item in numbers)
+            Console.WriteLine(item);
+
+        Console.WriteLine($"Извлекаем верхний элемент из стека: {numbers.Pop()}");
+        // в стеке остались 5, 3
 
         Console.WriteLine();
-        //Выведем коллекцию
-        Console.WriteLine("Посмотрим всех:");
+        
+        //создадим стек объектов
+        Stack<Person> people = new Stack<Person>();
+        people.Push(new Person { Name = "Dima" });
+        people.Push(new Person { Name = "Sergey" });
+        people.Push(new Person { Name = "Anna" });
 
-        foreach(KeyValuePair<string, int> p in sortedDictionary)
-            Console.WriteLine($"{p.Key} = {p.Value}");
+        Console.WriteLine("Элементы стека объектов:");
+        foreach(var item in people)
+            Console.WriteLine(item.Name);
+
+        Console.WriteLine($"Извлекаем верхний элеменгт из стека объектов: {people.Pop().Name}");
+
+    }
+
+    class Person
+    {
+        public string Name { get; set; }
     }
 }
