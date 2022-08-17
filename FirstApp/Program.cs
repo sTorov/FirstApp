@@ -1,60 +1,48 @@
 ﻿using System.Collections;
 using System.Text;
 
-/*
- * ExceptWith() Удаляет из хэш-сета все элементы, содержащиеся в другой коллекции.
- */
-
 class Program
 {
     static void Main()
     {
-        Console.OutputEncoding = Encoding.UTF7;
-        Console.InputEncoding = Encoding.Unicode;
-        
-        //Создадми словарь, ключём будет строка, значение - массив строк
-        var cities = new Dictionary<string, string[]>(3/*Размер указывать не обязательно*/);
-
-        //Добавим новые значения
-        cities.Add("Россия", new[] {"Москва", "Санкт-Петербург", "Волгоград"});
-        cities.Add("Украина", new[] {"Киев", "Львов", "Николаев"});
-        cities.Add("Беларусь", new[] { "Минск", "Витебск", "Гродно"});
-
-        //Посмотрим всё что есть в словаре
-        foreach (var citiesByCountry in cities)
+        Dictionary<string, Contact> bookPhone = new Dictionary<string, Contact>()
         {
-            Console.Write(citiesByCountry.Key + ": ");
-            foreach (var city in citiesByCountry.Value)
-                Console.Write(city + " ");
+            {"Дмитрий", new Contact(123123123, "dima@com.ru") },
+            {"Иван", new Contact(456456456, "ivan@ivan.ru") }
+        };
 
-            Console.WriteLine();
-        }
+        foreach (var contact in bookPhone)
+            Console.WriteLine(contact.Key + ": " + contact.Value);
 
         Console.WriteLine();
+        bookPhone.Add("Василий", new Contact(111222333, "vasya@gmail.com"));
 
-        //Теперь попробуем вывести значение по ключу
-        var russianCities = cities["Россия"];
-        Console.WriteLine("Города России:");
-        foreach (var city in russianCities)
-            Console.WriteLine(city);
+        foreach (var contact in bookPhone)
+            Console.WriteLine(contact.Key + ": " + contact.Value);
 
         Console.WriteLine();
+        if (bookPhone.ContainsKey("Василий"))
+            bookPhone["Василий"] = new Contact(000111000111, bookPhone["Василий"].Email);
 
-        //изменение значения по ключу
-        cities["Россия"] = new[] { "Мурманск", "Казань"};
+        foreach (var contact in bookPhone)
+            Console.WriteLine(contact.Key + ": " + contact.Value);
 
-        //удаление по ключу
-        cities.Remove("Беларусь");
+        Console.WriteLine();
+    }
+}
+public class Contact // модель класса
+{
+    public Contact(long phoneNumber, string email) // метод-конструктор
+    {
+        PhoneNumber = phoneNumber;
+        Email = email;
+    }
 
-        //Посмотрим всё что есть в словаре после преобразований
-        foreach (var citiesByCountry in cities)
-        {
-            Console.Write(citiesByCountry.Key + ": ");
-            foreach (var city in citiesByCountry.Value)
-                Console.Write(city + " ");
+    public long PhoneNumber { get; }
+    public string Email { get; }
 
-            Console.WriteLine();
-        }
-
+    public override string ToString()
+    {
+        return "Телефон: " + PhoneNumber + " E-mail: " + Email;
     }
 }
