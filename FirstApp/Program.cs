@@ -4,56 +4,47 @@ using System.Text;
 
 class Program
 {
-    // объявим потокобезопасную очередь (полностью идентична обычной очереди, но
-    // позволяет безопасный доступ
-    // из разных потоков)
-    public static ConcurrentQueue<string> words = new ConcurrentQueue<string>();
+    //Объявим список в виде статической переменной
+    public static LinkedList<string> strings = new LinkedList<string>();
 
     static void Main(string[] args)
     {
         Console.OutputEncoding = Encoding.UTF7;
-        Console.InputEncoding = Encoding.Unicode;  
+        Console.InputEncoding = Encoding.Unicode;
+        
+        //добавим несколько элементов
+        strings.AddFirst("Лиса");
+        strings.AddFirst("Волк");
+        strings.AddFirst("Заяц");
+        var mouse = strings.AddFirst("Мышь");
 
-        Console.WriteLine("Введите слово и нажмите Enter, чтобы добавить его в очередь.");
-        Console.WriteLine();
+        GoOnwards();    //прямой проход списка
+        GoBackwards();  //обратный проход списка
 
-        //  запустим обработку очереди в отдельном потоке
-        StartQueueProcessing();
+        //вставка нового элемента
+        strings.AddAfter(mouse, "Медведь");
+        
+        Console.WriteLine("\n\nВыведем список ещё раз после вставки\n");
 
-        while (true)
-        {
-            var input = Console.ReadLine();
-
-            switch (input)
-            {
-                case "peek":
-                    if(words.TryPeek(out string? result))
-                        Console.WriteLine($"Крайний в очереди: {result}");
-                    else
-                        Console.WriteLine("Очередь пуста");
-                    break;
-                default:
-                    words.Enqueue(input);
-                    break;
-            }
-        }
+        GoOnwards();    //прямой проход списка
+        GoBackwards();  //обратный проход списка
     }
 
-    // метод, который обрабатывает и разбирает нашу очередь в отдельном потоке
-    // ( для выполнения задания изменять его не нужно )
-    static void StartQueueProcessing()
+    static void GoOnwards()
     {
-        new Thread(() =>
-        {
-            Thread.CurrentThread.IsBackground = true;
+        LinkedListNode<string> node;
 
-            while (true)
-            {
-                Thread.Sleep(5000);
-                if (words.TryDequeue(out var element))
-                    Console.WriteLine("======>  " + element + " прошел очередь");
-            }
+        Console.WriteLine("Элементы коллекции в прямом направлении:");
+        for(node = strings.First; node != null; node = node.Next)
+            Console.Write(node.Value + " ");
+    }
 
-        }).Start();
+    static void GoBackwards()
+    {
+        LinkedListNode<string> node;
+
+        Console.WriteLine("\n\nЭлементы коллекции в обратном направлении:");
+        for (node = strings.Last; node != null; node = node.Previous)
+            Console.Write(node.Value + " ");
     }
 }
