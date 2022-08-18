@@ -10,39 +10,34 @@ class Program
         Console.OutputEncoding = Encoding.UTF7;
         Console.InputEncoding = Encoding.Unicode;
 
-        Console.WriteLine("Введите слово и нажмите Enter, чтобы добавить его в стек.");
-        Console.WriteLine();
+        //создадим очередь
+        Queue<int> q = new Queue<int>();
 
-        while (true)
+        //добавим в неё целые числа от 0 до 10
+        for (int i = 0; i <= 10; i++)
         {
-            Console.Write("Введите слово или комманду: ");
-            var input = Console.ReadLine();
-
-            switch (input)
-            {
-                case "pop":
-                    if (words.TryPop(out string? pop))
-                        Console.WriteLine("Последний элемент извлечен");
-                    else
-                        Console.WriteLine("Стек пуст");
-                    break;
-                case "peek":
-                    if (words.TryPeek(out string? peek))
-                        Console.Write($"Последний элемент в стеке: {peek}\n");
-                    else
-                        Console.WriteLine("Стек пуст");
-                    break;
-                default:
-                    words.Push(input);
-                    break;
-            }
-
-            Console.WriteLine("\nВ стеке:");
-
-            foreach (var word in words)
-                Console.WriteLine(" " + word);
-
-            Console.WriteLine();
+            q.Enqueue(i);
+            Console.WriteLine($"{i} зашёл в очередь");
         }
+
+        //Посмотрим, кто первый в очереди
+        Console.WriteLine($"\nПервый элемент: {q.Peek()}\n");
+        //Обратите внимание, после вызова Peek() элемент остался в очереди
+
+        //посмотрим всю очередь
+        Console.WriteLine("Элементы в очереди");
+        foreach (var item in q)
+            Console.Write(item + " ");
+
+        Console.WriteLine($"\nВ очереди {q.Count} элементов\n");
+
+        //обработаем очередь
+        //достанем из неё элементы один за другим
+        int queueCount = q.Count;
+        for(int i = 0; i < queueCount; i++)
+            Console.WriteLine($"{q.Dequeue()} вышел из очереди");
+
+        //посмотрим, сколько элементов осталось
+        Console.WriteLine($"\nВ очереди {q.Count} элементов");
     }
 }
