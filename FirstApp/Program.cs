@@ -2,41 +2,47 @@
 using System.Text;
 
 class Program
-{
-    static void Main()
+{    
+    public static Stack<string> words = new Stack<string>();
+
+    static void Main(string[] args)
     {
-        //создадим числовой стек
-        Stack<int> numbers = new Stack<int>();
+        Console.OutputEncoding = Encoding.UTF7;
+        Console.InputEncoding = Encoding.Unicode;
 
-        numbers.Push(3); // в стеке 3
-        numbers.Push(5); // в стеке 5, 3
-        numbers.Push(8); // в стеке 8, 5, 3
-
-        Console.WriteLine("Элементы числового стека:");
-        foreach (var item in numbers)
-            Console.WriteLine(item);
-
-        Console.WriteLine($"Извлекаем верхний элемент из стека: {numbers.Pop()}");
-        // в стеке остались 5, 3
-
+        Console.WriteLine("Введите слово и нажмите Enter, чтобы добавить его в стек.");
         Console.WriteLine();
-        
-        //создадим стек объектов
-        Stack<Person> people = new Stack<Person>();
-        people.Push(new Person { Name = "Dima" });
-        people.Push(new Person { Name = "Sergey" });
-        people.Push(new Person { Name = "Anna" });
 
-        Console.WriteLine("Элементы стека объектов:");
-        foreach(var item in people)
-            Console.WriteLine(item.Name);
+        while (true)
+        {
+            Console.Write("Введите слово или комманду: ");
+            var input = Console.ReadLine();
 
-        Console.WriteLine($"Извлекаем верхний элеменгт из стека объектов: {people.Pop().Name}");
+            switch (input)
+            {
+                case "pop":
+                    if (words.TryPop(out string? pop))
+                        Console.WriteLine("Последний элемент извлечен");
+                    else
+                        Console.WriteLine("Стек пуст");
+                    break;
+                case "peek":
+                    if (words.TryPeek(out string? peek))
+                        Console.Write($"Последний элемент в стеке: {peek}\n");
+                    else
+                        Console.WriteLine("Стек пуст");
+                    break;
+                default:
+                    words.Push(input);
+                    break;
+            }
 
-    }
+            Console.WriteLine("\nВ стеке:");
 
-    class Person
-    {
-        public string Name { get; set; }
+            foreach (var word in words)
+                Console.WriteLine(" " + word);
+
+            Console.WriteLine();
+        }
     }
 }
