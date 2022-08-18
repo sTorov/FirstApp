@@ -1,43 +1,59 @@
 ﻿using System.Collections;
+using System.Collections.Concurrent;
 using System.Text;
 
 class Program
-{    
-    public static Stack<string> words = new Stack<string>();
+{
+    // объявим потокобезопасную очередь (полностью идентична обычной очереди, но
+    // позволяет безопасный доступ
+    // из разных потоков)
+    public static ConcurrentQueue<string> words = new ConcurrentQueue<string>();
 
     static void Main(string[] args)
     {
         Console.OutputEncoding = Encoding.UTF7;
-        Console.InputEncoding = Encoding.Unicode;
+        Console.InputEncoding = Encoding.Unicode;  
 
-        //создадим очередь
-        Queue<int> q = new Queue<int>();
+        Console.WriteLine("Введите слово и нажмите Enter, чтобы добавить его в очередь.");
+        Console.WriteLine();
 
-        //добавим в неё целые числа от 0 до 10
-        for (int i = 0; i <= 10; i++)
+        //  запустим обработку очереди в отдельном потоке
+        StartQueueProcessing();
+
+        while (true)
         {
-            q.Enqueue(i);
-            Console.WriteLine($"{i} зашёл в очередь");
+            var input = Console.ReadLine();
+
+            switch (input)
+            {
+                case "peek":
+                    if(words.TryPeek(out string? result))
+                        Console.WriteLine($"Крайний в очереди: {result}");
+                    else
+                        Console.WriteLine("Очередь пуста");
+                    break;
+                default:
+                    words.Enqueue(input);
+                    break;
+            }
         }
+    }
 
-        //Посмотрим, кто первый в очереди
-        Console.WriteLine($"\nПервый элемент: {q.Peek()}\n");
-        //Обратите внимание, после вызова Peek() элемент остался в очереди
+    // метод, который обрабатывает и разбирает нашу очередь в отдельном потоке
+    // ( для выполнения задания изменять его не нужно )
+    static void StartQueueProcessing()
+    {
+        new Thread(() =>
+        {
+            Thread.CurrentThread.IsBackground = true;
 
-        //посмотрим всю очередь
-        Console.WriteLine("Элементы в очереди");
-        foreach (var item in q)
-            Console.Write(item + " ");
+            while (true)
+            {
+                Thread.Sleep(5000);
+                if (words.TryDequeue(out var element))
+                    Console.WriteLine("======>  " + element + " прошел очередь");
+            }
 
-        Console.WriteLine($"\nВ очереди {q.Count} элементов\n");
-
-        //обработаем очередь
-        //достанем из неё элементы один за другим
-        int queueCount = q.Count;
-        for(int i = 0; i < queueCount; i++)
-            Console.WriteLine($"{q.Dequeue()} вышел из очереди");
-
-        //посмотрим, сколько элементов осталось
-        Console.WriteLine($"\nВ очереди {q.Count} элементов");
+        }).Start();
     }
 }
