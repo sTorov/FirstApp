@@ -15,12 +15,7 @@ class Program
            300,
         };
 
-        var strs = from obj in objects
-                   where obj is string //obj.GetType() == typeof(string)
-                   orderby obj
-                   select obj;
-                   
-        foreach(var s in strs)
-            Console.WriteLine(s);
+        foreach(var str in objects.Where(o => o is string).OrderBy(o => o))
+            Console.WriteLine(str);
     }
 }
