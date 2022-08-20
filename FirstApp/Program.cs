@@ -8,9 +8,11 @@ class Program
         Console.InputEncoding = Encoding.Unicode;
 
         string[] people = { "Анна", "Мария", "Сергей", "Алексей", "Дмитрий", "Ян" };
-        var names = people.Where(p => p.StartsWith("А")).OrderBy(p => p);
+        var names = (from p in people
+                    where p.ToUpper().StartsWith("А")
+                    orderby p
+                    select p).Count();
 
-        foreach(string name in names)
-            Console.WriteLine(name);
+        Console.WriteLine($"В выборке {names} чел");
     }
 }
