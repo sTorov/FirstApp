@@ -8,10 +8,7 @@ class Program
         Console.InputEncoding = Encoding.Unicode;
 
         string[] people = { "Анна", "Мария", "Сергей", "Алексей", "Дмитрий", "Ян" };
-        var names = from p in people // промежуточная переменная p
-                    where p.StartsWith("А") // фильтрация по условию
-                    orderby p // сортировка по возрастанию (дефолтная)
-                    select p; // выбираем объект и сохраняем в выборку
+        var names = people.Where(p => p.StartsWith("А")).OrderBy(p => p);
 
         foreach(string name in names)
             Console.WriteLine(name);
