@@ -7,12 +7,20 @@ class Program
         Console.OutputEncoding = Encoding.UTF7;
         Console.InputEncoding = Encoding.Unicode;
 
-        string[] people = { "Анна", "Мария", "Сергей", "Алексей", "Дмитрий", "Ян" };
-        var names = (from p in people
-                    where p.ToUpper().StartsWith("А")
-                    orderby p
-                    select p).Count();
+        var objects = new List<object>()
+        {
+           1,
+           "Сергей ",
+           "Андрей ",
+           300,
+        };
 
-        Console.WriteLine($"В выборке {names} чел");
+        var strs = from obj in objects
+                   where obj is string //obj.GetType() == typeof(string)
+                   orderby obj
+                   select obj;
+                   
+        foreach(var s in strs)
+            Console.WriteLine(s);
     }
 }
