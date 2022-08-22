@@ -7,15 +7,18 @@ class Program
         Console.OutputEncoding = Encoding.UTF7;
         Console.InputEncoding = Encoding.Unicode;
 
-        var objects = new List<object>()
-        {
-           1,
-           "Сергей ",
-           "Андрей ",
-           300,
-        };
+        int[] number = { 1, 2, 3, 4, 10, 34, 55, 66, 77, 88 };
+        var evenNums = from i in number
+                       where i % 2 == 0 && i > 10
+                       select i;
 
-        foreach(var str in objects.Where(o => o is string).OrderBy(o => o))
-            Console.WriteLine(str);
+        foreach(int i in evenNums)
+            Console.WriteLine(i);
+        Console.WriteLine();
+
+        var evens = number.Where(i => i % 2 == 0 && i > 10);
+
+        foreach(var i in evens)
+            Console.WriteLine(i);
     }
 }
