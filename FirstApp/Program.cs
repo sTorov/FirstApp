@@ -7,24 +7,28 @@ class Program
         Console.OutputEncoding = Encoding.UTF8;
         Console.InputEncoding = Encoding.Unicode;
 
-        var companies = new Dictionary<string, string[]>();
+        var numsList = new List<int[]>()
+        {
+           new[] {2, 3, 7, 1},
+           new[] {45, 17, 88, 0},
+           new[] {23, 32, 44, -6},
+        };
 
-        companies.Add("Apple", new[] { "Mobile", "Desktop" });
-        companies.Add("Samsung", new[] { "Mobile" });
-        companies.Add("IBM", new[] { "Desktop" });
+        var sortedNumber = from numbers in numsList
+                           from num in numbers
+                           orderby num
+                           select num;
 
-        var select = from i in companies
-                     where i.Value.Contains("Mobile")
-                     select i;
-
-        foreach(var i in select)
-            Console.WriteLine(i.Key);
+        foreach(var num in sortedNumber)
+            Console.WriteLine(num);
         Console.WriteLine();
 
-        var select2 = companies
-            .Where(c => c.Value.Contains("Mobile"));
+        //Решение
+        var numbers2 = numsList
+            .SelectMany(s => s)
+            .OrderBy(s => s);
 
-        foreach(var i in select2)
-            Console.WriteLine(i.Key);
+        foreach(var num in numbers2)
+            Console.WriteLine(num);
     }
 }
