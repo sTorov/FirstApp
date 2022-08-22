@@ -4,8 +4,11 @@ class Program
 {
     static void Main(string[] args)
     {
-        Console.OutputEncoding = Encoding.UTF7;
+        Console.OutputEncoding = Encoding.UTF8;
         Console.InputEncoding = Encoding.Unicode;
+
+        //Словарь для хранения стран с городами
+        var Countries = new Dictionary<string, List<City>>();
 
         //Добавим Россию с её городами
         var russianCities = new List<City>();
@@ -14,41 +17,30 @@ class Program
         russianCities.Add(new City("Волгоград", 1099000));
         russianCities.Add(new City("Казань", 1169000));
         russianCities.Add(new City("Севастополь", 449138));
+        Countries.Add("Россия", russianCities);
 
-        //Выберем города-милионники
-        var bigCities = from russianCity in russianCities
-                        where russianCity.Population > 1000000
-                        orderby russianCity.Population descending
-                        select russianCity;
+        //Добавим Беларусь
+        var belarusCities = new List<City>();
+        belarusCities.Add(new City("Минск", 1200000));
+        belarusCities.Add(new City("Витебск", 362466));
+        belarusCities.Add(new City("Гродно", 368710));
+        Countries.Add("Беларусь", belarusCities);
 
-        foreach(var bigCity in bigCities)
-            Console.WriteLine(bigCity);
-        Console.WriteLine();
+        //Добавим США
+        var americanCities = new List<City>();
+        americanCities.Add(new City("Нью-Йорк", 8399000));
+        americanCities.Add(new City("Вашингтон", 705749));
+        americanCities.Add(new City("Альбукерке", 560218));
+        Countries.Add("США", americanCities);
 
-        //Или
-        var cities = russianCities.Where(city => city.Population > 1000000)
-            .OrderByDescending(city => city.Population);
+        var cities = from country in Countries //пройдёмся по странам
+                     from city in country.Value //пройдёмся по городам
+                     where city.Population > 1000000 //выберем города-милионники
+                     orderby city.Population descending //отсортируем по населению
+                     select city;
 
-        foreach(var c in cities)
-            Console.WriteLine(c);
-        Console.WriteLine();
-
-        //Задание 14.1.1
-        var shortNameCity = from c in russianCities
-                           where c.Name.Length <= 10
-                           orderby c.Name.Length descending
-                           select c;
-
-        foreach(var c in shortNameCity)
-            Console.WriteLine(c.Name);
-        Console.WriteLine();
-
-        var SNC = russianCities
-            .Where(c => c.Name.Length <= 10)
-            .OrderByDescending(c => c.Name.Length);
-
-        foreach( var c in SNC)
-            Console.WriteLine(c.Name);
+        foreach(var city in cities)
+            Console.WriteLine(city);
     }
 
     //Создадим модель-класс для города
