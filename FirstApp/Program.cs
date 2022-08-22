@@ -7,18 +7,47 @@ class Program
         Console.OutputEncoding = Encoding.UTF7;
         Console.InputEncoding = Encoding.Unicode;
 
-        int[] number = { 1, 2, 3, 4, 10, 34, 55, 66, 77, 88 };
-        var evenNums = from i in number
-                       where i % 2 == 0 && i > 10
-                       select i;
+        //Добавим Россию с её городами
+        var russianCities = new List<City>();
+        russianCities.Add(new City("Москва", 11900000));
+        russianCities.Add(new City("Санкт-Петербург", 4991000));
+        russianCities.Add(new City("Волгоград", 1099000));
+        russianCities.Add(new City("Казань", 1169000));
+        russianCities.Add(new City("Севастополь", 449138));
 
-        foreach(int i in evenNums)
-            Console.WriteLine(i);
+        //Выберем города-милионники
+        var bigCities = from russianCity in russianCities
+                        where russianCity.Population > 1000000
+                        orderby russianCity.Population descending
+                        select russianCity;
+
+        foreach(var bigCity in bigCities)
+            Console.WriteLine(bigCity);
         Console.WriteLine();
 
-        var evens = number.Where(i => i % 2 == 0 && i > 10);
+        //Или
+        var cities = russianCities.Where(city => city.Population > 1000000)
+            .OrderByDescending(city => city.Population);
 
-        foreach(var i in evens)
-            Console.WriteLine(i);
+        foreach(var c in cities)
+            Console.WriteLine(c);
+    }
+
+    //Создадим модель-класс для города
+    public class City
+    {
+        public string Name { get; set; }
+        public long Population { get; set; }
+
+        public City(string name, long population)
+        {
+            Name = name;
+            Population = population;
+        }
+
+        public override string ToString()
+        {
+            return Name + " - " + Population;
+        }
     }
 }
