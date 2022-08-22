@@ -31,6 +31,24 @@ class Program
 
         foreach(var c in cities)
             Console.WriteLine(c);
+        Console.WriteLine();
+
+        //Задание 14.1.1
+        var shortNameCity = from c in russianCities
+                           where c.Name.Length <= 10
+                           orderby c.Name.Length descending
+                           select c;
+
+        foreach(var c in shortNameCity)
+            Console.WriteLine(c.Name);
+        Console.WriteLine();
+
+        var SNC = russianCities
+            .Where(c => c.Name.Length <= 10)
+            .OrderByDescending(c => c.Name.Length);
+
+        foreach( var c in SNC)
+            Console.WriteLine(c.Name);
     }
 
     //Создадим модель-класс для города
