@@ -7,34 +7,24 @@ class Program
         Console.OutputEncoding = Encoding.UTF8;
         Console.InputEncoding = Encoding.Unicode;
 
-        //Подготовим данные
-        List<Student> students = new List<Student>
-        {
-            new Student{Name = "Андрей", Age = 23, Languages = new List<string>{ "английский", "немецкий" }},
-            new Student{Name = "Сергей", Age = 27, Languages = new List<string>{ "английский", "французский" }},
-            new Student{Name = "Дмитрий", Age = 29, Languages = new List<string>{ "английский", "испанский" }},
-            new Student{Name = "Василий", Age = 24, Languages = new List<string>{ "испанский", "немецкий" }},
-        };
+        var companies = new Dictionary<string, string[]>();
 
-        //Создадим запрос
-        var selectedStudents = students.SelectMany(
-            //коллекция, которую нужно преобразовать
-            s => s.Languages,
-            //функция преобразования, применяющаяся к каждому элементу коллекции
-            (s, l) => new { Student = s, Lang = l })
-            //дополнительные условия
-            .Where(s => s.Lang == "английский" && s.Student.Age < 28)
-            .Select(s => s.Student);
+        companies.Add("Apple", new[] { "Mobile", "Desktop" });
+        companies.Add("Samsung", new[] { "Mobile" });
+        companies.Add("IBM", new[] { "Desktop" });
 
-        //Выведем результат
-        foreach(var student in selectedStudents)
-            Console.WriteLine($"{student.Name} - {student.Age}");
-    }
+        var select = from i in companies
+                     where i.Value.Contains("Mobile")
+                     select i;
 
-    public class Student
-    {
-        public string Name { get; set; }
-        public int Age { get; set; }
-        public List<string> Languages { get; set; }
+        foreach(var i in select)
+            Console.WriteLine(i.Key);
+        Console.WriteLine();
+
+        var select2 = companies
+            .Where(c => c.Value.Contains("Mobile"));
+
+        foreach(var i in select2)
+            Console.WriteLine(i.Key);
     }
 }
