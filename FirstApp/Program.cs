@@ -7,28 +7,26 @@ class Program
         Console.OutputEncoding = Encoding.UTF8;
         Console.InputEncoding = Encoding.Unicode;
 
-        var numsList = new List<int[]>()
+        //Подготовим данные
+        List<Student> students = new List<Student>
         {
-           new[] {2, 3, 7, 1},
-           new[] {45, 17, 88, 0},
-           new[] {23, 32, 44, -6},
+            new Student { Name = "Андрей" , Age =23, Languages = new List<string>{ "английский", "немнцкий" } },
+            new Student { Name = "Сергей" , Age =27, Languages = new List<string>{ "английский", "французский" } },
+            new Student { Name = "Дмитрий" , Age =29, Languages = new List<string>{ "английский", "испанский" } },
+            new Student { Name = "Василий" , Age =24, Languages = new List<string>{ "испанский", "немнцкий" } },
         };
 
-        var sortedNumber = from numbers in numsList
-                           from num in numbers
-                           orderby num
-                           select num;
+        var names = from s in students select s.Name;
 
-        foreach(var num in sortedNumber)
-            Console.WriteLine(num);
-        Console.WriteLine();
+        //Выведеи результат
+        foreach(var name in names)
+            Console.WriteLine(name);
+    }   
+}
 
-        //Решение
-        var numbers2 = numsList
-            .SelectMany(s => s)
-            .OrderBy(s => s);
-
-        foreach(var num in numbers2)
-            Console.WriteLine(num);
-    }
+public class Student
+{
+    public string Name { get; set; }
+    public int Age { get; set; }
+    public List<string> Languages { get; set; }
 }
