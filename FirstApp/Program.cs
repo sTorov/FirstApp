@@ -16,11 +16,26 @@ class Program
             new Student { Name = "Василий" , Age =24, Languages = new List<string>{ "испанский", "немнцкий" } },
         };
 
-        var names = from s in students select s.Name;
+        var studentsApplication = from s in students
+                    //создадим анонимный тип для представления анкеты 
+                    select new    
+                    {
+                        FirstName = s.Name,
+                        YearOfBirth = DateTime.Now.Year - s.Age
+                    };
 
-        //Выведеи результат
-        foreach(var name in names)
-            Console.WriteLine(name);
+        //или
+        var studentsApplicationClass = from s in students
+                    //спроецируем в новую сущность анкеты
+                    select new Application
+                    {
+                        FirstName = s.Name,
+                        YearOfBirth = DateTime.Now.Year - s.Age
+                    };
+
+        //Выведем результат (результат будет одинаковый)
+        foreach(var application in studentsApplication)
+            Console.WriteLine($"{application.FirstName}, {application.YearOfBirth}");
     }   
 }
 
@@ -29,4 +44,10 @@ public class Student
     public string Name { get; set; }
     public int Age { get; set; }
     public List<string> Languages { get; set; }
+}
+
+public class Application
+{
+    public string FirstName { get; set; }
+    public int YearOfBirth { get; set; }
 }
