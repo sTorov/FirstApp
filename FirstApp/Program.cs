@@ -16,18 +16,17 @@ class Program
             new Student { Name = "Василий" , Age =24, Languages = new List<string>{ "испанский", "немнцкий" } },
         };
 
-        var fullNameStudents = from s in students
-                               //временная переменная для генерации полного имени
-                               let fullName = s.Name + " Иванов"
-                               //проекция в новую сущность с использованием новой переменой
-                               select new
-                               {
-                                   Name = fullName,
-                                   Age = s.Age
-                               };
+        var studentsApplication = from std in students
+                                  where std.Age < 27
+                                  let yearOfBirth = DateTime.Now.Year - std.Age
+                                  select new Application()
+                                  {
+                                      Name = std.Name,
+                                      YearOfBirth = yearOfBirth,
+                                  };
 
-        foreach(var item in fullNameStudents)
-            Console.WriteLine(item.Name + ", " + item.Age);
+        foreach(var application in studentsApplication)
+            Console.WriteLine(application.Name + ", " + application.YearOfBirth);
     }   
 }
 
@@ -40,6 +39,6 @@ public class Student
 
 public class Application
 {
-    public string FirstName { get; set; }
+    public string Name { get; set; }
     public int YearOfBirth { get; set; }
 }
