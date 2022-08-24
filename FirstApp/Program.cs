@@ -5,44 +5,61 @@ class Program
     static void Main(string[] args)
     {
         Console.OutputEncoding = Encoding.UTF8;
-        Console.InputEncoding = Encoding.Unicode;
+        
+        //  создаём пустой список с типом данных Contact
+        var phoneBook = new List<Contact>();
 
-        // Подготовка данных
-        var cars = new List<Car>()
+        // добавляем контакты
+        phoneBook.Add(new Contact("Игорь", "Николаев", 79990000001, "igor@example.com"));
+        phoneBook.Add(new Contact("Сергей", "Довлатов", 79990000010, "serge@example.com"));
+        phoneBook.Add(new Contact("Анатолий", "Карпов", 79990000011, "anatoly@example.com"));
+        phoneBook.Add(new Contact("Валерий", "Леонтьев", 79990000012, "valera@example.com"));
+        phoneBook.Add(new Contact("Сергей", "Брин", 799900000013, "serg@example.com"));
+        phoneBook.Add(new Contact("Иннокентий", "Смоктуновский", 799900000013, "innokentii@example.com"));
+
+        while(true)
         {
-           new Car("Suzuki", "JP"),
-           new Car("Toyota", "JP"),
-           new Car("Opel", "DE"),
-           new Car("Kamaz", "RUS"),
-           new Car("Lada", "RUS"),
-           new Car("Lada", "RUS"),
-           new Car("Honda", "JP"),
-        };
+            char ch = Console.ReadKey(true).KeyChar;
+            Console.Clear();
 
-        Console.WriteLine("Пропустим японские машины в начале списка");
-        var notJPCar = cars.SkipWhile(c => c.CountryCode == "JP");
+            if(!char.IsDigit(ch))
+            {
+                Console.WriteLine("Введите число!");
+                continue;
+            }
 
-        foreach(var car in notJPCar)
-            Console.WriteLine(car.Manufacturer);
-        Console.WriteLine();
+            IEnumerable<Contact> page = null;
+            int number = int.Parse(ch.ToString());
 
-        Console.WriteLine("Теперь выберем только японские машины из начала списка");
-        var JPCar = cars.TakeWhile(c => c.CountryCode == "JP");
+            if (number > 0 && number < 4)
+            {
+                page = phoneBook.Skip((number - 1) * 2).Take(2);
 
-        foreach(var car in JPCar)
-            Console.WriteLine(car.Manufacturer);
-
-    }   
+                foreach(var contact in page)
+                    Console.WriteLine(contact);
+            }
+            if(page == null)
+                Console.WriteLine($"Страницы {ch} не существует!");
+        }
+    }
 }
-
-public class Car
+public class Contact // модель класса
 {
-    public string Manufacturer { get; set; }
-    public string CountryCode { get; set; }
-
-    public Car(string manufacturer, string countryCode)
+    public Contact(string name, string lastName, long phoneNumber, String email) // метод-конструктор
     {
-        Manufacturer = manufacturer;
-        CountryCode = countryCode;
+        Name = name;
+        LastName = lastName;
+        PhoneNumber = phoneNumber;
+        Email = email;
+    }
+
+    public String Name { get; }
+    public String LastName { get; }
+    public long PhoneNumber { get; }
+    public String Email { get; }
+
+    public override string ToString()
+    {
+        return $"{Name, -13}{LastName, -13}{"Телефон:" + PhoneNumber, 23}{"Email:" + Email, 30}";
     }
 }
