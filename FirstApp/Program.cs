@@ -24,16 +24,19 @@ class Program
         };
 
         var studentsWithCoarses = from s in students
+                                  where s.Languages.Contains("английский") && s.Age < 29
+                                  let yearBirth = DateTime.Now.Year - s.Age
                                   from c in coarses
-                                  where s.Languages.Contains("английский")
+                                  where c.Name == "Язык программирования C#" // c.Name.Contains("C#")
                                   select new
                                   {
                                       Name = s.Name,
+                                      YearOfBirth = yearBirth,
                                       CoarseName = c.Name
                                   };
 
         foreach(var item in studentsWithCoarses)
-            Console.WriteLine(item.Name + ", " + item.CoarseName);
+            Console.WriteLine(item.Name + ", " + item.YearOfBirth + "\t" + item.CoarseName);
     }   
 }
 
