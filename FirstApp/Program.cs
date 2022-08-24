@@ -17,21 +17,47 @@ class Program
            new Contact() { Name = "Василий", Phone = 3434 }
         };
 
-        while(true)
+        // бесконечный цикл, ожидающий ввод с консоли
+        while (true)
         {
-            char ch = Console.ReadKey(true).KeyChar;
-            IEnumerable<Contact> page = null;
-            Console.Clear();
+            var keyChar = Console.ReadKey().KeyChar; // получаем символ с консоли
+            Console.Clear();  //  очистка консоли от ввода
 
-            if(int.TryParse(ch.ToString(), out int result) && result > 0 && result < 4)
+
+            if (!Char.IsDigit(keyChar))
             {
-                page = contacts.Skip((result - 1) * 2).Take(2);
+                Console.WriteLine("Ошибка ввода, введите число");
+            }
+            else
+            {
+                //  переменная для хранения запроса в зависимости от введенного с консоли числа
+                IEnumerable<Contact> page = null;
 
-                foreach(var contact in page)
+                //  выбираем нужное кол-во элементов для создания постраничного ввода в зависимости от запроса
+                switch (keyChar)
+                {
+                    case ('1'):
+                        page = contacts.Take(2);
+                        break;
+                    case ('2'):
+                        page = contacts.Skip(2).Take(2);
+                        break;
+                    case ('3'):
+                        page = contacts.Skip(4).Take(2);
+                        break;
+                }
+
+                //   проверим, что ввели существующий номер страницы
+                if (page == null)
+                {
+                    Console.WriteLine($"Ошибка ввода, страницы {keyChar} не существует");
+                    continue;
+                }
+
+                // вывод результата на консоль
+                foreach (var contact in page)
                     Console.WriteLine(contact.Name + " " + contact.Phone);
             }
-            if(page == null)
-                Console.WriteLine($"Страницы '{ch}' не существует!");
         }
     }   
 }
