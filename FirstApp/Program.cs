@@ -7,47 +7,31 @@ class Program
         Console.OutputEncoding = Encoding.UTF8;
         Console.InputEncoding = Encoding.Unicode;
 
-        //Подготовим данные
-        List<Student> students = new List<Student>
-        {
-            new Student { Name = "Андрей" , Age =23, Languages = new List<string>{ "английский", "немнцкий" } },
-            new Student { Name = "Сергей" , Age =27, Languages = new List<string>{ "английский", "французский" } },
-            new Student { Name = "Дмитрий" , Age =29, Languages = new List<string>{ "английский", "испанский" } },
-            new Student { Name = "Василий" , Age =24, Languages = new List<string>{ "испанский", "немнцкий" } },
-        };
 
-        //выборка имён в строки
-        var names = students.Select(x => x.Name);
+        string[] words = { "Обезьяна", "Лягушка", "Кот", "Собака", "Черепаха" };
 
-        //создадим анонимный тип для представления анкеты 
-        var studentsApplication = students.Select(s => new
-        {
-            FirstName = s.Name,
-            YearOfBirth = DateTime.Now.Year - s.Age
-        });
+        var str = from s in words
+                  orderby s.Length
+                  select new 
+                  { 
+                      Word = s,
+                      Length = s.Length
+                  };
 
-        //спроецируем в новую сущность анкеты
-        var studentsApplicationClass = students.Select(s => new Application()
-        {
-            FirstName = s.Name,
-            YearOfBirth = DateTime.Now.Year - s.Age
-        });
+        foreach (var item in str)
+            Console.WriteLine(item.Word + " " + item.Length);
+        Console.WriteLine();
 
-        //Выведем результат (результат будет одинаковый)
-        foreach(var application in studentsApplication)
-            Console.WriteLine($"{application.FirstName}, {application.YearOfBirth}");
+        //или
+        var str2 = words.Select(s => 
+        new 
+        { 
+            Word = s, 
+            Length = s.Length 
+        })
+        .OrderBy(s => s.Length);
+
+        foreach (var item in str2)
+            Console.WriteLine(item.Word + " " + item.Length);
     }   
-}
-
-public class Student
-{
-    public string Name { get; set; }
-    public int Age { get; set; }
-    public List<string> Languages { get; set; }
-}
-
-public class Application
-{
-    public string FirstName { get; set; }
-    public int YearOfBirth { get; set; }
 }
