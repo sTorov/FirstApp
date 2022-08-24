@@ -5,65 +5,45 @@ class Program
     static void Main(string[] args)
     {
         Console.OutputEncoding = Encoding.UTF8;
-        
-        //  создаём пустой список с типом данных Contact
-        var phoneBook = new List<Contact>();
 
-        // добавляем контакты
-        phoneBook.Add(new Contact("Игорь", "Николаев", 79990000001, "igor@example.com"));
-        phoneBook.Add(new Contact("Сергей", "Довлатов", 79990000010, "serge@example.com"));
-        phoneBook.Add(new Contact("Анатолий", "Карпов", 79990000011, "anatoly@example.com"));
-        phoneBook.Add(new Contact("Валерий", "Леонтьев", 79990000012, "valera@example.com"));
-        phoneBook.Add(new Contact("Сергей", "Брин", 799900000013, "serg@example.com"));
-        phoneBook.Add(new Contact("Иннокентий", "Смоктуновский", 799900000013, "innokentii@example.com"));
-
-        while (true)
+        // Список студентов
+        var students = new List<Student>
         {
-            // Читаем введенный с консоли символ
-            var input = Console.ReadKey().KeyChar;
+           new Student {Name="Алёна", Age=23, Languages = new List<string> {"английский", "немецкий" }},
+           new Student {Name="Яков", Age=23, Languages = new List<string> {"английский", "немецкий" }},
+           new Student {Name="Андрей", Age=23, Languages = new List<string> {"английский", "немецкий" }},
+           new Student {Name="Сергей", Age=27, Languages = new List<string> {"английский", "французский" }},
+           new Student {Name="Дмитрий", Age=29, Languages = new List<string> {"английский", "испанский" }},
+           new Student {Name="Василий", Age=24, Languages = new List<string> {"испанский", "немецкий" }}
+        };
 
-            // проверяем, число ли это
-            var parsed = Int32.TryParse(input.ToString(), out int pageNumber);
+        //сортировка по возрастанию
+        var sortStud = from s in students 
+                       orderby s.Age 
+                       select s;
 
-            // если не соответствует критериям - показываем ошибку
-            if (!parsed || pageNumber < 1 || pageNumber > 3)
-            {
-                Console.WriteLine();
-                Console.WriteLine("Страницы не существует");
-            }
-            // если соответствует - запускаем вывод
-            else
-            {
-                // пропускаем нужное количество элементов и берем 2 для показа на странице
-                var pageContent = phoneBook.Skip((pageNumber - 1) * 2).Take(2);
-                Console.WriteLine();
+        //или
+        var sortAsc = students.OrderBy(s => s.Age);
 
-                // выводим результат
-                foreach (var entry in pageContent)
-                    Console.WriteLine(entry.Name + " " + entry.LastName + ": " + entry.PhoneNumber);
+        foreach(var student in sortStud)
+            Console.WriteLine(student.Name + ", " + student.Age);
+        Console.WriteLine();
 
-                Console.WriteLine();
-            }
-        }
+        //сортировка по убыванию
+        var sortStudDesending = from s in students
+                       orderby s.Age descending
+                       select s;
+
+        //или
+        var sortDesc = students.OrderByDescending(s => s.Age);
+
+        foreach (var student in sortStudDesending)
+            Console.WriteLine(student.Name + ", " + student.Age);
     }
 }
-public class Contact // модель класса
+public class Student
 {
-    public Contact(string name, string lastName, long phoneNumber, String email) // метод-конструктор
-    {
-        Name = name;
-        LastName = lastName;
-        PhoneNumber = phoneNumber;
-        Email = email;
-    }
-
-    public String Name { get; }
-    public String LastName { get; }
-    public long PhoneNumber { get; }
-    public String Email { get; }
-
-    public override string ToString()
-    {
-        return $"{Name, -13}{LastName, -13}{"Телефон:" + PhoneNumber, 23}{"Email:" + Email, 30}";
-    }
+    public string Name { get; set; }
+    public int Age { get; set; }
+    public IEnumerable<string> Languages { get; set; }
 }
