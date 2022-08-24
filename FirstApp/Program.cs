@@ -7,7 +7,7 @@ class Program
         Console.OutputEncoding = Encoding.UTF8;
         Console.InputEncoding = Encoding.Unicode;
 
-        //Подготовим данные
+        //Список студентов
         List<Student> students = new List<Student>
         {
             new Student { Name = "Андрей" , Age =23, Languages = new List<string>{ "английский", "немнцкий" } },
@@ -16,17 +16,24 @@ class Program
             new Student { Name = "Василий" , Age =24, Languages = new List<string>{ "испанский", "немнцкий" } },
         };
 
-        var studentsApplication = from std in students
-                                  where std.Age < 27
-                                  let yearOfBirth = DateTime.Now.Year - std.Age
-                                  select new Application()
+        //Список курсов
+        var coarses = new List<Coarse>
+        {
+            new Coarse { Name = "Язык программирования C#", StartDate = new DateTime(2020, 12, 20)},
+            new Coarse { Name = "Язык SQL и реляционные бфзы данных", StartDate = new DateTime(2020, 12, 15)}
+        };
+
+        var studentsWithCoarses = from s in students
+                                  from c in coarses
+                                  where s.Languages.Contains("английский")
+                                  select new
                                   {
-                                      Name = std.Name,
-                                      YearOfBirth = yearOfBirth,
+                                      Name = s.Name,
+                                      CoarseName = c.Name
                                   };
 
-        foreach(var application in studentsApplication)
-            Console.WriteLine(application.Name + ", " + application.YearOfBirth);
+        foreach(var item in studentsWithCoarses)
+            Console.WriteLine(item.Name + ", " + item.CoarseName);
     }   
 }
 
@@ -37,8 +44,8 @@ public class Student
     public List<string> Languages { get; set; }
 }
 
-public class Application
+public class Coarse
 {
     public string Name { get; set; }
-    public int YearOfBirth { get; set; }
+    public DateTime StartDate { get; set; }
 }
