@@ -7,7 +7,6 @@ class Program
         Console.OutputEncoding = Encoding.UTF8;
         Console.InputEncoding = Encoding.Unicode;
 
-        IEnumerable<Contact> page = default;
         var contacts = new List<Contact>()
         {
            new Contact() { Name = "Андрей", Phone = 7999945005 },
@@ -21,15 +20,18 @@ class Program
         while(true)
         {
             char ch = Console.ReadKey(true).KeyChar;
+            IEnumerable<Contact> page = null;
+            Console.Clear();
 
             if(int.TryParse(ch.ToString(), out int result) && result > 0 && result < 4)
             {
-                Console.Clear();
                 page = contacts.Skip((result - 1) * 2).Take(2);
 
                 foreach(var contact in page)
                     Console.WriteLine(contact.Name + " " + contact.Phone);
             }
+            if(page == null)
+                Console.WriteLine($"Страницы '{ch}' не существует!");
         }
     }   
 }
