@@ -7,37 +7,42 @@ class Program
         Console.OutputEncoding = Encoding.UTF8;
         Console.InputEncoding = Encoding.Unicode;
 
-        var contacts = new List<Contact>()
+        // Подготовка данных
+        var cars = new List<Car>()
         {
-           new Contact() { Name = "Андрей", Phone = 7999945005 },
-           new Contact() { Name = "Сергей", Phone = 799990455 },
-           new Contact() { Name = "Иван", Phone = 79999675 },
-           new Contact() { Name = "Игорь", Phone = 8884994 },
-           new Contact() { Name = "Анна", Phone = 665565656 },
-           new Contact() { Name = "Василий", Phone = 3434 }
+           new Car("Suzuki", "JP"),
+           new Car("Toyota", "JP"),
+           new Car("Opel", "DE"),
+           new Car("Kamaz", "RUS"),
+           new Car("Lada", "RUS"),
+           new Car("Lada", "RUS"),
+           new Car("Honda", "JP"),
         };
 
-        while(true)
-        {
-            char ch = Console.ReadKey(true).KeyChar;
-            IEnumerable<Contact> page = null;
-            Console.Clear();
+        Console.WriteLine("Пропустим японские машины в начале списка");
+        var notJPCar = cars.SkipWhile(c => c.CountryCode == "JP");
 
-            if(int.TryParse(ch.ToString(), out int result) && result > 0 && result < 4)
-            {
-                page = contacts.Skip((result - 1) * 2).Take(2);
+        foreach(var car in notJPCar)
+            Console.WriteLine(car.Manufacturer);
+        Console.WriteLine();
 
-                foreach(var contact in page)
-                    Console.WriteLine(contact.Name + " " + contact.Phone);
-            }
-            if(page == null)
-                Console.WriteLine($"Страницы '{ch}' не существует!");
-        }
+        Console.WriteLine("Теперь выберем только японские машины из начала списка");
+        var JPCar = cars.TakeWhile(c => c.CountryCode == "JP");
+
+        foreach(var car in JPCar)
+            Console.WriteLine(car.Manufacturer);
+
     }   
 }
 
-public class Contact
+public class Car
 {
-    public string Name { get; set; }
-    public long Phone { get; set; }
+    public string Manufacturer { get; set; }
+    public string CountryCode { get; set; }
+
+    public Car(string manufacturer, string countryCode)
+    {
+        Manufacturer = manufacturer;
+        CountryCode = countryCode;
+    }
 }
