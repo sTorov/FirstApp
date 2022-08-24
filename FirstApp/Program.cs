@@ -17,29 +17,33 @@ class Program
         phoneBook.Add(new Contact("Сергей", "Брин", 799900000013, "serg@example.com"));
         phoneBook.Add(new Contact("Иннокентий", "Смоктуновский", 799900000013, "innokentii@example.com"));
 
-        while(true)
+        while (true)
         {
-            char ch = Console.ReadKey(true).KeyChar;
-            Console.Clear();
+            // Читаем введенный с консоли символ
+            var input = Console.ReadKey().KeyChar;
 
-            if(!char.IsDigit(ch))
+            // проверяем, число ли это
+            var parsed = Int32.TryParse(input.ToString(), out int pageNumber);
+
+            // если не соответствует критериям - показываем ошибку
+            if (!parsed || pageNumber < 1 || pageNumber > 3)
             {
-                Console.WriteLine("Введите число!");
-                continue;
+                Console.WriteLine();
+                Console.WriteLine("Страницы не существует");
             }
-
-            IEnumerable<Contact> page = null;
-            int number = int.Parse(ch.ToString());
-
-            if (number > 0 && number < 4)
+            // если соответствует - запускаем вывод
+            else
             {
-                page = phoneBook.Skip((number - 1) * 2).Take(2);
+                // пропускаем нужное количество элементов и берем 2 для показа на странице
+                var pageContent = phoneBook.Skip((pageNumber - 1) * 2).Take(2);
+                Console.WriteLine();
 
-                foreach(var contact in page)
-                    Console.WriteLine(contact);
+                // выводим результат
+                foreach (var entry in pageContent)
+                    Console.WriteLine(entry.Name + " " + entry.LastName + ": " + entry.PhoneNumber);
+
+                Console.WriteLine();
             }
-            if(page == null)
-                Console.WriteLine($"Страницы {ch} не существует!");
         }
     }
 }
