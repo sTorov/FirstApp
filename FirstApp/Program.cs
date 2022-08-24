@@ -16,22 +16,22 @@ class Program
             new Student { Name = "Василий" , Age =24, Languages = new List<string>{ "испанский", "немнцкий" } },
         };
 
-        var studentsApplication = from s in students
-                    //создадим анонимный тип для представления анкеты 
-                    select new    
-                    {
-                        FirstName = s.Name,
-                        YearOfBirth = DateTime.Now.Year - s.Age
-                    };
+        //выборка имён в строки
+        var names = students.Select(x => x.Name);
 
-        //или
-        var studentsApplicationClass = from s in students
-                    //спроецируем в новую сущность анкеты
-                    select new Application
-                    {
-                        FirstName = s.Name,
-                        YearOfBirth = DateTime.Now.Year - s.Age
-                    };
+        //создадим анонимный тип для представления анкеты 
+        var studentsApplication = students.Select(s => new
+        {
+            FirstName = s.Name,
+            YearOfBirth = DateTime.Now.Year - s.Age
+        });
+
+        //спроецируем в новую сущность анкеты
+        var studentsApplicationClass = students.Select(s => new Application()
+        {
+            FirstName = s.Name,
+            YearOfBirth = DateTime.Now.Year - s.Age
+        });
 
         //Выведем результат (результат будет одинаковый)
         foreach(var application in studentsApplication)
