@@ -5,22 +5,21 @@ class Program
     static void Main(string[] args)
     {
         Console.OutputEncoding = Encoding.UTF8;
+        Console.InputEncoding = Encoding.Unicode;
 
-        var softwareManufacturers = new List<string>()
+        Console.WriteLine("Введите любой текст");
+        string stroka = Console.ReadLine();
+
+        if(string.IsNullOrEmpty(stroka))
         {
-           "Microsoft", "Apple", "Oracle"
-        };
+            Console.WriteLine("Вы ввели пустую строку!");
+            return;
+        }
 
-        var hardwareManufacturers = new List<string>()
-        {
-           "Apple", "Samsung", "Intel"
-        };
+        var uniqueLetters = stroka
+            .Where(s => !char.IsPunctuation(s) && s != ' ')
+            .Distinct().ToArray();
 
-        var itCompanies = softwareManufacturers.Union(hardwareManufacturers);
-        //или
-        var itCompanies2 = hardwareManufacturers.Union(softwareManufacturers);
-
-        foreach(var comp in itCompanies)
-            Console.WriteLine(comp);
+        Console.WriteLine(uniqueLetters);
     }    
 }
