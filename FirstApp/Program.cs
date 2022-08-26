@@ -6,21 +6,21 @@ class Program
     {
         Console.OutputEncoding = Encoding.UTF8;
 
-        string word1 = "Hello";
-        string word2 = "world";
+        var softwareManufacturers = new List<string>()
+        {
+           "Microsoft", "Apple", "Oracle"
+        };
 
-        Console.WriteLine("Общие буквы: " + CommonLetter(word1, word2));
-    }
+        var hardwareManufacturers = new List<string>()
+        {
+           "Apple", "Samsung", "Intel"
+        };
 
-    static int CommonLetter(string word1, string word2)
-    {
-        //ищем пересечения
-        var letters = word1.Intersect(word2);
+        var itCompanies = softwareManufacturers.Union(hardwareManufacturers);
+        //или
+        var itCompanies2 = hardwareManufacturers.Union(softwareManufacturers);
 
-        foreach(var letter in letters)
-            Console.WriteLine(letter);
-
-        //возвращаем количество
-        return letters.Count();
-    }
+        foreach(var comp in itCompanies)
+            Console.WriteLine(comp);
+    }    
 }
