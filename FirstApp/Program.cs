@@ -18,7 +18,8 @@ class Program
 
         var uniqueLetters = stroka
             .Where(s => !char.IsPunctuation(s) && s != ' ')
-            .Distinct().ToArray();
+            .Distinct()
+            .ToArray();
 
         Console.WriteLine(uniqueLetters);
     }    
