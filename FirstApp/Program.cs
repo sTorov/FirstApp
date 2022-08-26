@@ -6,29 +6,21 @@ class Program
     {
         Console.OutputEncoding = Encoding.UTF8;
 
-        string[] cars = { "Волга", "Москвич", "Нива", "Газель" };
-        string[] buses = { "Газель", "Икарус", "ЛиАЗ" };
+        string word1 = "Hello";
+        string word2 = "world";
 
-        //Объеденим без дубликатов
-        var vehicles = cars.Union(buses);
+        Console.WriteLine("Общие буквы: " + CommonLetter(word1, word2));
+    }
 
-        foreach (var v in vehicles)
-            Console.WriteLine(v);
-        Console.WriteLine();
+    static int CommonLetter(string word1, string word2)
+    {
+        //ищем пересечения
+        var letters = word1.Intersect(word2);
 
-        //Объеденим с дубликатами
-        var vehicles2 = cars.Concat(buses);
+        foreach(var letter in letters)
+            Console.WriteLine(letter);
 
-        foreach (var v in vehicles2)
-            Console.WriteLine(v);
-        Console.WriteLine();
-
-        //Удалим дубликаты
-        var uniqueCars = vehicles2.Distinct();
-
-        foreach(var v in uniqueCars)
-            Console.WriteLine(v);
-
-        //Равносильно  cars.Concat(buses).Distinct() == cars.Union(buses)
+        //возвращаем количество
+        return letters.Count();
     }
 }
