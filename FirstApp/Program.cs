@@ -7,20 +7,28 @@ class Program
         Console.OutputEncoding = Encoding.UTF8;
         Console.InputEncoding = Encoding.Unicode;
 
-        Console.WriteLine("Введите любой текст");
-        string stroka = Console.ReadLine();
+        Console.WriteLine("Введите текст:");
 
-        if(string.IsNullOrEmpty(stroka))
+        // читаем ввод
+        var text = Console.ReadLine();
+
+        // сохраняем список знаков препинания и символ пробела в коллекцию
+        var punctuation = new List<char>() { ' ', ',', '.', ';', ':', '!', '?' };
+
+        // валидация ввода
+        if (string.IsNullOrEmpty(text))
         {
-            Console.WriteLine("Вы ввели пустую строку!");
+            Console.WriteLine("Вы ввели пустой текст");
             return;
         }
 
-        var uniqueLetters = stroka
-            .Where(s => !char.IsPunctuation(s) && s != ' ')
-            .Distinct()
-            .ToArray();
+        Console.WriteLine();
+        Console.WriteLine("Текст без знаков препинания: ");
 
-        Console.WriteLine(uniqueLetters);
-    }    
+        // так как строка - это массив char, мы можем вызвать метод  except  и удалить знаки препинания
+        var noPunctuation = text.Except(punctuation).ToArray();
+
+        // вывод
+        Console.WriteLine(noPunctuation);
+    }
 }
