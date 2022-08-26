@@ -41,6 +41,16 @@ class Program
 
         foreach(var city in cities)
             Console.WriteLine(city);
+        Console.WriteLine();
+
+        //SelectMany()
+        var CITIES = Countries.SelectMany(country => country.Value)
+            .Where(city => city.Population > 1000000)
+            .OrderByDescending(city => city.Population)
+            .Select(city => city);
+
+        foreach (var city in CITIES)
+            Console.WriteLine(city);
     }
 
     //Создадим модель-класс для города
