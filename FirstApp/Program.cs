@@ -7,19 +7,15 @@ class Program
         Console.OutputEncoding = Encoding.UTF8;
         Console.InputEncoding = Encoding.Unicode;
 
-        Console.WriteLine("Введите любой текст");
-        string stroka = Console.ReadLine();
+        int[] numbers = { 1, 2, 3, 4, 5 };
+        
+        int result = numbers.Aggregate((x, y) => x - y);
+        //вычислит 1 - 2 - 3 - 4 - 5 = -13
+        Console.WriteLine(result);
 
-        if(string.IsNullOrEmpty(stroka))
-        {
-            Console.WriteLine("Вы ввели пустую строку!");
-            return;
-        }
+        int sum = numbers.Aggregate((x, y) => x + y);
+        //вычислит 1 + 2 + 3 + 4 + 5 = 15
+        Console.WriteLine(sum);
 
-        var uniqueLetters = stroka
-            .Where(s => !char.IsPunctuation(s) && s != ' ')
-            .Distinct().ToArray();
-
-        Console.WriteLine(uniqueLetters);
     }    
 }
