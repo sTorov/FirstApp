@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.Runtime.InteropServices;
+using System.Text;
 
 class Program
 {
@@ -7,32 +8,35 @@ class Program
         Console.OutputEncoding = Encoding.UTF8;
         Console.InputEncoding = Encoding.Unicode;
 
-        Console.WriteLine(Factorial(5));
-        //или
-        Console.WriteLine(Factorial2(5));
+        //Список студентов
+        List<Student> students = new List<Student>
+        {
+            new Student { Name = "Андрей" , Age =23, Languages = new List<string>{ "английский", "немнцкий" } },
+            new Student { Name = "Сергей" , Age =27, Languages = new List<string>{ "английский", "французский" } },
+            new Student { Name = "Дмитрий" , Age =29, Languages = new List<string>{ "английский", "испанский" } },
+            new Student { Name = "Василий" , Age =24, Languages = new List<string>{ "испанский", "немнцкий" } },
+        };
+
+        //получим тех, кто младше 25 лет
+        var youngStudentsAmount = (from student in students
+                             where student.Age < 25
+                             select student).Count();
+
+        //выведем 1
+        Console.WriteLine(youngStudentsAmount);
+
+        //более короткий вариант (получим теч, кто младшее 25 лет)
+        var youngStudent = students.Count(s => s.Age < 25);
+
+        //выведем 2
+        Console.WriteLine(youngStudent);
+
     }
 
-    static long Factorial(int number)
+    public class Student
     {
-        long[] numbers = new long[number];
-        for (int i = 0; i < numbers.Length; i++)
-            numbers[i] = i + 1;
-
-        long result = numbers.Aggregate((x, y) => x * y);
-        return result;
-    }
-
-    //Решение
-    static long Factorial2(int number)
-    {
-        //Коллекция для хранения чисел
-        var numbers = new List<long>();
-        
-        //Добавляем все числа от 1 до n в коллекцию
-        for (int i = 1; i <= number; i++)
-            numbers.Add(i);
-
-        //Выполняем агрегацию
-        return numbers.Aggregate((x, y) => x * y);        
+        public string Name { get; set; }
+        public int Age { get; set; }
+        public List<string> Languages { get; set; }
     }
 }
