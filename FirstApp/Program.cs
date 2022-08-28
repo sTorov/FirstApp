@@ -8,33 +8,31 @@ class Program
         Console.OutputEncoding = Encoding.UTF8;
         Console.InputEncoding = Encoding.Unicode;
 
-        var contacts = new List<Contact>()
+        var simpleNumbers = new[] { 3, 5, 7 };
+
+        //Вернёт 15
+        Console.WriteLine(simpleNumbers.Sum());
+
+        //Сложный тип данных, сложение свойств
+
+        // Список студентов
+        var students = new List<Student>
         {
-           new Contact() { Name = "Андрей", Phone = 79994500508 },
-           new Contact() { Name = "Сергей", Phone = 799990455 },
-           new Contact() { Name = "Иван", Phone = 79999675334 },
-           new Contact() { Name = "Игорь", Phone = 8884994 },
-           new Contact() { Name = "Анна", Phone = 665565656 },
-           new Contact() { Name = "Василий", Phone = 3434 }
+            new Student {Name="Андрей", Age=23 },
+            new Student {Name="Сергей", Age=27 },
+            new Student {Name="Дмитрий", Age=29 }
         };
 
-        var incorrectNumber = contacts.Count(c => !c.Phone.ToString().StartsWith('7') || c.Phone.ToString().Length != 11);
+        //сумма возрастов всех студентов
+        var totalAge = students.Sum(s => s.Age);
 
-        Console.WriteLine(incorrectNumber);
-
-        //Решение
-        var count = (from contact in contacts//пробегаемся по контактам 
-                     let phoneString = contact.Phone.ToString()//сохраняем в промежуточную переменную строку номера телефона
-                     where phoneString.Length != 11 || !phoneString.StartsWith('7')//выполняем проверку по условию
-                     select contact)//добавляем объект в выборку 
-                     .Count();//считаем количество
-
-        Console.WriteLine(count);
+        //вернёт 79
+        Console.WriteLine(totalAge);
     }
 
-    public class Contact
+    public class Student
     {
         public string Name { get; set; }
-        public long Phone { get; set; }        
+        public int Age { get; set; }        
     }
 }
