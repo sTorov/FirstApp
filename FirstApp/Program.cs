@@ -8,35 +8,33 @@ class Program
         Console.OutputEncoding = Encoding.UTF8;
         Console.InputEncoding = Encoding.Unicode;
 
-        //Список студентов
-        List<Student> students = new List<Student>
+        var contacts = new List<Contact>()
         {
-            new Student { Name = "Андрей" , Age =23, Languages = new List<string>{ "английский", "немнцкий" } },
-            new Student { Name = "Сергей" , Age =27, Languages = new List<string>{ "английский", "французский" } },
-            new Student { Name = "Дмитрий" , Age =29, Languages = new List<string>{ "английский", "испанский" } },
-            new Student { Name = "Василий" , Age =24, Languages = new List<string>{ "испанский", "немнцкий" } },
+           new Contact() { Name = "Андрей", Phone = 79994500508 },
+           new Contact() { Name = "Сергей", Phone = 799990455 },
+           new Contact() { Name = "Иван", Phone = 79999675334 },
+           new Contact() { Name = "Игорь", Phone = 8884994 },
+           new Contact() { Name = "Анна", Phone = 665565656 },
+           new Contact() { Name = "Василий", Phone = 3434 }
         };
 
-        //получим тех, кто младше 25 лет
-        var youngStudentsAmount = (from student in students
-                             where student.Age < 25
-                             select student).Count();
+        var incorrectNumber = contacts.Count(c => !c.Phone.ToString().StartsWith('7') || c.Phone.ToString().Length != 11);
 
-        //выведем 1
-        Console.WriteLine(youngStudentsAmount);
+        Console.WriteLine(incorrectNumber);
 
-        //более короткий вариант (получим теч, кто младшее 25 лет)
-        var youngStudent = students.Count(s => s.Age < 25);
+        //Решение
+        var count = (from contact in contacts//пробегаемся по контактам 
+                     let phoneString = contact.Phone.ToString()//сохраняем в промежуточную переменную строку номера телефона
+                     where phoneString.Length != 11 || !phoneString.StartsWith('7')//выполняем проверку по условию
+                     select contact)//добавляем объект в выборку 
+                     .Count();//считаем количество
 
-        //выведем 2
-        Console.WriteLine(youngStudent);
-
+        Console.WriteLine(count);
     }
 
-    public class Student
+    public class Contact
     {
         public string Name { get; set; }
-        public int Age { get; set; }
-        public List<string> Languages { get; set; }
+        public long Phone { get; set; }        
     }
 }
